@@ -33,15 +33,19 @@ class BoardEvaluator {
             }
         }
 
-        // Check bonus: reward having the opponent king in check
+        /*
+         * Check bonus: reward having the opponent king in check
+         */
         if (gameState.isBlackKingInCheck())
             score += EvaluationConstants.CHECK_BONUS;
         if (gameState.isWhiteKingInCheck())
             score -= EvaluationConstants.CHECK_BONUS;
 
-        // King escape penalty: penalise the side whose king has more free escape
-        // squares
-        // (from white's perspective: white wants black king to have FEW escape squares)
+        /*
+         * King escape penalty: penalise the side whose king has more free escape
+         * squares
+         * (from white's perspective: white wants black king to have FEW escape squares)
+         */
         score -= countKingMobility(gameState, false) * EvaluationConstants.KING_ESCAPE_PENALTY;
         score += countKingMobility(gameState, true) * EvaluationConstants.KING_ESCAPE_PENALTY;
 
@@ -73,8 +77,10 @@ class BoardEvaluator {
             if (nf < 0 || nf > 7 || nr < 0 || nr > 7)
                 continue;
             ChessPiece occupant = gameState.getPieceAt(nf, nr);
-            // Square must be empty or occupied by an enemy piece AND not attacked by
-            // opponent
+            /*
+             * Square must be empty or occupied by an enemy piece AND not attacked by
+             * opponent
+             */
             if (occupant != null && occupant.isWhite() == isWhite)
                 continue;
             if (!gameState.isSquareUnderAttack(nf, nr, !isWhite))

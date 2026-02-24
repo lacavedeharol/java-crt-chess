@@ -7,7 +7,6 @@ import java.util.Random;
 
 import com.lacavedeharol.chess.app.components.renderer.context.Difficulty;
 import com.lacavedeharol.chess.core.ChessPiece;
-import com.lacavedeharol.chess.core.moves.Move;
 import com.lacavedeharol.chess.core.state.GameState;
 import com.lacavedeharol.chess.core.state.GameState.MoveResult;
 
@@ -70,7 +69,9 @@ public class AI {
             else if (result != MoveResult.VALID)
                 return false;
 
-            // Record where the AI's piece just arrived so we can penalise moving it again
+            /*
+             * Record where the AI's piece just arrived so we can penalise moving it again
+             */
             lastMovedToFile = bestMove.toFile;
             lastMovedToRank = bestMove.toRank;
         } else {
@@ -122,20 +123,28 @@ public class AI {
                     move.fromFile, move.fromRank, move.toFile, move.toRank,
                     movingPiece, capturedPiece);
 
-            // ── King move penalty ────────────────────────────────────────────────────────
-            // Discourage moving the king in the middlegame. In endgame the king
-            // becomes an active piece and the penalty is lifted.
+            /*
+             * King move penalty
+             * 
+             * Discourage moving the king in the middlegame. In endgame the king
+             * becomes an active piece and the penalty is lifted.
+             * 
+             * Allow castling (king moves 2 squares) without penalty
+             * 
+             */
             if (movingPiece.getPieceType() == ChessPiece.PieceType.KING && !isEndgame) {
-                // Allow castling (king moves 2 squares) without penalty
                 if (Math.abs(move.toFile - move.fromFile) != 2)
                     score -= EvaluationConstants.KING_MOVE_PENALTY;
             }
 
-            // ── Same-piece repetition penalty ────────────────────────────────────────────
-            // If this move picks up the piece we just moved last turn, that means we are
-            // moving the same piece twice in a row. Apply a penalty unless:
-            // a) it is capturing an enemy piece (tactical necessity)
-            // b) the square it currently sits on is attacked by the opponent (saving it)
+            /*
+             * Same-piece repetition penalty
+             * 
+             * If this move picks up the piece we just moved last turn, that means we are
+             * moving the same piece twice in a row. Apply a penalty unless:
+             * a) it is capturing an enemy piece (tactical necessity)
+             * b) the square it currently sits on is attacked by the opponent (saving it)
+             */
             if (lastMovedToFile == move.fromFile && lastMovedToRank == move.fromRank) {
                 boolean isCapture = capturedPiece != null;
                 boolean squareUnderThreat = realGameState.isSquareUnderAttack(

@@ -136,31 +136,41 @@ public class GameState {
 
         // Update king position cache if king moved
         if (piece.getPieceType() == ChessPiece.PieceType.KING) {
-            if (piece.isWhite()) {
+            if (piece.isWhite())
                 whiteKingPosition = new Point(toFile, toRank);
-            } else {
+            else
                 blackKingPosition = new Point(toFile, toRank);
-            }
         }
 
+        /*
+         * Castling
+         * King-side: rook from h-file (7) to fromFile+1
+         * Queen-side: rook from a-file (0) to fromFile-1
+         */
         if (piece.getPieceType() == ChessPiece.PieceType.KING && Math.abs(toFile - fromFile) == 2) {
             if (toFile > fromFile) {
                 ChessPiece rook = getPieceAt(7, fromRank);
                 board.removePieceAt(7, fromRank);
-                board.setPieceAt(5, fromRank, rook);
+                board.setPieceAt(fromFile + 1, fromRank, rook);
                 rook.markAsMoved();
             } else {
                 ChessPiece rook = getPieceAt(0, fromRank);
                 board.removePieceAt(0, fromRank);
-                board.setPieceAt(3, fromRank, rook);
+                board.setPieceAt(fromFile - 1, fromRank, rook);
                 rook.markAsMoved();
             }
         }
 
         context.setEnPassantTargetSquare(null);
+        /*
+         * En passant
+         */
         if (piece.getPieceType() == ChessPiece.PieceType.PAWN && Math.abs(fromRank - toRank) == 2)
             context.setEnPassantTargetSquare(new Point(toFile, (fromRank + toRank) / 2));
 
+        /*
+         * Promotion
+         */
         boolean isPromotion = (piece.getPieceType() == ChessPiece.PieceType.PAWN
                 && (toRank == 0 || toRank == 7));
         if (isPromotion)
@@ -514,10 +524,10 @@ public class GameState {
                 isCastling = true;
                 if (toFile > fromFile) {
                     rookFromFile = 7;
-                    rookToFile = 5;
+                    rookToFile = fromFile + 1;
                 } else {
                     rookFromFile = 0;
-                    rookToFile = 3;
+                    rookToFile = fromFile - 1;
                 }
                 castledRook = getPieceAt(rookFromFile, fromRank);
                 board.removePieceAt(rookFromFile, fromRank);
