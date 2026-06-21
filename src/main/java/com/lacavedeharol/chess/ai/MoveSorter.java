@@ -40,7 +40,9 @@ class MoveSorter implements Comparator<AIMove> {
     }
 
     /**
-     * Scores a move based on the piece values and the piece type.
+     * Scores a move based on piece values, promotions, and whether the move
+     * delivers check to the opponent king. Checking moves are ordered first so
+     * alpha-beta pruning can cut branches earlier.
      * 
      * @param m the move to score
      * @return the score of the move
@@ -53,12 +55,26 @@ class MoveSorter implements Comparator<AIMove> {
         if (aggressor == null)
             return 0;
 
+        // MVV-LVA: reward capturing high-value pieces with low-value pieces
         if (victim != null)
             score += 10 * evaluator.getPieceValue(victim) - evaluator.getPieceValue(aggressor);
 
+        // Pawn promotion bonus
         if (aggressor.getPieceType() == PieceType.PAWN)
             if (m.toRank == 0 || m.toRank == 7)
                 score += 900;
+
+        // Check-giving bonus: moves that put the opponent king in check are explored
+        // first
+        java.awt.Point opponentKingPos = gameState.findKing(!aggressor.isWhite());
+        if (opponentKingPos != null) {
+            ChessPiece captured = gameState.makeHypotheticalMove(m.fromFile, m.fromRank, m.toFile, m.toRank);
+            boolean givesCheck = gameState.isSquareUnderAttack(
+                    opponentKingPos.x, opponentKingPos.y, aggressor.isWhite());
+            gameState.undoHypotheticalMove(m.fromFile, m.fromRank, m.toFile, m.toRank, aggressor, captured);
+            if (givesCheck)
+                score += 80;
+        }
 
         return score;
     }

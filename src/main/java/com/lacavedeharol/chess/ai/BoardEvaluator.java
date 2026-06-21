@@ -32,7 +32,61 @@ class BoardEvaluator {
                 }
             }
         }
+
+        /*
+         * Check bonus: reward having the opponent king in check
+         */
+        if (gameState.isBlackKingInCheck())
+            score += EvaluationConstants.CHECK_BONUS;
+        if (gameState.isWhiteKingInCheck())
+            score -= EvaluationConstants.CHECK_BONUS;
+
+        /*
+         * King escape penalty: penalise the side whose king has more free escape
+         * squares
+         * (from white's perspective: white wants black king to have FEW escape squares)
+         */
+        score -= countKingMobility(gameState, false) * EvaluationConstants.KING_ESCAPE_PENALTY;
+        score += countKingMobility(gameState, true) * EvaluationConstants.KING_ESCAPE_PENALTY;
+
         return score;
+    }
+
+    /**
+     * Counts how many adjacent squares the king of the given colour can safely move
+     * to.
+     * Uses raw attack-detection rather than full legal-move generation to stay
+     * cheap.
+     *
+     * @param gameState the game state
+     * @param isWhite   true for the white king, false for the black king
+     * @return number of unattacked adjacent squares available to the king
+     */
+    private int countKingMobility(GameState gameState, boolean isWhite) {
+        java.awt.Point kingPos = gameState.findKing(isWhite);
+        if (kingPos == null)
+            return 0;
+
+        int[] dx = { -1, 0, 1, -1, 1, -1, 0, 1 };
+        int[] dy = { -1, -1, -1, 0, 0, 1, 1, 1 };
+        int mobility = 0;
+
+        for (int i = 0; i < 8; i++) {
+            int nf = kingPos.x + dx[i];
+            int nr = kingPos.y + dy[i];
+            if (nf < 0 || nf > 7 || nr < 0 || nr > 7)
+                continue;
+            ChessPiece occupant = gameState.getPieceAt(nf, nr);
+            /*
+             * Square must be empty or occupied by an enemy piece AND not attacked by
+             * opponent
+             */
+            if (occupant != null && occupant.isWhite() == isWhite)
+                continue;
+            if (!gameState.isSquareUnderAttack(nf, nr, !isWhite))
+                mobility++;
+        }
+        return mobility;
     }
 
     /**

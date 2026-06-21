@@ -7,7 +7,6 @@ import java.util.Random;
 
 import com.lacavedeharol.chess.app.components.renderer.context.Difficulty;
 import com.lacavedeharol.chess.core.ChessPiece;
-import com.lacavedeharol.chess.core.moves.Move;
 import com.lacavedeharol.chess.core.state.GameState;
 import com.lacavedeharol.chess.core.state.GameState.MoveResult;
 
@@ -20,6 +19,14 @@ public class AI {
     private final Random random = new Random();
     private final int searchDepth;
     private final BoardEvaluator evaluator;
+
+    /**
+     * Tracks the destination of the last move the AI made, so we can penalise
+     * immediately moving the same piece again (repetition discouragement).
+     * -1 means no previous move recorded.
+     */
+    private int lastMovedToFile = -1;
+    private int lastMovedToRank = -1;
 
     /**
      * Constructor.
@@ -51,7 +58,7 @@ public class AI {
         if (allPossibleMoves.isEmpty())
             return false;
         GameState searchState = gameState.copy();
-        AIMove bestMove = findBestMove(searchState, allPossibleMoves);
+        AIMove bestMove = findBestMove(searchState, allPossibleMoves, gameState);
         if (bestMove != null) {
             MoveResult result = gameState.movePiece(
                     bestMove.fromFile, bestMove.fromRank,
@@ -61,6 +68,12 @@ public class AI {
                 gameState.promotePawn(bestMove.toFile, bestMove.toRank, ChessPiece.PieceType.QUEEN);
             else if (result != MoveResult.VALID)
                 return false;
+
+            /*
+             * Record where the AI's piece just arrived so we can penalise moving it again
+             */
+            lastMovedToFile = bestMove.toFile;
+            lastMovedToRank = bestMove.toRank;
         } else {
             /*
              * Fallback to random if no best move found (shouldn't happen if list not empty)
@@ -68,6 +81,8 @@ public class AI {
             AIMove randomMove = allPossibleMoves.get(random.nextInt(allPossibleMoves.size()));
             gameState.movePiece(randomMove.fromFile, randomMove.fromRank,
                     randomMove.toFile, randomMove.toRank);
+            lastMovedToFile = randomMove.toFile;
+            lastMovedToRank = randomMove.toRank;
         }
         return true;
     }
@@ -75,13 +90,15 @@ public class AI {
     /**
      * Finds the best move for the AI player.
      * 
-     * @param gameState The current state of the game.
-     * @param moves     The list of all legal moves.
+     * @param gameState     The current state of the game (a copy used for search).
+     * @param moves         The list of all legal moves.
+     * @param realGameState The real game state (used for threat detection helpers).
      * @return The best move for the AI player.
      */
-    private AIMove findBestMove(GameState gameState, List<AIMove> moves) {
+    private AIMove findBestMove(GameState gameState, List<AIMove> moves, GameState realGameState) {
         AIMove bestMove = null;
         int bestScore = Integer.MIN_VALUE;
+        boolean isEndgame = isEndgame(gameState);
 
         moves.sort(new MoveSorter(gameState, evaluator));
 
@@ -101,15 +118,43 @@ public class AI {
 
             int score = this.isWhite ? evaluation : -evaluation;
 
-            /* Penalize repetition */
-            Move lastMove = gameState.getLastMove();
-            if (lastMove != null)
-                score += random.nextInt(6) - 3;
-
             gameState.toggleTurn();
             gameState.undoHypotheticalMove(
                     move.fromFile, move.fromRank, move.toFile, move.toRank,
                     movingPiece, capturedPiece);
+
+            /*
+             * King move penalty
+             * 
+             * Discourage moving the king in the middlegame. In endgame the king
+             * becomes an active piece and the penalty is lifted.
+             * 
+             * Allow castling (king moves 2 squares) without penalty
+             * 
+             */
+            if (movingPiece.getPieceType() == ChessPiece.PieceType.KING && !isEndgame) {
+                if (Math.abs(move.toFile - move.fromFile) != 2)
+                    score -= EvaluationConstants.KING_MOVE_PENALTY;
+            }
+
+            /*
+             * Same-piece repetition penalty
+             * 
+             * If this move picks up the piece we just moved last turn, that means we are
+             * moving the same piece twice in a row. Apply a penalty unless:
+             * a) it is capturing an enemy piece (tactical necessity)
+             * b) the square it currently sits on is attacked by the opponent (saving it)
+             */
+            if (lastMovedToFile == move.fromFile && lastMovedToRank == move.fromRank) {
+                boolean isCapture = capturedPiece != null;
+                boolean squareUnderThreat = realGameState.isSquareUnderAttack(
+                        move.fromFile, move.fromRank, !this.isWhite);
+                if (!isCapture && !squareUnderThreat)
+                    score -= EvaluationConstants.PIECE_REPEAT_PENALTY;
+            }
+
+            /* Small random tiebreak so equal positions don't produce identical games */
+            score += random.nextInt(6) - 3;
 
             if (score > bestScore) {
                 bestScore = score;
@@ -310,6 +355,24 @@ public class AI {
                 captures.add(move);
         }
         return captures;
+    }
+
+    /**
+     * Returns true if the position is considered an endgame.
+     * Uses the same heuristic as BoardEvaluator: fewer than 2 queens on the board.
+     *
+     * @param gameState the game state
+     * @return true if endgame
+     */
+    private boolean isEndgame(GameState gameState) {
+        int queens = 0;
+        for (int rank = 0; rank < 8; rank++)
+            for (int file = 0; file < 8; file++) {
+                ChessPiece p = gameState.getPieceAt(file, rank);
+                if (p != null && p.getPieceType() == ChessPiece.PieceType.QUEEN)
+                    queens++;
+            }
+        return queens < 2;
     }
 
     /**

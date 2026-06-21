@@ -5,6 +5,27 @@ package com.lacavedeharol.chess.ai;
  */
 class EvaluationConstants {
 
+        /** Bonus for putting the opponent king in check. */
+        static final int CHECK_BONUS = 50;
+
+        /**
+         * Penalty per king escape square the opponent has (encourages restricting the
+         * king).
+         */
+        static final int KING_ESCAPE_PENALTY = 15;
+
+        /**
+         * Flat penalty for moving the king in the middlegame (discourages wandering
+         * king).
+         */
+        static final int KING_MOVE_PENALTY = 40;
+
+        /**
+         * Penalty for moving the same piece two turns in a row without tactical
+         * justification.
+         */
+        static final int PIECE_REPEAT_PENALTY = 30;
+
         static final int[][] PAWN_TABLE = {
                         { 0, 0, 0, 0, 0, 0, 0, 0 },
                         { 50, 50, 50, 50, 50, 50, 50, 50 },
@@ -27,6 +48,10 @@ class EvaluationConstants {
                         { -50, -40, -20, -30, -30, -20, -40, -50 }
         };
 
+        /*
+         * non final tables bishop, rook and queen scores will be introduced via board
+         * evaluation
+         */
         static final int[][] BISHOP_TABLE = {
                         { -20, -10, -10, -10, -10, -10, -10, -20 },
                         { -10, 0, 0, 0, 0, 0, 0, -10 },

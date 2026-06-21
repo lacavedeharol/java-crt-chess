@@ -40,30 +40,36 @@ class KingMoveValidation implements MoveValidationStrategy {
                 return false;
 
             if (toFile > fromFile) {
+                // King-side castling: rook at h-file (7)
                 ChessPiece rook = gameState.getPieceAt(7, fromRank);
                 if (rook == null || rook.getPieceType() != ChessPiece.PieceType.ROOK || rook.hasMoved())
                     return false;
 
-                if (gameState.getPieceAt(5, fromRank) != null || gameState.getPieceAt(6, fromRank) != null)
+                // Squares between king and rook (fromFile+1 and fromFile+2) must be empty
+                if (gameState.getPieceAt(fromFile + 1, fromRank) != null ||
+                        gameState.getPieceAt(fromFile + 2, fromRank) != null)
                     return false;
 
-                if (gameState.isSquareUnderAttack(5, fromRank, !king.isWhite()) ||
-                        gameState.isSquareUnderAttack(6, fromRank, !king.isWhite()))
+                // King must not pass through or land on an attacked square
+                if (gameState.isSquareUnderAttack(fromFile + 1, fromRank, !king.isWhite()) ||
+                        gameState.isSquareUnderAttack(fromFile + 2, fromRank, !king.isWhite()))
                     return false;
 
                 return true;
             } else {
+                // Queen-side castling: rook at a-file (0)
                 ChessPiece rook = gameState.getPieceAt(0, fromRank);
                 if (rook == null || rook.getPieceType() != ChessPiece.PieceType.ROOK || rook.hasMoved())
                     return false;
 
-                if (gameState.getPieceAt(1, fromRank) != null ||
-                        gameState.getPieceAt(2, fromRank) != null ||
-                        gameState.getPieceAt(3, fromRank) != null)
-                    return false;
+                // Squares between rook and king (files 1 .. fromFile-1) must be empty
+                for (int f = 1; f < fromFile; f++)
+                    if (gameState.getPieceAt(f, fromRank) != null)
+                        return false;
 
-                if (gameState.isSquareUnderAttack(2, fromRank, !king.isWhite()) ||
-                        gameState.isSquareUnderAttack(3, fromRank, !king.isWhite()))
+                // King must not pass through or land on an attacked square
+                if (gameState.isSquareUnderAttack(fromFile - 1, fromRank, !king.isWhite()) ||
+                        gameState.isSquareUnderAttack(fromFile - 2, fromRank, !king.isWhite()))
                     return false;
 
                 return true;
