@@ -16,6 +16,7 @@ import com.lacavedeharol.chess.core.state.GameState.MoveResult;
 public class AI {
 
     private final boolean isWhite;
+    private final StockfishAI stockfishAI;
     private final Random random = new Random();
     private final int searchDepth;
     private final BoardEvaluator evaluator;
@@ -41,7 +42,11 @@ public class AI {
             case EASY -> 2;
             case MEDIUM -> 3;
             case HARD -> 5;
+            case STOCKFISH -> 0;
         };
+        this.stockfishAI = (difficulty == Difficulty.STOCKFISH)
+                ? new StockfishAI(20, 1000)
+                : null;
     }
 
     /**
@@ -54,6 +59,8 @@ public class AI {
         if (gameState.isWhiteToMove() != this.isWhite)
             return false;
 
+        if (stockfishAI != null)
+            return stockfishAI.makeMove(gameState);
         List<AIMove> allPossibleMoves = getAllLegalMoves(gameState);
         if (allPossibleMoves.isEmpty())
             return false;
@@ -373,6 +380,11 @@ public class AI {
                     queens++;
             }
         return queens < 2;
+    }
+
+    public void dispose() {
+        if (stockfishAI != null)
+            stockfishAI.dispose();
     }
 
     /**

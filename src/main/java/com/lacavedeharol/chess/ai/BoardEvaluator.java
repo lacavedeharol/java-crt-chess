@@ -44,7 +44,6 @@ class BoardEvaluator {
         /*
          * King escape penalty: penalise the side whose king has more free escape
          * squares
-         * (from white's perspective: white wants black king to have FEW escape squares)
          */
         score -= countKingMobility(gameState, false) * EvaluationConstants.KING_ESCAPE_PENALTY;
         score += countKingMobility(gameState, true) * EvaluationConstants.KING_ESCAPE_PENALTY;

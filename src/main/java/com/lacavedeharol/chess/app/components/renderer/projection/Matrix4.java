@@ -281,6 +281,22 @@ public class Matrix4 {
     }
 
     /**
+     * Creates a scaling matrix.
+     *
+     * @param x the x scale factor
+     * @param y the y scale factor
+     * @param z the z scale factor
+     * @return the scaling matrix
+     */
+    public static Matrix4 scale(double x, double y, double z) {
+        Matrix4 mat = new Matrix4();
+        mat.m[0][0] = x;
+        mat.m[1][1] = y;
+        mat.m[2][2] = z;
+        return mat;
+    }
+
+    /**
      * Returns a string representation of the matrix.
      * 
      * @return the string representation of the matrix

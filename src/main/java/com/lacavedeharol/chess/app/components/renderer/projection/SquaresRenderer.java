@@ -24,7 +24,7 @@ class SquaresRenderer implements ProjectionRenderer {
     public void render(Graphics2D g2d, Matrix4 viewProjection, int width, int height) {
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
-                boolean isLight = (row + col) % 2 == 0;
+                boolean isLight = (row + col) % 2 != 0;
                 g2d.setColor(isLight ? GraphicsUtils.LIGHT : GraphicsUtils.DARK);
 
                 double x1 = col;

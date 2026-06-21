@@ -74,7 +74,7 @@ class MoveHighlightRenderer implements ProjectionRenderer {
      * @param z              The z coordinate of the target.
      */
     private void drawTarget(Graphics2D g2d, Matrix4 viewProjection, int w, int h, int x, int z) {
-        boolean isLight = (x + z) % 2 == 0;
+        boolean isLight = (x + z) % 2 != 0;
         Color baseColor = isLight ? GraphicsUtils.DARK : GraphicsUtils.LIGHT;
         Color maskColor = isLight ? GraphicsUtils.LIGHT : GraphicsUtils.DARK;
 

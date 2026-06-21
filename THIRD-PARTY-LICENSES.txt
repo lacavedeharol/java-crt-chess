@@ -1,0 +1,53 @@
+================================================================================
+THIRD-PARTY LICENSES
+================================================================================
+
+This project, Copyright (c) 2026 lacavedeharol, is distributed under the MIT
+License (see the LICENSE file).
+
+It redistributes the third-party component listed below. The component remains
+the property of its respective authors and is governed by its own license,
+reproduced or referenced here. Nothing in this file alters the license terms of
+that component.
+
+A note on how it is combined: the Stockfish engine binary is invoked as a
+separate operating-system process via its standard text (UCI) protocol. It is
+not linked into, statically or dynamically, nor derived from, this project's own
+source code. It is aggregated alongside it for distribution convenience. This
+project's own code remains under the MIT License.
+
+--------------------------------------------------------------------------------
+Stockfish 18
+--------------------------------------------------------------------------------
+
+  Component:        Stockfish (UCI chess engine)
+  Version:          18  (released 2026-01-31)
+  Copyright:        Copyright (C) 2004-2026 The Stockfish developers
+                    (see the bundled AUTHORS file)
+  License:          GNU General Public License, version 3 (GPL-3.0)
+  Project homepage: https://stockfishchess.org/
+  Source code:      https://github.com/official-stockfish/Stockfish
+  Exact source for this version (release tag sf_18):
+                    https://github.com/official-stockfish/Stockfish/releases/tag/sf_18
+
+  Bundled files (under the stockfish/ resources folder):
+    - The Stockfish binary
+    - Copying.txt   (the full GPL-3.0 license text)
+    - AUTHORS       (the Stockfish copyright/author attribution)
+
+  GPL-3.0 source-availability notice:
+    Stockfish is free software: you can redistribute it and/or modify it under
+    the terms of the GNU General Public License as published by the Free
+    Software Foundation, either version 3 of the License, or (at your option)
+    any later version. Stockfish is distributed in the hope that it will be
+    useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+    Public License (bundled as stockfish/Copying.txt) for more details.
+
+    In accordance with the GPL-3.0, the complete corresponding source code for
+    the exact version of Stockfish distributed with this software is available
+    at the release-tag link above. You may obtain it freely from that location.
+
+================================================================================
+End of third-party notices.
+================================================================================

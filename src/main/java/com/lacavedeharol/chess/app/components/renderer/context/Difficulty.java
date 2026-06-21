@@ -9,5 +9,7 @@ public enum Difficulty {
     /** Medium difficulty. */
     MEDIUM,
     /** Hard difficulty. */
-    HARD
+    HARD,
+    /** Stockfish difficulty. */
+    STOCKFISH
 }

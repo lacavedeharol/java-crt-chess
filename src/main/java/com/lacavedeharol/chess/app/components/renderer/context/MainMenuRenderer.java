@@ -99,7 +99,8 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
         difficulty = switch (difficulty) {
             case EASY -> Difficulty.MEDIUM;
             case MEDIUM -> Difficulty.HARD;
-            case HARD -> Difficulty.EASY;
+            case HARD -> Difficulty.STOCKFISH;
+            case STOCKFISH -> Difficulty.EASY;
         };
         initItems();
     }

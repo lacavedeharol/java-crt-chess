@@ -536,15 +536,12 @@ public class GameState {
             }
         }
 
-        // Update en passant target
         context.setEnPassantTargetSquare(null);
         if (piece.getPieceType() == ChessPiece.PieceType.PAWN && Math.abs(fromRank - toRank) == 2)
             context.setEnPassantTargetSquare(new Point(toFile, (fromRank + toRank) / 2));
 
-        // Toggle turn
         context.toggleTurn();
 
-        // Create and return undo information
         return new MoveUndo(fromFile, fromRank, toFile, toRank, piece, capturedPiece, pieceHadMoved,
                 previousEnPassantTarget, previousWhiteKingInCheck, previousBlackKingInCheck, wasWhiteToMove,
                 isEnPassantCapture, isCastling, castledRook, rookFromFile, rookToFile);
@@ -557,21 +554,13 @@ public class GameState {
      */
     public void unmakeMove(MoveUndo undo) {
         ChessPiece piece = undo.movedPiece;
-
-        // Restore piece position
         board.setPieceAt(undo.fromFile, undo.fromRank, piece);
         board.setPieceAt(undo.toFile, undo.toRank, undo.capturedPiece);
-
-        // Restore piece moved status
         piece.setHasMoved(undo.pieceHadMoved);
-
-        // Handle en passant undo
         if (undo.wasEnPassantCapture) {
             board.removePieceAt(undo.toFile, undo.toRank);
             board.setPieceAt(undo.toFile, undo.fromRank, undo.capturedPiece);
         }
-
-        // Handle castling undo
         if (undo.wasCastling && undo.castledRook != null) {
             board.removePieceAt(undo.rookToFile, undo.fromRank);
             board.setPieceAt(undo.rookFromFile, undo.fromRank, undo.castledRook);
@@ -579,16 +568,14 @@ public class GameState {
             undo.castledRook.setHasMoved(false);
         }
 
-        // Restore king position cache
         if (piece.getPieceType() == ChessPiece.PieceType.KING) {
-            if (piece.isWhite()) {
+            if (piece.isWhite())
                 whiteKingPosition = new Point(undo.fromFile, undo.fromRank);
-            } else {
+            else
                 blackKingPosition = new Point(undo.fromFile, undo.fromRank);
-            }
+
         }
 
-        // Restore context state
         context.setEnPassantTargetSquare(undo.previousEnPassantTarget);
         context.setWhiteKingInCheck(undo.previousWhiteKingInCheck);
         context.setBlackKingInCheck(undo.previousBlackKingInCheck);

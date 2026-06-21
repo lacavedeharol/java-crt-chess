@@ -143,7 +143,13 @@ public class GameController {
             this.rendererComponent.removeMouseListener(gameInputHandler);
             this.rendererComponent.removeMouseMotionListener(gameInputHandler);
             this.rendererComponent.removeMouseWheelListener(gameInputHandler);
-        }
+        } /*
+           * if (whiteAI != null) // ADD
+           * whiteAI.dispose(); // ADDY
+           * 
+           * if (blackAI != null) // ADD
+           * blackAI.dispose();
+           */
     }
 
     /**

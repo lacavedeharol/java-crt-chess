@@ -323,6 +323,7 @@ public class GameRendererComponent extends JPanel {
      */
     private void updateViewMatrix() {
         Matrix4 worldMove = Matrix4.translate(-4, 0, -4);
+        Matrix4 worldMirror = Matrix4.scale(-1, 1, 1);
         Matrix4 worldTilt = Matrix4.rotateX(tiltX);
         Matrix4 worldRot = Matrix4.rotateY(rotationY);
         Matrix4 cameraDist = Matrix4.translate(0, 0, -cameraDistance);
@@ -331,6 +332,7 @@ public class GameRendererComponent extends JPanel {
         view = view.multiply(cameraDist);
         view = view.multiply(worldTilt);
         view = view.multiply(worldRot);
+        view = view.multiply(worldMirror);
         view = view.multiply(worldMove);
     }
 
@@ -408,6 +410,7 @@ public class GameRendererComponent extends JPanel {
 
         if (file >= 0 && file < 8 && rank >= 0 && rank < 8)
             return new Point(file, rank);
+
         return null;
     }
 
@@ -695,7 +698,7 @@ public class GameRendererComponent extends JPanel {
     private void enterMenuMode() {
 
         targetCameraDistance = 16.0;
-        autoRotationSpeed = new Random().nextBoolean() ? 0.00125 : -0.00125;
+        autoRotationSpeed = new Random().nextBoolean() ? 0.000625 : -0.000625;
         tiltX = Math.toRadians(45);
         targetTiltX = null;
 
