@@ -14,8 +14,8 @@ public enum MenuAction {
     CONFIGURE_GAME,
     /** Toggle side action. */
     TOGGLE_SIDE,
-    /** AI difficulty action. */
-    AI_DIFFICULTY,
+    /** AI opponent action. */
+    AI_OPPONENT,
     /** Toggle timer action. */
     TOGGLE_TIMER,
     /** Settings action. */

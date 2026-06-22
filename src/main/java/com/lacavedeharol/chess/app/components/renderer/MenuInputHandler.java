@@ -56,16 +56,17 @@ class MenuInputHandler extends MouseAdapter {
             e.consume();
             return;
         }
+
+        gameRenderer.handleSoundTogglePress(e.getPoint());
+
         if (gameRenderer.isMenuOpen()) {
             if (gameRenderer.isSettingsOpen())
                 gameRenderer.handleSettingsPress(e.getPoint());
             else
                 gameRenderer.handleMenuPress(e.getPoint());
-
-            gameRenderer.repaint();
-            e.consume();
         }
 
+        gameRenderer.repaint();
     }
 
     /**
@@ -75,14 +76,16 @@ class MenuInputHandler extends MouseAdapter {
      */
     @Override
     public void mouseReleased(MouseEvent e) {
+        gameRenderer.handleSoundToggleRelease(e.getPoint());
+
         if (gameRenderer.isMenuOpen()) {
-            gameRenderer.handleSoundToggleClick(e.getPoint());
             if (gameRenderer.isSettingsOpen())
                 gameRenderer.handleSettingsRelease(e.getPoint());
             else
                 gameRenderer.handleMenuRelease(e.getPoint());
-            gameRenderer.repaint();
-            e.consume();
         }
+
+        gameRenderer.repaint();
     }
+
 }

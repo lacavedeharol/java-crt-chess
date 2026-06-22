@@ -9,8 +9,8 @@ enum SettingsAction {
     NONE,
     /** Toggle menu action. */
     TOGGLE_MENU,
-    /** Toggle visuals menu action. */
-    TOGGLE_VISUALS_MENU,
+    /** Toggle graphics menu action. */
+    TOGGLE_GRAPHICS_MENU,
     /** Toggle game menu action. */
     TOGGLE_GAME_MENU,
     /** Restart action. */

@@ -3,6 +3,7 @@ package com.lacavedeharol.chess.app.components.renderer.context;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Consumer;
 
 import com.lacavedeharol.chess.app.components.renderer.GameRendererComponent.GameConfig;
@@ -19,7 +20,7 @@ public class ContextRenderingHandler {
     private final PromotionRenderer promotionRenderer;
     private final MainMenuRenderer menuRenderer;
     private final SettingsMenuRenderer settingsRenderer;
-    private final SoundToggleRenderer soundToggleRenderer;
+    private final SoundMenuRenderer soundRenderer;
     private final List<PlanarRenderer> renderers;
 
     private boolean isMenuOpen = true;
@@ -37,9 +38,9 @@ public class ContextRenderingHandler {
         promotionRenderer = new PromotionRenderer();
         menuRenderer = new MainMenuRenderer();
         settingsRenderer = new SettingsMenuRenderer();
-        soundToggleRenderer = new SoundToggleRenderer();
+        soundRenderer = new SoundMenuRenderer();
 
-        renderers = List.of(contextRenderer, promotionRenderer, menuRenderer, settingsRenderer, soundToggleRenderer);
+        renderers = List.of(contextRenderer, promotionRenderer, menuRenderer, settingsRenderer, soundRenderer);
 
         enterMenuMode();
     }
@@ -339,6 +340,7 @@ public class ContextRenderingHandler {
         if (action == MenuAction.NONE)
             return;
 
+        SoundManager.getInstance().playSound("menu_click");
         switch (action) {
             case TOGGLE_SIDE -> {
             }
@@ -351,7 +353,7 @@ public class ContextRenderingHandler {
             default -> {
             }
         }
-        SoundManager.getInstance().playSound("menu_click");
+
     }
 
     /**
@@ -359,7 +361,7 @@ public class ContextRenderingHandler {
      */
     private void startGame() {
         boolean isWhite = switch (menuRenderer.getSidePreference()) {
-            case RANDOM -> new java.util.Random().nextBoolean();
+            case RANDOM -> new Random().nextBoolean();
             case WHITE -> true;
             case BLACK -> false;
         };
@@ -449,6 +451,9 @@ public class ContextRenderingHandler {
         if (action != pressed && pressed != null)
             return;
 
+        if (action != SettingsAction.NONE)
+            SoundManager.getInstance().playSound("menu_click");
+
         switch (action) {
             case TOGGLE_MENU -> {
                 boolean opening = !settingsRenderer.isOpen();
@@ -457,7 +462,7 @@ public class ContextRenderingHandler {
                 contextRenderer.setContextVisible(!opening);
                 contextRenderer.setCapturedVisible(opening ? false : settingsRenderer.areCapturedOn());
             }
-            case TOGGLE_VISUALS_MENU -> settingsRenderer.toggleVisualsMenu();
+            case TOGGLE_GRAPHICS_MENU -> settingsRenderer.toggleVisualsMenu();
             case TOGGLE_GAME_MENU -> settingsRenderer.toggleGameMenu();
             case RESTART -> {
                 settingsRenderer.reset();
@@ -500,8 +505,6 @@ public class ContextRenderingHandler {
             }
         }
 
-        if (action != SettingsAction.NONE)
-            SoundManager.getInstance().playSound("menu_click");
     }
 
     /**
@@ -517,8 +520,8 @@ public class ContextRenderingHandler {
      * Toggles the mute state.
      */
     public void toggleMute() {
-        boolean isMuted = !soundToggleRenderer.isMuted();
-        soundToggleRenderer.setMuted(isMuted);
+        boolean isMuted = !soundRenderer.isMuted();
+        soundRenderer.setMuted(isMuted);
         SoundManager.getInstance().setMuted(isMuted);
     }
 
@@ -528,11 +531,11 @@ public class ContextRenderingHandler {
      * @return whether sound is muted.
      */
     public boolean isMuted() {
-        return soundToggleRenderer.isMuted();
+        return soundRenderer.isMuted();
     }
 
     /**
-     * Shows the game over menu.
+     * shows the game over menu.
      * 
      * @param status the game over status
      */
@@ -545,25 +548,40 @@ public class ContextRenderingHandler {
     }
 
     /**
+     * Handles a sound toggle press.
+     * 
+     * @param p the point where the press occurred.
+     */
+    public void handleSoundTogglePress(Point p) {
+        soundRenderer.setPressedAction(soundRenderer.getActionAt(p));
+    }
+
+    /**
+     * Handles a sound toggle release.
+     * 
+     * @param p the point where the release occurred.
+     */
+    public void handleSoundToggleRelease(Point p) {
+        SoundAction pressed = soundRenderer.getPressedAction();
+        soundRenderer.setPressedAction(SoundAction.NONE);
+
+        SoundAction action = soundRenderer.getActionAt(p);
+        if (action != pressed && pressed != null)
+            return;
+
+        if (action == SoundAction.TOGGLE_SOUND) {
+            toggleMute();
+            SoundManager.getInstance().playSound("menu_click");
+        }
+    }
+
+    /**
      * Returns whether the game is over.
      * 
      * @return whether the game is over.
      */
     public boolean isGameOver() {
         return settingsRenderer.isGameOver();
-    }
-
-    /**
-     * Handles a sound toggle click.
-     * 
-     * @param p the point where the click occurred.
-     */
-    public void handleSoundToggleClick(Point p) {
-        if (soundToggleRenderer.handleClick(p)) {
-            toggleMute();
-            if (!soundToggleRenderer.isMuted())
-                SoundManager.getInstance().playSound("menu_click");
-        }
     }
 
     /**

@@ -7,7 +7,7 @@ import java.util.concurrent.ExecutionException;
 
 import javax.swing.SwingWorker;
 
-import com.lacavedeharol.chess.ai.AI;
+import com.lacavedeharol.chess.ai.ChessAI;
 import com.lacavedeharol.chess.app.components.renderer.*;
 import com.lacavedeharol.chess.app.components.renderer.context.TimerMode;
 import com.lacavedeharol.chess.app.components.renderer.projection.Vector3;
@@ -29,12 +29,12 @@ public class GameController {
     /**
      * The white AI.
      */
-    private final AI whiteAI;
+    private final ChessAI whiteAI;
 
     /**
      * The black AI.
      */
-    private final AI blackAI;
+    private final ChessAI blackAI;
 
     /**
      * The game timer.
@@ -60,8 +60,8 @@ public class GameController {
      * @param blackAI           the black AI.
      * @param timerMode         the timer mode.
      */
-    public GameController(GameState gameState, GameRendererComponent rendererComponent, AI whiteAI,
-            AI blackAI, TimerMode timerMode) {
+    public GameController(GameState gameState, GameRendererComponent rendererComponent, ChessAI whiteAI,
+            ChessAI blackAI, TimerMode timerMode) {
         this.gameState = gameState;
         this.rendererComponent = rendererComponent;
         this.whiteAI = whiteAI;
@@ -304,7 +304,7 @@ public class GameController {
      * Handles the next turn.
      */
     private void handleNextTurn() {
-        AI currentAI = gameState.isWhiteToMove() ? whiteAI : blackAI;
+        ChessAI currentAI = gameState.isWhiteToMove() ? whiteAI : blackAI;
         updateContextMessage();
 
         if (currentAI != null) {

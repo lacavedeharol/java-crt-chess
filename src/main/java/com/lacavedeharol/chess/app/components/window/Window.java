@@ -5,7 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.lacavedeharol.chess.ai.AI;
+import com.lacavedeharol.chess.ai.ChessAIFactory;
 import com.lacavedeharol.chess.app.components.renderer.AssetManager;
 import com.lacavedeharol.chess.app.components.renderer.GameRendererComponent;
 import com.lacavedeharol.chess.app.game.GameController;
@@ -57,8 +57,9 @@ public class Window extends JFrame {
                     activeController.dispose();
 
                 activeController = new GameController(gameState, rendererComponent,
-                        config.playAsWhite() ? null : new AI(true, config.difficulty()),
-                        config.playAsWhite() ? new AI(false, config.difficulty()) : null, config.timerMode());
+                        config.playAsWhite() ? null : ChessAIFactory.create(config.difficulty(), true),
+                        config.playAsWhite() ? ChessAIFactory.create(config.difficulty(), false) : null,
+                        config.timerMode());
             });
 
             rendererComponent.setOnExit(() -> System.exit(0));

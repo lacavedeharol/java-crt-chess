@@ -138,7 +138,7 @@ class ContextRenderer implements PlanarRenderer {
      */
     @Override
     public void render(Graphics2D g2d, int width, int height) {
-        int padding = Math.min(width, height) / 32;
+        int padding = Math.min(width, height) / 48;
         int fontSize = Math.min(width, height) / 64;
         if (isCapturedVisible && !capturedPieces.isEmpty()) {
 
@@ -149,14 +149,15 @@ class ContextRenderer implements PlanarRenderer {
 
             for (int i = capturedPieces.size() - 1; i >= 0; i--) {
                 CapturedItem item = capturedPieces.get(i);
-                if (now - item.timestamp > 10.0)
+                if (now - item.timestamp > 60.0)
                     continue;
 
                 String name = item.piece.getPieceType().toString().toLowerCase();
                 String color = item.piece.isWhite() ? "white" : "black";
                 String capturedString = "Captured: " + color + " " + name;
                 g2d.drawString(capturedString, width - padding - g2d.getFontMetrics().stringWidth(capturedString),
-                        (height / 2) + g2d.getFontMetrics().getAscent() + (count * g2d.getFontMetrics().getHeight()));
+                        (height / 2) + g2d.getFontMetrics().getAscent() + (count
+                                * (g2d.getFontMetrics().getHeight() + (g2d.getFontMetrics().getHeight() / 2))));
                 count++;
             }
         }

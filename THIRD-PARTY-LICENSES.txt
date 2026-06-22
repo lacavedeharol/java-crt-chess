@@ -5,12 +5,12 @@ THIRD-PARTY LICENSES
 This project, Copyright (c) 2026 lacavedeharol, is distributed under the MIT
 License (see the LICENSE file).
 
-It redistributes the third-party component listed below. The component remains
+It redistributes the third-party components listed below. Each component remains
 the property of its respective authors and is governed by its own license,
 reproduced or referenced here. Nothing in this file alters the license terms of
-that component.
+those components.
 
-A note on how it is combined: the Stockfish engine binary is invoked as a
+A note on how Stockfish is combined: the Stockfish engine binary is invoked as a
 separate operating-system process via its standard text (UCI) protocol. It is
 not linked into, statically or dynamically, nor derived from, this project's own
 source code. It is aggregated alongside it for distribution convenience. This
@@ -47,6 +47,22 @@ Stockfish 18
     In accordance with the GPL-3.0, the complete corresponding source code for
     the exact version of Stockfish distributed with this software is available
     at the release-tag link above. You may obtain it freely from that location.
+
+--------------------------------------------------------------------------------
+Sixtyfour
+--------------------------------------------------------------------------------
+
+  Component:        Sixtyfour (TrueType font)
+  Copyright:        Copyright 2021 The Sixtyfour Project Authors
+                    (https://github.com/jenskutilek/homecomputer-fonts)
+  License:          SIL Open Font License, Version 1.1 (OFL-1.1)
+  Project homepage: https://github.com/jenskutilek/homecomputer-fonts
+
+  Bundled files (under the fonts/Sixtyfour/ resources folder):
+    - Sixtyfour-Regular-VariableFont_BLED,SCAN.ttf    (the font binary)
+    - OFL.txt                                         (the full SIL Open Font License 1.1 text)
+
+  Reserved Font Name: "Sixtyfour"
 
 ================================================================================
 End of third-party notices.

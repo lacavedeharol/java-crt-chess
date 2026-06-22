@@ -44,11 +44,11 @@ class GameInputHandler extends MouseAdapter {
             return;
         if (controller.rendererComponent.isMenuOpen()) {
             controller.rendererComponent.handleMenuPress(e.getPoint());
-            controller.rendererComponent.handleSoundToggleClick(e.getPoint());
+            controller.rendererComponent.handleSoundTogglePress(e.getPoint());
             return;
         }
 
-        controller.rendererComponent.handleSoundToggleClick(e.getPoint());
+        controller.rendererComponent.handleSoundTogglePress(e.getPoint());
         controller.rendererComponent.handleSettingsPress(e.getPoint());
         if (controller.rendererComponent.isSettingsOpen())
             return;
@@ -123,9 +123,8 @@ class GameInputHandler extends MouseAdapter {
         if (controller.rendererComponent.isPromoting())
             return;
 
-        if (e.isControlDown()) {
-            double tiltChange = Math.toRadians(e.getPreciseWheelRotation() * 2.0);
-            controller.rendererComponent.changeTilt(tiltChange);
-        }
+        double tiltChange = Math.toRadians(e.getPreciseWheelRotation() * 2.0);
+        controller.rendererComponent.changeTilt(tiltChange);
+
     }
 }

@@ -683,12 +683,22 @@ public class GameRendererComponent extends JPanel {
     }
 
     /**
-     * Handles a sound toggle click.
+     * Handles a sound toggle press.
      * 
-     * @param p the point where the click occurred.
+     * @param p the point where the press occurred.
      */
-    public void handleSoundToggleClick(Point p) {
-        contextHandler.handleSoundToggleClick(p);
+    public void handleSoundTogglePress(Point p) {
+        contextHandler.handleSoundTogglePress(p);
+        this.repaint();
+    }
+
+    /**
+     * Handles a sound toggle release.
+     * 
+     * @param p the point where the release occurred.
+     */
+    public void handleSoundToggleRelease(Point p) {
+        contextHandler.handleSoundToggleRelease(p);
         this.repaint();
     }
 

@@ -11,23 +11,25 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 /**
- * Thin wrapper around a Stockfish process, speaking the UCI protocol over the
- * process's standard input/output.
+ * Wrapper around a UCI engine process, speaking the UCI protocol over the
+ * process's standard input/output. Generic across engines: the specifics
+ * (binary names, launch args, go-command, strength option) come from an
+ * {@link EngineConfig}.
  *
  * <p>
- * The binary is bundled on the classpath under {@code /stockfish/} and
- * extracted
- * to a temporary file on startup, because a binary inside a packaged JAR is not
- * a real file on disk and cannot be executed directly.
+ * The binary is bundled on the classpath and extracted to a temporary file on
+ * startup, because a binary inside a packaged JAR is not a real file on disk
+ * and cannot be executed directly.
  * </p>
  */
-final class StockfishEngine {
+final class UciEngine {
 
-    /** Classpath folder containing the bundled binaries. */
-    private static final String RESOURCE_DIR = "/stockfish/";
+    private final EngineConfig config;
 
     private Process process;
     private BufferedReader reader;
@@ -35,15 +37,30 @@ final class StockfishEngine {
     private Path extractedBinary;
 
     /**
-     * Starts the engine: extracts the binary, launches it, and performs the UCI
-     * handshake.
+     * Creates an engine wrapper for the given configuration. Call {@link #start()}
+     * to actually launch the process.
+     *
+     * @param config the engine configuration.
+     */
+    UciEngine(EngineConfig config) {
+        this.config = config;
+    }
+
+    /**
+     * Starts the engine: extracts the binary, launches it (with any configured
+     * launch args), and performs the UCI handshake.
      *
      * @return {@code true} if the engine started and is ready.
      */
     boolean start() {
         try {
             Path binary = extractBinary();
-            process = new ProcessBuilder(binary.toAbsolutePath().toString())
+
+            List<String> command = new ArrayList<>();
+            command.add(binary.toAbsolutePath().toString());
+            command.addAll(config.launchArgs());
+
+            process = new ProcessBuilder(command)
                     .redirectErrorStream(false)
                     .start();
             reader = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8));
@@ -68,13 +85,13 @@ final class StockfishEngine {
      * it to a temporary file marked executable.
      */
     private Path extractBinary() throws IOException {
-        String resource = RESOURCE_DIR + binaryName();
-        InputStream in = StockfishEngine.class.getResourceAsStream(resource);
+        String resource = config.resourceDir() + binaryName();
+        InputStream in = UciEngine.class.getResourceAsStream(resource);
         if (in == null)
-            throw new IOException("Bundled Stockfish binary not found on classpath: " + resource);
+            throw new IOException("Bundled engine binary not found on classpath: " + resource);
 
         String suffix = isWindows() ? ".exe" : "";
-        Path tmp = Files.createTempFile("stockfish-", suffix);
+        Path tmp = Files.createTempFile("uci-engine-", suffix);
         try (in) {
             Files.copy(in, tmp, StandardCopyOption.REPLACE_EXISTING);
         }
@@ -87,32 +104,26 @@ final class StockfishEngine {
 
     /**
      * Resolves the bundled binary filename for the current OS and CPU
-     * architecture. Throws if no binary is bundled for the detected platform.
-     *
-     * <p>
-     * To add a platform: bundle its binary under the resources folder and add a
-     * matching branch here. The returned name must match the bundled file
-     * EXACTLY (including any instruction-set suffix), or extraction will fail.
-     * </p>
+     * architecture from the config. Throws if no binary is bundled for the
+     * detected platform.
      */
-    private static String binaryName() {
+    private String binaryName() {
         String os = System.getProperty("os.name", "").toLowerCase(Locale.ROOT);
         String arch = System.getProperty("os.arch", "").toLowerCase(Locale.ROOT);
 
         boolean isX86_64 = arch.equals("amd64") || arch.equals("x86_64");
         if (!isX86_64)
             throw new UnsupportedOperationException(
-                    "No bundled Stockfish binary for CPU architecture: " + arch
+                    "No bundled engine binary for CPU architecture: " + arch
                             + " (only x86-64 is bundled)");
 
         if (os.contains("win"))
-            return "stockfish-windows-x86-64-avx2.exe";
+            return config.windowsBinary();
         if (os.contains("linux"))
-            return "stockfish-ubuntu-x86-64-avx2";
+            return config.linuxBinary();
 
-        // macOS and any other OS: no binary bundled.
         throw new UnsupportedOperationException(
-                "No bundled Stockfish binary for OS: " + os);
+                "No bundled engine binary for OS: " + os);
     }
 
     private static boolean isWindows() {
@@ -120,31 +131,32 @@ final class StockfishEngine {
     }
 
     /**
-     * Sets the engine skill level (0 = weakest, 20 = full strength).
+     * Sets the engine strength via its configured skill option, if it has one
+     * (no-op for engines without a strength option).
      *
-     * @param level the skill level, clamped to 0..20.
+     * @param level the engine-specific strength value.
      */
-    void setSkillLevel(int level) {
-        int clamped = Math.max(0, Math.min(20, level));
+    void setStrength(int level) {
+        if (config.skillOptionName() == null)
+            return;
         try {
-            send("setoption name Skill Level value " + clamped);
+            send("setoption name " + config.skillOptionName() + " value " + level);
         } catch (IOException ignored) {
-            // Non-fatal: engine will just play at default strength.
+            // Non-fatal: engine plays at default strength.
         }
     }
 
     /**
      * Asks the engine for the best move in the given position.
      *
-     * @param fen        the position in FEN.
-     * @param moveTimeMs how long the engine may think, in milliseconds.
+     * @param fen the position in FEN.
      * @return the best move in UCI coordinate notation (e.g. "e2e4", "e7e8q"),
      *         or {@code null} on error or if no move is available.
      */
-    String getBestMove(String fen, int moveTimeMs) {
+    String getBestMove(String fen) {
         try {
             send("position fen " + fen);
-            send("go movetime " + Math.max(1, moveTimeMs));
+            send(config.goCommand());
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.startsWith("bestmove")) {

@@ -63,9 +63,9 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
         statusItems.clear();
         items.clear();
 
-        settingsItems.add(new MenuItem<>("visuals", SettingsAction.TOGGLE_VISUALS_MENU));
+        settingsItems.add(new MenuItem<>("graphics", SettingsAction.TOGGLE_GRAPHICS_MENU));
         if (isVisualsOpen) {
-            settingsItems.add(new MenuItem<>("view mode", SettingsAction.TOGGLE_VIEW, true));
+            settingsItems.add(new MenuItem<>("view", SettingsAction.TOGGLE_VIEW, true));
             settingsItems.add(new MenuItem<>("display guides", SettingsAction.TOGGLE_GUIDES, true));
             settingsItems.add(new MenuItem<>("display captured pieces", SettingsAction.TOGGLE_CAPTURED, true));
         }
@@ -272,20 +272,20 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
      */
     @Override
     public void render(Graphics2D g2d, int width, int height) {
-        int padding = Math.min(width, height) / 32;
-        int fontSize = Math.min(width, height) / 32;
+        int padding = Math.min(width, height) / 48;
+        int fontSize = Math.min(width, height) / 48;
 
         if (!visible)
             return;
 
-        int iconX = width - padding - fontSize;
+        int iconX = width - padding - (fontSize + fontSize / 3);
         int iconY = padding;
 
-        gearBounds = IconRenderer.getBounds(iconX, iconY, fontSize);
-        boolean isIconPressed = (pressedAction == SettingsAction.TOGGLE_MENU);
+        gearBounds = IconRenderer.getBounds(iconX, iconY, (fontSize + fontSize / 3));
 
         if (!isGameOver && !isOpen)
-            IconRenderer.drawIcon(g2d, iconX, iconY, fontSize, iconSprite, isIconPressed);
+            IconRenderer.drawIcon(g2d, iconX, iconY, (fontSize + fontSize / 3), iconSprite,
+                    (pressedAction == SettingsAction.TOGGLE_MENU));
 
         if (!isOpen)
             return;
@@ -301,13 +301,13 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
             int titleY = padding + fm.getAscent();
             g2d.drawString("settings", titleX, titleY);
 
-            int leftY = titleY + fm.getHeight();
+            int leftY = titleY + fm.getHeight() + (fm.getHeight() / 2);
 
             for (MenuItem<SettingsAction> item : settingsItems) {
                 updateItemText(item);
                 int leftX = padding + (item.level > 0 ? fm.stringWidth(BaseMenuRenderer.HOVER_INDICATOR) : 0);
                 drawItem(g2d, item, leftX, leftY, fm, false);
-                leftY += fm.getHeight();
+                leftY += (fm.getHeight() + (fm.getHeight() / 2));
             }
         }
 
@@ -316,12 +316,12 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
 
         g2d.drawString(statusTitle, statusX, statusY);
 
-        int statusListY = statusY + fm.getHeight();
+        int statusListY = statusY + fm.getHeight() + (fm.getHeight() / 2);
 
         for (MenuItem<SettingsAction> item : statusItems) {
             updateItemText(item);
             drawItem(g2d, item, statusX, statusListY, fm, false);
-            statusListY += fm.getHeight();
+            statusListY += (fm.getHeight() + (fm.getHeight() / 2));
         }
 
     }
@@ -373,52 +373,4 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
         return SettingsAction.NONE;
     }
 
-    /**
-     * Draw an icon.
-     * 
-     * @param g2d        the graphics context..
-     * @param x          the x coordinate of the icon.
-     * @param y          the y coordinate of the icon.
-     * @param targetSize the target size of the icon.
-     * @param icon       the icon to draw.
-     * @param isPressed  true if the icon is pressed, false otherwise.
-     */
-    private static class IconRenderer {
-
-        static void drawIcon(Graphics2D g2d, int x, int y, int targetSize, BufferedImage icon,
-                boolean isPressed) {
-
-            if (icon == null)
-                return;
-
-            int iconW = targetSize;
-            int iconH = targetSize;
-
-            int iconX = x + (targetSize - iconW) / 2;
-            int iconY = y + (targetSize - iconH) / 2;
-
-            if (isPressed) {
-                float scale = 0.9f;
-                int newSize = Math.max(1, (int) (targetSize * scale));
-
-                int smallIconX = x + (targetSize - newSize) / 2;
-                int smallIconY = y + (targetSize - newSize) / 2;
-
-                g2d.drawImage(icon, smallIconX, smallIconY, newSize, newSize, null);
-            } else
-                g2d.drawImage(icon, iconX, iconY, targetSize, targetSize, null);
-        }
-
-        /**
-         * Get the bounds of the icon.
-         * 
-         * @param x       the x coordinate of the icon.
-         * @param y       the y coordinate of the icon.
-         * @param boxSize the size of the icon.
-         * @return the bounds of the icon.
-         */
-        public static Rectangle getBounds(int x, int y, int boxSize) {
-            return new Rectangle(x, y, boxSize, boxSize);
-        }
-    }
 }

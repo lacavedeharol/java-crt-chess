@@ -10,12 +10,18 @@ import com.lacavedeharol.chess.core.state.GameState;
 import com.lacavedeharol.chess.core.state.GameState.MoveResult;
 
 /**
- * AI class to make moves for the AI player.
+ * Built-in chess engine using alpha-beta minimax with quiescence search,
+ * move ordering, and a handful of positional heuristics.
+ *
+ * <p>
+ * Search strength is controlled by {@code searchDepth}, supplied at
+ * construction by {@link ChessAIFactory}. This class no longer knows about the
+ * {@link Opponent} enum — it just plays at whatever depth it is given.
+ * </p>
  */
-public class AI {
+public class MinimaxAI implements ChessAI {
 
     private final boolean isWhite;
-    private final StockfishAI stockfishAI;
     private final Random random = new Random();
     private final int searchDepth;
     private final BoardEvaluator evaluator;
@@ -30,35 +36,27 @@ public class AI {
 
     /**
      * Constructor.
-     * 
-     * @param isWhite    true if the AI player is white, false otherwise.
-     * @param difficulty the difficulty of the AI player.
+     *
+     * @param isWhite     true if the AI player is white, false otherwise.
+     * @param searchDepth the minimax search depth (higher = stronger/slower).
      */
-    public AI(boolean isWhite, Opponent difficulty) {
+    public MinimaxAI(boolean isWhite, int searchDepth) {
         this.isWhite = isWhite;
+        this.searchDepth = searchDepth;
         this.evaluator = new BoardEvaluator();
-        this.searchDepth = switch (difficulty) {
-            case EASY_AI -> 2;
-            case HARD_AI -> 5;
-            default -> 0;
-        };
-        this.stockfishAI = (difficulty == Opponent.STOCKFISH)
-                ? new StockfishAI(20, 1000)
-                : null;
     }
 
     /**
      * Makes a move for the AI player.
-     * 
+     *
      * @param gameState the game state.
      * @return true if the move was successful, false otherwise.
      */
+    @Override
     public boolean makeMove(GameState gameState) {
         if (gameState.isWhiteToMove() != this.isWhite)
             return false;
 
-        if (stockfishAI != null)
-            return stockfishAI.makeMove(gameState);
         List<AIMove> allPossibleMoves = getAllLegalMoves(gameState);
         if (allPossibleMoves.isEmpty())
             return false;
@@ -95,7 +93,7 @@ public class AI {
 
     /**
      * Finds the best move for the AI player.
-     * 
+     *
      * @param gameState     The current state of the game (a copy used for search).
      * @param moves         The list of all legal moves.
      * @param realGameState The real game state (used for threat detection helpers).
@@ -131,12 +129,12 @@ public class AI {
 
             /*
              * King move penalty.
-             * 
+             *
              * Discourage moving the king in the middlegame. In endgame the king
              * becomes an active piece and the penalty is lifted.
-             * 
+             *
              * Allow castling (king moves 2 squares) without penalty.
-             * 
+             *
              */
             if (movingPiece.getPieceType() == ChessPiece.PieceType.KING && !isEndgame) {
                 if (Math.abs(move.toFile - move.fromFile) != 2)
@@ -145,7 +143,7 @@ public class AI {
 
             /*
              * Same-piece repetition penalty.
-             * 
+             *
              * If this move picks up the piece we just moved last turn, that means we are
              * moving the same piece twice in a row. Apply a penalty unless:
              * a) it is capturing an enemy piece (tactical necessity).
@@ -173,7 +171,7 @@ public class AI {
 
     /**
      * Performs minimax search to find the best move.
-     * 
+     *
      * @param gameState    the current game state.
      * @param depth        the current depth.
      * @param alpha        the alpha value.
@@ -252,7 +250,7 @@ public class AI {
 
     /**
      * Performs quiescence search to find the best move.
-     * 
+     *
      * @param gameState    the current game state.
      * @param alpha        the alpha value.
      * @param beta         the beta value.
@@ -326,7 +324,7 @@ public class AI {
 
     /**
      * Gets all legal moves for the AI player.
-     * 
+     *
      * @param gameState the game state.
      * @return a list of all legal moves.
      */
@@ -349,7 +347,7 @@ public class AI {
 
     /**
      * Gets all capture moves for the AI player.
-     * 
+     *
      * @param gameState the game state.
      * @return a list of all capture moves.
      */
@@ -384,16 +382,8 @@ public class AI {
     }
 
     /**
-     * Disposes of the AI resources.
-     */
-    public void dispose() {
-        if (stockfishAI != null)
-            stockfishAI.dispose();
-    }
-
-    /**
      * Checks if the AI player is white.
-     * 
+     *
      * @return true if the AI player is white, false otherwise.
      */
     boolean isWhite() {

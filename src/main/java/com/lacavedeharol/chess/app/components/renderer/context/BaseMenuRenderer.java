@@ -43,7 +43,7 @@ abstract class BaseMenuRenderer<E extends Enum<E>> implements PlanarRenderer {
         }
     }
 
-    static final String HOVER_INDICATOR = "• ";
+    static final String HOVER_INDICATOR = ". ";
     protected final List<MenuItem<E>> items = new ArrayList<>();
     protected E hoveredAction;
     protected E pressedAction;

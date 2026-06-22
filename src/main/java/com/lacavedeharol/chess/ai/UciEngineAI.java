@@ -4,43 +4,43 @@ import com.lacavedeharol.chess.core.ChessPiece;
 import com.lacavedeharol.chess.core.state.GameState;
 
 /**
- * Drives a {@link StockfishEngine} and applies its chosen move to a
- * {@link GameState}, matching the engine-mutates-then-returns-boolean contract
- * used by the rest of the AI code.
+ * A {@link ChessAI} backed by an external UCI engine. Builds a FEN from the
+ * game state, asks the engine for a move, and applies it back. Works with any
+ * engine described by an {@link EngineConfig} (Stockfish today; Leela/Maia or
+ * others later).
  */
-final class StockfishAI {
+public final class UciEngineAI implements ChessAI {
 
-    /** How long Stockfish may think per move, in milliseconds. */
-    private final int moveTimeMs;
-
-    private final StockfishEngine engine = new StockfishEngine();
+    private final UciEngine engine;
     private boolean ready;
 
     /**
-     * Creates the bridge.
+     * Creates the engine-backed AI and starts the underlying process.
      *
-     * @param skillLevel the Stockfish skill level (0..20).
-     * @param moveTimeMs think time per move in milliseconds.
+     * @param config   how to launch and drive the engine
+     * @param strength engine-specific strength value, applied if the engine has
+     *                 a strength option (ignored otherwise).
      */
-    StockfishAI(int skillLevel, int moveTimeMs) {
-        this.moveTimeMs = moveTimeMs;
+    public UciEngineAI(EngineConfig config, int strength) {
+        this.engine = new UciEngine(config);
         this.ready = engine.start();
         if (ready)
-            engine.setSkillLevel(skillLevel);
+            engine.setStrength(strength);
     }
 
     /**
-     * Asks Stockfish for a move and applies it to the given state.
+     * Asks the engine for a move and applies it to the given state.
      *
      * @param state the current game state (mutated in place on success).
      * @return {@code true} if a legal move was applied.
      */
-    boolean makeMove(GameState state) {
+    @Override
+    public boolean makeMove(GameState state) {
         if (!ready)
             return false;
 
         String fen = FenBuilder.build(state);
-        String uci = engine.getBestMove(fen, moveTimeMs);
+        String uci = engine.getBestMove(fen);
         if (uci == null || uci.length() < 4)
             return false;
 
@@ -83,9 +83,10 @@ final class StockfishAI {
     }
 
     /**
-     * Shuts down the underlying engine process. Call when the game is disposed.
+     * Shuts down the underlying engine process.
      */
-    void dispose() {
+    @Override
+    public void dispose() {
         engine.stop();
         ready = false;
     }

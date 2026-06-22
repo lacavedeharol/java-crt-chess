@@ -52,7 +52,7 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
 
             items.add(
                     new MenuItem<>("choose opponent: " + opponent.toString().toLowerCase().replace('_', ' '),
-                            MenuAction.AI_DIFFICULTY, 1));
+                            MenuAction.AI_OPPONENT, 1));
 
             String timerText = "game category: " + timerMode.toString().toLowerCase();
             items.add(new MenuItem<>(timerText, MenuAction.TOGGLE_TIMER, 1));
@@ -166,10 +166,10 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
 
         GraphicsUtils.drawOverlay(g2d, width, height);
 
-        int padding = Math.min(width, height) / 32;
+        int padding = Math.min(width, height) / 48;
 
         g2d.setColor(GraphicsUtils.LIGHT);
-        int titleSize = Math.min(width, height) / 16;
+        int titleSize = Math.min(width, height) / 32;
         g2d.setFont(FontManager.getInstance().getFont(titleSize));
         FontMetrics titleFM = g2d.getFontMetrics();
         String title = "crt chess";
@@ -180,17 +180,17 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
         titleBounds = new Rectangle(titleX, titleY - titleFM.getAscent(), titleFM.stringWidth(title),
                 titleFM.getHeight());
 
-        int fontSize = Math.min(width, height) / 32;
+        int fontSize = Math.min(width, height) / 48;
         g2d.setFont(FontManager.getInstance().getFont(fontSize));
         FontMetrics menuFM = g2d.getFontMetrics();
-        int lineHeight = menuFM.getHeight();
+        int lineHeight = menuFM.getHeight() + (menuFM.getHeight() / 2);
 
         for (int i = 0; i < items.size(); i++) {
             MenuItem<MenuAction> item = items.get(i);
 
             int x = padding + (item.level > 0 ? menuFM.stringWidth(BaseMenuRenderer.HOVER_INDICATOR) : 0);
 
-            int y = (titleY + menuFM.getHeight()) + (i * lineHeight);
+            int y = (titleY + lineHeight) + (i * lineHeight);
 
             drawItem(g2d, item, x, y, menuFM, false);
         }
@@ -231,7 +231,7 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
                 switch (item.action) {
                     case CONFIGURE_GAME -> toggleConfigure();
                     case TOGGLE_SIDE -> toggleSide();
-                    case AI_DIFFICULTY -> toggleOpponent();
+                    case AI_OPPONENT -> toggleOpponent();
                     case TOGGLE_TIMER -> toggleTimer();
                     default -> {
                     }

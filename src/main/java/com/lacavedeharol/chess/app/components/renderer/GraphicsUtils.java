@@ -46,6 +46,7 @@ public abstract class GraphicsUtils {
                 RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
                 RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
+
         return g2d;
     }
 
