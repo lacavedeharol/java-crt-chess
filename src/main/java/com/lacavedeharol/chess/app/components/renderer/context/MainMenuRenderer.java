@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+import com.lacavedeharol.chess.ai.Opponent;
 import com.lacavedeharol.chess.app.components.renderer.GraphicsUtils;
 
 /**
@@ -23,7 +24,7 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
         return isConfigureExpanded;
     }
 
-    private Difficulty difficulty = Difficulty.EASY_AI;
+    private Opponent opponent = Opponent.EASY_AI;
     private TimerMode timerMode = TimerMode.CLASSIC;
     private SidePreference sidePreference = SidePreference.RANDOM;
 
@@ -50,7 +51,7 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
             items.add(new MenuItem<>(sideText, MenuAction.TOGGLE_SIDE, 1));
 
             items.add(
-                    new MenuItem<>("choose ai: " + difficulty.toString().toLowerCase().replace('_', ' '),
+                    new MenuItem<>("choose opponent: " + opponent.toString().toLowerCase().replace('_', ' '),
                             MenuAction.AI_DIFFICULTY, 1));
 
             String timerText = "game category: " + timerMode.toString().toLowerCase();
@@ -93,13 +94,13 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
     }
 
     /**
-     * Toggle the difficulty of the AI.
+     * Toggle the AI opponent.
      */
-    void toggleDifficulty() {
-        difficulty = switch (difficulty) {
-            case EASY_AI -> Difficulty.HARD_AI;
-            case HARD_AI -> Difficulty.STOCKFISH;
-            case STOCKFISH -> Difficulty.EASY_AI;
+    void toggleOpponent() {
+        opponent = switch (opponent) {
+            case EASY_AI -> Opponent.HARD_AI;
+            case HARD_AI -> Opponent.STOCKFISH;
+            case STOCKFISH -> Opponent.EASY_AI;
         };
         initItems();
     }
@@ -114,12 +115,12 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
     }
 
     /**
-     * Get the difficulty of the AI.
+     * Get the AI opponent.
      * 
-     * @return the difficulty of the AI.
+     * @return the AI opponent.
      */
-    Difficulty getDifficulty() {
-        return difficulty;
+    Opponent getOpponent() {
+        return opponent;
     }
 
     /**
@@ -136,7 +137,7 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
      */
     void reset() {
         isConfigureExpanded = false;
-        difficulty = Difficulty.EASY_AI;
+        opponent = Opponent.EASY_AI;
         timerMode = TimerMode.CLASSIC;
         sidePreference = SidePreference.RANDOM;
         initItems();
@@ -230,7 +231,7 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
                 switch (item.action) {
                     case CONFIGURE_GAME -> toggleConfigure();
                     case TOGGLE_SIDE -> toggleSide();
-                    case AI_DIFFICULTY -> toggleDifficulty();
+                    case AI_DIFFICULTY -> toggleOpponent();
                     case TOGGLE_TIMER -> toggleTimer();
                     default -> {
                     }

@@ -11,8 +11,8 @@ import java.util.function.Consumer;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import com.lacavedeharol.chess.ai.Opponent;
 import com.lacavedeharol.chess.app.components.renderer.context.ContextRenderingHandler;
-import com.lacavedeharol.chess.app.components.renderer.context.Difficulty;
 import com.lacavedeharol.chess.app.components.renderer.context.TimerMode;
 import com.lacavedeharol.chess.app.components.renderer.projection.Matrix4;
 import com.lacavedeharol.chess.app.components.renderer.projection.ProjectionRenderingHandler;
@@ -584,7 +584,7 @@ public class GameRendererComponent extends JPanel {
      * @param difficulty  the difficulty of the AI player.
      * @param timerMode   the timer mode.
      */
-    public record GameConfig(boolean playAsWhite, Difficulty difficulty,
+    public record GameConfig(boolean playAsWhite, Opponent difficulty,
             TimerMode timerMode) {
     }
 

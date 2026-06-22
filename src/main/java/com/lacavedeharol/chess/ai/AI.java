@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.lacavedeharol.chess.app.components.renderer.context.Difficulty;
 import com.lacavedeharol.chess.core.ChessPiece;
 import com.lacavedeharol.chess.core.state.GameState;
 import com.lacavedeharol.chess.core.state.GameState.MoveResult;
@@ -35,7 +34,7 @@ public class AI {
      * @param isWhite    true if the AI player is white, false otherwise.
      * @param difficulty the difficulty of the AI player.
      */
-    public AI(boolean isWhite, Difficulty difficulty) {
+    public AI(boolean isWhite, Opponent difficulty) {
         this.isWhite = isWhite;
         this.evaluator = new BoardEvaluator();
         this.searchDepth = switch (difficulty) {
@@ -43,7 +42,7 @@ public class AI {
             case HARD_AI -> 5;
             default -> 0;
         };
-        this.stockfishAI = (difficulty == Difficulty.STOCKFISH)
+        this.stockfishAI = (difficulty == Opponent.STOCKFISH)
                 ? new StockfishAI(20, 1000)
                 : null;
     }

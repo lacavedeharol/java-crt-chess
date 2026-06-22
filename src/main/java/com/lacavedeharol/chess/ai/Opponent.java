@@ -1,9 +1,9 @@
-package com.lacavedeharol.chess.app.components.renderer.context;
+package com.lacavedeharol.chess.ai;
 
 /**
  * Enum representing the difficulty of the AI.
  */
-public enum Difficulty {
+public enum Opponent {
     /** Easy difficulty. */
     EASY_AI,
     /** Hard difficulty. */

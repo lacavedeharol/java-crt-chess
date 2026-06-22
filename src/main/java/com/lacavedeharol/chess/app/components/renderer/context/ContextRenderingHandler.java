@@ -374,7 +374,7 @@ public class ContextRenderingHandler {
         contextRenderer.setCapturedVisible(settingsRenderer.areCapturedOn());
 
         if (onGameStart != null)
-            onGameStart.accept(new GameConfig(isWhite, menuRenderer.getDifficulty(), menuRenderer.getTimerMode()));
+            onGameStart.accept(new GameConfig(isWhite, menuRenderer.getOpponent(), menuRenderer.getTimerMode()));
     }
 
     /**
