@@ -11,7 +11,7 @@ import com.lacavedeharol.chess.app.components.renderer.GraphicsUtils;
 /**
  * A renderer that highlights legal moves on the board.
  * 
- * @param <ProjectionRenderer> the type of renderer
+ * @param <ProjectionRenderer> the type of renderer.
  */
 class MoveHighlightRenderer implements ProjectionRenderer {
 
@@ -20,7 +20,7 @@ class MoveHighlightRenderer implements ProjectionRenderer {
     /**
      * Set the legal moves to highlight.
      * 
-     * @param moves the legal moves to highlight
+     * @param moves the legal moves to highlight.
      */
     void setLegalMoves(List<Point> moves) {
         this.legalMoves = moves;
@@ -31,7 +31,7 @@ class MoveHighlightRenderer implements ProjectionRenderer {
     /**
      * Set the visibility of the renderer.
      * 
-     * @param visible true to make the renderer visible, false to hide it
+     * @param visible true to make the renderer visible, false to hide it.
      */
     void setVisible(boolean visible) {
         this.isVisible = visible;
@@ -40,7 +40,7 @@ class MoveHighlightRenderer implements ProjectionRenderer {
     /**
      * Get the visibility of the renderer.
      * 
-     * @return true if the renderer is visible, false otherwise
+     * @return true if the renderer is visible, false otherwise.
      */
     boolean isVisible() {
         return isVisible;

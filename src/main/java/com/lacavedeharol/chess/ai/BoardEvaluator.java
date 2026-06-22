@@ -12,8 +12,8 @@ class BoardEvaluator {
     /**
      * Evaluates the board.
      * 
-     * @param gameState the game state
-     * @return the board evaluation
+     * @param gameState the game state.
+     * @return the board evaluation.
      */
     int evaluateBoard(GameState gameState) {
         int score = 0;
@@ -34,7 +34,7 @@ class BoardEvaluator {
         }
 
         /*
-         * Check bonus: reward having the opponent king in check
+         * Check bonus: reward having the opponent king in check.
          */
         if (gameState.isBlackKingInCheck())
             score += EvaluationConstants.CHECK_BONUS;
@@ -43,7 +43,7 @@ class BoardEvaluator {
 
         /*
          * King escape penalty: penalise the side whose king has more free escape
-         * squares
+         * squares.
          */
         score -= countKingMobility(gameState, false) * EvaluationConstants.KING_ESCAPE_PENALTY;
         score += countKingMobility(gameState, true) * EvaluationConstants.KING_ESCAPE_PENALTY;
@@ -57,9 +57,9 @@ class BoardEvaluator {
      * Uses raw attack-detection rather than full legal-move generation to stay
      * cheap.
      *
-     * @param gameState the game state
-     * @param isWhite   true for the white king, false for the black king
-     * @return number of unattacked adjacent squares available to the king
+     * @param gameState the game state.
+     * @param isWhite   true for the white king, false for the black king.
+     * @return number of unattacked adjacent squares available to the king.
      */
     private int countKingMobility(GameState gameState, boolean isWhite) {
         java.awt.Point kingPos = gameState.findKing(isWhite);
@@ -78,7 +78,7 @@ class BoardEvaluator {
             ChessPiece occupant = gameState.getPieceAt(nf, nr);
             /*
              * Square must be empty or occupied by an enemy piece AND not attacked by
-             * opponent
+             * opponent.
              */
             if (occupant != null && occupant.isWhite() == isWhite)
                 continue;
@@ -91,8 +91,8 @@ class BoardEvaluator {
     /**
      * Checks if the game is in the endgame.
      * 
-     * @param gameState the game state
-     * @return true if the game is in the endgame, false otherwise
+     * @param gameState the game state.
+     * @return true if the game is in the endgame, false otherwise.
      */
     private boolean isEndgame(GameState gameState) {
         int scale = 0;
@@ -109,8 +109,8 @@ class BoardEvaluator {
     /**
      * Gets the value of a piece.
      * 
-     * @param piece the piece
-     * @return the value of the piece
+     * @param piece the piece.
+     * @return the value of the piece.
      */
     int getPieceValue(ChessPiece piece) {
         if (piece == null)
@@ -128,11 +128,11 @@ class BoardEvaluator {
     /**
      * Gets the positional value of a piece.
      * 
-     * @param piece     the piece
-     * @param file      the file of the piece
-     * @param rank      the rank of the piece
-     * @param isEndgame true if the game is in the endgame, false otherwise
-     * @return the positional value of the piece
+     * @param piece     the piece.
+     * @param file      the file of the piece.
+     * @param rank      the rank of the piece.
+     * @param isEndgame true if the game is in the endgame, false otherwise.
+     * @return the positional value of the piece.
      */
     private int getPositionalValue(ChessPiece piece, int file, int rank, boolean isEndgame) {
         int tableRank = piece.isWhite() ? rank : (7 - rank);

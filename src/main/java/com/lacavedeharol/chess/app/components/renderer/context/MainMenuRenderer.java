@@ -17,13 +17,13 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
     /**
      * Check if the configure menu is expanded.
      * 
-     * @return true if the configure menu is expanded, false otherwise
+     * @return true if the configure menu is expanded, false otherwise.
      */
     boolean isConfigureExpanded() {
         return isConfigureExpanded;
     }
 
-    private Difficulty difficulty = Difficulty.EASY;
+    private Difficulty difficulty = Difficulty.EASY_AI;
     private TimerMode timerMode = TimerMode.CLASSIC;
     private SidePreference sidePreference = SidePreference.RANDOM;
 
@@ -50,7 +50,7 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
             items.add(new MenuItem<>(sideText, MenuAction.TOGGLE_SIDE, 1));
 
             items.add(
-                    new MenuItem<>("ai difficulty: " + difficulty.toString().toLowerCase(),
+                    new MenuItem<>("choose ai: " + difficulty.toString().toLowerCase().replace('_', ' '),
                             MenuAction.AI_DIFFICULTY, 1));
 
             String timerText = "game category: " + timerMode.toString().toLowerCase();
@@ -97,10 +97,9 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
      */
     void toggleDifficulty() {
         difficulty = switch (difficulty) {
-            case EASY -> Difficulty.MEDIUM;
-            case MEDIUM -> Difficulty.HARD;
-            case HARD -> Difficulty.STOCKFISH;
-            case STOCKFISH -> Difficulty.EASY;
+            case EASY_AI -> Difficulty.HARD_AI;
+            case HARD_AI -> Difficulty.STOCKFISH;
+            case STOCKFISH -> Difficulty.EASY_AI;
         };
         initItems();
     }
@@ -108,7 +107,7 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
     /**
      * Get the side preference.
      * 
-     * @return the side preference
+     * @return the side preference.
      */
     SidePreference getSidePreference() {
         return sidePreference;
@@ -117,7 +116,7 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
     /**
      * Get the difficulty of the AI.
      * 
-     * @return the difficulty of the AI
+     * @return the difficulty of the AI.
      */
     Difficulty getDifficulty() {
         return difficulty;
@@ -126,7 +125,7 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
     /**
      * Get the timer mode.
      * 
-     * @return the timer mode
+     * @return the timer mode.
      */
     TimerMode getTimerMode() {
         return timerMode;
@@ -137,7 +136,7 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
      */
     void reset() {
         isConfigureExpanded = false;
-        difficulty = Difficulty.EASY;
+        difficulty = Difficulty.EASY_AI;
         timerMode = TimerMode.CLASSIC;
         sidePreference = SidePreference.RANDOM;
         initItems();
@@ -146,7 +145,7 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
     /**
      * Set the visibility of the main menu.
      * 
-     * @param visible true to make the main menu visible, false otherwise
+     * @param visible true to make the main menu visible, false otherwise.
      */
     void setVisible(boolean visible) {
         this.visible = visible;
@@ -155,9 +154,9 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
     /**
      * Render the main menu.
      * 
-     * @param g2d    the graphics context
-     * @param width  the width of the screen
-     * @param height the height of the screen
+     * @param g2d    the graphics context.
+     * @param width  the width of the screen.
+     * @param height the height of the screen.
      */
     @Override
     public void render(Graphics2D g2d, int width, int height) {
@@ -199,8 +198,8 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
     /**
      * Get the action at the given point.
      * 
-     * @param p the point to check
-     * @return the action at the given point
+     * @param p the point to check.
+     * @return the action at the given point.
      */
     MenuAction getActionAt(Point p) {
         if (titleBounds != null && titleBounds.contains(p))
@@ -216,8 +215,8 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
     /**
      * Handle a click event.
      * 
-     * @param p the point where the click occurred
-     * @return the action that was performed
+     * @param p the point where the click occurred.
+     * @return the action that was performed.
      */
     MenuAction handleClick(Point p) {
         if (titleBounds != null && titleBounds.contains(p)) {

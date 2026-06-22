@@ -14,7 +14,7 @@ class GameInputHandler extends MouseAdapter {
     /**
      * Constructor for GameInputHandler.
      * 
-     * @param controller the GameController to be used
+     * @param controller the GameController to be used.
      */
     public GameInputHandler(GameController controller) {
         this.controller = controller;
@@ -23,7 +23,7 @@ class GameInputHandler extends MouseAdapter {
     /**
      * Handles mouse movement events.
      * 
-     * @param e the MouseEvent
+     * @param e the MouseEvent.
      */
     public void mouseMoved(MouseEvent e) {
         if (e.isConsumed())
@@ -37,7 +37,7 @@ class GameInputHandler extends MouseAdapter {
     /**
      * Handles mouse press events.
      * 
-     * @param e the MouseEvent
+     * @param e the MouseEvent.
      */
     public void mousePressed(MouseEvent e) {
         if (e.isConsumed())
@@ -75,7 +75,7 @@ class GameInputHandler extends MouseAdapter {
     /**
      * Handles mouse dragged events.
      * 
-     * @param e the MouseEvent
+     * @param e the MouseEvent.
      */
     public void mouseDragged(MouseEvent e) {
         if (e.isConsumed())
@@ -89,7 +89,7 @@ class GameInputHandler extends MouseAdapter {
     /**
      * Handles mouse released events.
      * 
-     * @param e the MouseEvent
+     * @param e the MouseEvent.
      */
     public void mouseReleased(MouseEvent e) {
         if (e.isConsumed())
@@ -108,7 +108,7 @@ class GameInputHandler extends MouseAdapter {
     /**
      * Handles mouse wheel events.
      * 
-     * @param e the MouseWheelEvent
+     * @param e the MouseWheelEvent.
      */
     public void mouseWheelMoved(MouseWheelEvent e) {
         if (e.isConsumed())

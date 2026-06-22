@@ -50,7 +50,7 @@ class EvaluationConstants {
 
         /*
          * non final tables bishop, rook and queen scores will be introduced via board
-         * evaluation
+         * evaluation.
          */
         static final int[][] BISHOP_TABLE = {
                         { -20, -10, -10, -10, -10, -10, -10, -20 },

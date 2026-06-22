@@ -23,8 +23,8 @@ final class FenBuilder {
     /**
      * Builds a FEN string for the given game state.
      *
-     * @param state the game state
-     * @return the FEN string
+     * @param state the game state.
+     * @return the FEN string.
      */
     static String build(GameState state) {
         StringBuilder fen = new StringBuilder(80);
@@ -40,7 +40,7 @@ final class FenBuilder {
         /*
          * Halfmove clock and fullmove number: GameState does not track these.
          * Stockfish does not need accurate counters to choose a move, so we emit
-         * neutral defaults. (The fullmove number must be >= 1.)
+         * neutral defaults. (The fullmove number must be >= 1.).
          */
         fen.append(" 0 1");
 

@@ -29,7 +29,7 @@ public class SoundManager {
     /**
      * Returns the singleton instance of SoundManager.
      * 
-     * @return the singleton instance of SoundManager
+     * @return the singleton instance of SoundManager.
      */
     public static synchronized SoundManager getInstance() {
         return instance != null ? instance : (instance = new SoundManager());
@@ -38,7 +38,7 @@ public class SoundManager {
     /**
      * Sets the muted state of the sound manager.
      * 
-     * @param muted true to mute the sound manager, false to unmute it
+     * @param muted true to mute the sound manager, false to unmute it.
      */
     public void setMuted(boolean muted) {
         this.isMuted = muted;
@@ -47,7 +47,7 @@ public class SoundManager {
     /**
      * Returns the muted state of the sound manager.
      * 
-     * @return true if the sound manager is muted, false otherwise
+     * @return true if the sound manager is muted, false otherwise.
      */
     public boolean isMuted() {
         return isMuted;
@@ -56,7 +56,7 @@ public class SoundManager {
     /**
      * Plays a sound.
      * 
-     * @param name the name of the sound to play
+     * @param name the name of the sound to play.
      */
     public void playSound(String name) {
         if (isMuted)
@@ -75,8 +75,8 @@ public class SoundManager {
     /**
      * Internal method to load a sound clip.
      * 
-     * @param name the name of the sound to load
-     * @return the loaded Clip, or null if loading failed
+     * @param name the name of the sound to load.
+     * @return the loaded Clip, or null if loading failed.
      */
     private Clip loadSoundInternal(String name) {
         try {

@@ -13,7 +13,7 @@ import com.lacavedeharol.chess.core.ChessPiece;
 /**
  * Renders the chess pieces on the board.
  * 
- * @param <ProjectionRenderer> the type of renderer
+ * @param <ProjectionRenderer> the type of renderer.
  */
 class PiecesRenderer implements ProjectionRenderer {
 

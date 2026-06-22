@@ -5,11 +5,9 @@ package com.lacavedeharol.chess.app.components.renderer.context;
  */
 public enum Difficulty {
     /** Easy difficulty. */
-    EASY,
-    /** Medium difficulty. */
-    MEDIUM,
+    EASY_AI,
     /** Hard difficulty. */
-    HARD,
+    HARD_AI,
     /** Stockfish difficulty. */
     STOCKFISH
 }

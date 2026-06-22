@@ -32,7 +32,7 @@ class PromotionRenderer implements PlanarRenderer {
     /**
      * Start the promotion menu.
      * 
-     * @param isWhite true if the promotion is for a white piece, false otherwise
+     * @param isWhite true if the promotion is for a white piece, false otherwise.
      */
     void startPromotion(boolean isWhite) {
         this.isWhite = isWhite;
@@ -51,7 +51,7 @@ class PromotionRenderer implements PlanarRenderer {
     /**
      * Check if the promotion menu is active.
      * 
-     * @return true if the promotion menu is active, false otherwise
+     * @return true if the promotion menu is active, false otherwise.
      */
     boolean isActive() {
         return active;
@@ -73,9 +73,9 @@ class PromotionRenderer implements PlanarRenderer {
     /**
      * Render the promotion menu.
      * 
-     * @param g2d    the graphics context
-     * @param width  the width of the screen
-     * @param height the height of the screen
+     * @param g2d    the graphics context.
+     * @param width  the width of the screen.
+     * @param height the height of the screen.
      */
     @Override
     public void render(Graphics2D g2d, int width, int height) {
@@ -121,8 +121,8 @@ class PromotionRenderer implements PlanarRenderer {
     /**
      * Get the piece at the given point.
      * 
-     * @param p the point to check
-     * @return the piece at the given point
+     * @param p the point to check.
+     * @return the piece at the given point.
      */
     PieceType getPieceAt(Point p) {
         if (!active)
@@ -136,7 +136,7 @@ class PromotionRenderer implements PlanarRenderer {
     /**
      * Set the hovered piece.
      * 
-     * @param p the point to check
+     * @param p the point to check.
      */
     void setHovered(Point p) {
         if (!active)
@@ -147,7 +147,7 @@ class PromotionRenderer implements PlanarRenderer {
     /**
      * Get the hovered piece type.
      * 
-     * @return the hovered piece type
+     * @return the hovered piece type.
      */
     PieceType getHoveredType() {
         return hoveredType;

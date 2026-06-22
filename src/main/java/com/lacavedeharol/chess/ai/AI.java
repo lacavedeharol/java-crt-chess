@@ -32,17 +32,16 @@ public class AI {
     /**
      * Constructor.
      * 
-     * @param isWhite    true if the AI player is white, false otherwise
-     * @param difficulty the difficulty of the AI player
+     * @param isWhite    true if the AI player is white, false otherwise.
+     * @param difficulty the difficulty of the AI player.
      */
     public AI(boolean isWhite, Difficulty difficulty) {
         this.isWhite = isWhite;
         this.evaluator = new BoardEvaluator();
         this.searchDepth = switch (difficulty) {
-            case EASY -> 2;
-            case MEDIUM -> 3;
-            case HARD -> 5;
-            case STOCKFISH -> 0;
+            case EASY_AI -> 2;
+            case HARD_AI -> 5;
+            default -> 0;
         };
         this.stockfishAI = (difficulty == Difficulty.STOCKFISH)
                 ? new StockfishAI(20, 1000)
@@ -52,8 +51,8 @@ public class AI {
     /**
      * Makes a move for the AI player.
      * 
-     * @param gameState the game state
-     * @return true if the move was successful, false otherwise
+     * @param gameState the game state.
+     * @return true if the move was successful, false otherwise.
      */
     public boolean makeMove(GameState gameState) {
         if (gameState.isWhiteToMove() != this.isWhite)
@@ -77,13 +76,14 @@ public class AI {
                 return false;
 
             /*
-             * Record where the AI's piece just arrived so we can penalise moving it again
+             * Record where the AI's piece just arrived so we can penalise moving it again.
              */
             lastMovedToFile = bestMove.toFile;
             lastMovedToRank = bestMove.toRank;
         } else {
             /*
-             * Fallback to random if no best move found (shouldn't happen if list not empty)
+             * Fallback to random if no best move found (shouldn't happen if list not
+             * empty).
              */
             AIMove randomMove = allPossibleMoves.get(random.nextInt(allPossibleMoves.size()));
             gameState.movePiece(randomMove.fromFile, randomMove.fromRank,
@@ -131,12 +131,12 @@ public class AI {
                     movingPiece, capturedPiece);
 
             /*
-             * King move penalty
+             * King move penalty.
              * 
              * Discourage moving the king in the middlegame. In endgame the king
              * becomes an active piece and the penalty is lifted.
              * 
-             * Allow castling (king moves 2 squares) without penalty
+             * Allow castling (king moves 2 squares) without penalty.
              * 
              */
             if (movingPiece.getPieceType() == ChessPiece.PieceType.KING && !isEndgame) {
@@ -145,12 +145,12 @@ public class AI {
             }
 
             /*
-             * Same-piece repetition penalty
+             * Same-piece repetition penalty.
              * 
              * If this move picks up the piece we just moved last turn, that means we are
              * moving the same piece twice in a row. Apply a penalty unless:
-             * a) it is capturing an enemy piece (tactical necessity)
-             * b) the square it currently sits on is attacked by the opponent (saving it)
+             * a) it is capturing an enemy piece (tactical necessity).
+             * b) the square it currently sits on is attacked by the opponent (saving it).
              */
             if (lastMovedToFile == move.fromFile && lastMovedToRank == move.fromRank) {
                 boolean isCapture = capturedPiece != null;
@@ -175,12 +175,13 @@ public class AI {
     /**
      * Performs minimax search to find the best move.
      * 
-     * @param gameState    the current game state
-     * @param depth        the current depth
-     * @param alpha        the alpha value
-     * @param beta         the beta value
-     * @param isMaximizing true if the current player is maximizing, false otherwise
-     * @return
+     * @param gameState    the current game state.
+     * @param depth        the current depth.
+     * @param alpha        the alpha value.
+     * @param beta         the beta value.
+     * @param isMaximizing true if the current player is maximizing, false
+     *                     otherwise.
+     * @return the best evaluation score.
      */
     private int minimax(GameState gameState, int depth, int alpha, int beta, boolean isMaximizing) {
         if (depth == 0)
@@ -253,11 +254,12 @@ public class AI {
     /**
      * Performs quiescence search to find the best move.
      * 
-     * @param gameState    the current game state
-     * @param alpha        the alpha value
-     * @param beta         the beta value
-     * @param isMaximizing true if the current player is maximizing, false otherwise
-     * @return the best move
+     * @param gameState    the current game state.
+     * @param alpha        the alpha value.
+     * @param beta         the beta value.
+     * @param isMaximizing true if the current player is maximizing, false
+     *                     otherwise.
+     * @return the best move.
      */
     private int quiescenceSearch(GameState gameState, int alpha, int beta, boolean isMaximizing) {
         int standPat = evaluator.evaluateBoard(gameState);
@@ -326,8 +328,8 @@ public class AI {
     /**
      * Gets all legal moves for the AI player.
      * 
-     * @param gameState the game state
-     * @return a list of all legal moves
+     * @param gameState the game state.
+     * @return a list of all legal moves.
      */
     private List<AIMove> getAllLegalMoves(GameState gameState) {
         List<AIMove> moves = new ArrayList<>();
@@ -349,8 +351,8 @@ public class AI {
     /**
      * Gets all capture moves for the AI player.
      * 
-     * @param gameState the game state
-     * @return a list of all capture moves
+     * @param gameState the game state.
+     * @return a list of all capture moves.
      */
     private List<AIMove> getCaptureMoves(GameState gameState) {
         List<AIMove> captures = new ArrayList<>();
@@ -368,8 +370,8 @@ public class AI {
      * Returns true if the position is considered an endgame.
      * Uses the same heuristic as BoardEvaluator: fewer than 2 queens on the board.
      *
-     * @param gameState the game state
-     * @return true if endgame
+     * @param gameState the game state.
+     * @return true if endgame.
      */
     private boolean isEndgame(GameState gameState) {
         int queens = 0;
@@ -382,6 +384,9 @@ public class AI {
         return queens < 2;
     }
 
+    /**
+     * Disposes of the AI resources.
+     */
     public void dispose() {
         if (stockfishAI != null)
             stockfishAI.dispose();
@@ -390,7 +395,7 @@ public class AI {
     /**
      * Checks if the AI player is white.
      * 
-     * @return true if the AI player is white, false otherwise
+     * @return true if the AI player is white, false otherwise.
      */
     boolean isWhite() {
         return this.isWhite;

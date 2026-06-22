@@ -33,9 +33,9 @@ class Board {
     /**
      * Gets the piece at the specified position.
      * 
-     * @param file the file
-     * @param rank the rank
-     * @return the piece
+     * @param file the file.
+     * @param rank the rank.
+     * @return the piece.
      */
     ChessPiece getPieceAt(int file, int rank) {
         return (file < 0 || file >= 8 || rank < 0 || rank >= 8) ? null : pieces[file][rank];
@@ -44,9 +44,9 @@ class Board {
     /**
      * Sets the piece at the specified position.
      * 
-     * @param file  the file
-     * @param rank  the rank
-     * @param piece the piece
+     * @param file  the file.
+     * @param rank  the rank.
+     * @param piece the piece.
      */
     void setPieceAt(int file, int rank, ChessPiece piece) {
         if (file >= 0 && file < 8 && rank >= 0 && rank < 8) {
@@ -59,8 +59,8 @@ class Board {
     /**
      * Removes the piece at the specified position.
      * 
-     * @param file the file
-     * @param rank the rank
+     * @param file the file.
+     * @param rank the rank.
      */
     void removePieceAt(int file, int rank) {
         if (file >= 0 && file < 8 && rank >= 0 && rank < 8)
@@ -70,7 +70,7 @@ class Board {
     /**
      * Adds a captured piece.
      * 
-     * @param piece the piece
+     * @param piece the piece.
      */
     void addCapturedPiece(ChessPiece piece) {
         capturedPieces.add(piece);
@@ -79,7 +79,7 @@ class Board {
     /**
      * Gets the captured pieces.
      * 
-     * @return the captured pieces
+     * @return the captured pieces.
      */
     List<ChessPiece> getCapturedPieces() {
         return capturedPieces;
@@ -88,7 +88,7 @@ class Board {
     /**
      * Gets the pieces array.
      * 
-     * @return the pieces array
+     * @return the pieces array.
      */
     ChessPiece[][] getPiecesArray() {
         return pieces;
@@ -97,7 +97,7 @@ class Board {
     /**
      * Copies the board.
      * 
-     * @return the copy
+     * @return the copy.
      */
     Board copy() {
         Board newBoard = new Board();

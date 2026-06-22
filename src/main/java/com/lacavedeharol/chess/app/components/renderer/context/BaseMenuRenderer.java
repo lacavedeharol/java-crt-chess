@@ -14,7 +14,6 @@ import com.lacavedeharol.chess.app.components.renderer.GraphicsUtils;
  * 
  * @param <E> The type of menu actions.
  * 
- * @author lacavedeharol
  */
 abstract class BaseMenuRenderer<E extends Enum<E>> implements PlanarRenderer {
 

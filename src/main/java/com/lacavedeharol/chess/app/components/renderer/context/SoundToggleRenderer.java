@@ -18,7 +18,7 @@ class SoundToggleRenderer implements PlanarRenderer {
     /**
      * Set the muted state of the renderer.
      * 
-     * @param muted true to mute the renderer, false to unmute it
+     * @param muted true to mute the renderer, false to unmute it.
      */
     void setMuted(boolean muted) {
         this.isMuted = muted;
@@ -27,7 +27,7 @@ class SoundToggleRenderer implements PlanarRenderer {
     /**
      * Get the muted state of the renderer.
      * 
-     * @return true if the renderer is muted, false otherwise
+     * @return true if the renderer is muted, false otherwise.
      */
     boolean isMuted() {
         return isMuted;
@@ -36,9 +36,9 @@ class SoundToggleRenderer implements PlanarRenderer {
     /**
      * Render the sound toggle.
      * 
-     * @param g2d    the graphics context to draw on
-     * @param width  the width of the renderer
-     * @param height the height of the renderer
+     * @param g2d    the graphics context to draw on.
+     * @param width  the width of the renderer.
+     * @param height the height of the renderer.
      */
     @Override
     public void render(Graphics2D g2d, int width, int height) {
@@ -65,9 +65,9 @@ class SoundToggleRenderer implements PlanarRenderer {
     /**
      * Handle a click event.
      * 
-     * @param p the point where the click occurred
+     * @param p the point where the click occurred.
      * @return true if the click occurred within the bounds of the renderer, false
-     *         otherwise
+     *         otherwise.
      */
     boolean handleClick(Point p) {
         return (bounds != null && bounds.contains(p)) ? true : false;
@@ -76,9 +76,9 @@ class SoundToggleRenderer implements PlanarRenderer {
     /**
      * Check if the renderer is hovered.
      * 
-     * @param p the point to check
+     * @param p the point to check.
      * @return true if the point is within the bounds of the renderer, false
-     *         otherwise
+     *         otherwise.
      */
     boolean isHovered(Point p) {
         return (bounds != null && bounds.contains(p)) ? true : false;

@@ -8,17 +8,17 @@ import com.lacavedeharol.chess.app.components.renderer.GraphicsUtils;
 /**
  * Renders the squares of the chessboard.
  * 
- * @param <ProjectionRenderer> the type of renderer
+ * @param <ProjectionRenderer> the type of renderer.
  */
 class SquaresRenderer implements ProjectionRenderer {
 
     /**
      * Renders the squares of the chessboard.
      * 
-     * @param g2d            the graphics object
-     * @param viewProjection the view projection matrix
-     * @param width          the width of the window
-     * @param height         the height of the window
+     * @param g2d            the graphics object.
+     * @param viewProjection the view projection matrix.
+     * @param width          the width of the window.
+     * @param height         the height of the window.
      */
     @Override
     public void render(Graphics2D g2d, Matrix4 viewProjection, int width, int height) {
@@ -53,11 +53,11 @@ class SquaresRenderer implements ProjectionRenderer {
     /**
      * Adds a point to the polygon.
      * 
-     * @param p              the polygon
-     * @param viewProjection the view projection matrix
-     * @param v              the vector
-     * @param w              the width of the window
-     * @param h              the height of the window
+     * @param p              the polygon.
+     * @param viewProjection the view projection matrix.
+     * @param v              the vector.
+     * @param w              the width of the window.
+     * @param h              the height of the window.
      */
     private void addPoint(Polygon p, Matrix4 viewProjection, Vector3 v, int w, int h) {
         Vector3 proj = viewProjection.multiply(v);

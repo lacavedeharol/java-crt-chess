@@ -16,7 +16,7 @@ public class GameState {
     private final GameContext context;
     private final GameRules gameRules;
 
-    // Cached king positions for performance
+    // Cached king positions for performance.
     private Point whiteKingPosition;
     private Point blackKingPosition;
 
@@ -59,7 +59,7 @@ public class GameState {
     /**
      * Returns the chess pieces.
      * 
-     * @return the chess pieces
+     * @return the chess pieces.
      */
     public ChessPiece[][] getPieces() {
         return board.getPiecesArray();
@@ -68,7 +68,7 @@ public class GameState {
     /**
      * Returns the captured pieces.
      * 
-     * @return the captured pieces
+     * @return the captured pieces.
      */
     public List<ChessPiece> getCapturedPieces() {
         return board.getCapturedPieces();
@@ -94,11 +94,11 @@ public class GameState {
     /**
      * Moves a piece from one square to another.
      * 
-     * @param fromFile the file of the piece to move
-     * @param fromRank the rank of the piece to move
-     * @param toFile   the file of the square to move to
-     * @param toRank   the rank of the square to move to
-     * @return the result of the move
+     * @param fromFile the file of the piece to move.
+     * @param fromRank the rank of the piece to move.
+     * @param toFile   the file of the square to move to.
+     * @param toRank   the rank of the square to move to.
+     * @return the result of the move.
      */
     public MoveResult movePiece(int fromFile, int fromRank, int toFile, int toRank) {
         ChessPiece piece = getPieceAt(fromFile, fromRank);
@@ -134,7 +134,7 @@ public class GameState {
         board.removePieceAt(fromFile, fromRank);
         piece.markAsMoved();
 
-        // Update king position cache if king moved
+        // Update king position cache if king moved.
         if (piece.getPieceType() == ChessPiece.PieceType.KING) {
             if (piece.isWhite())
                 whiteKingPosition = new Point(toFile, toRank);
@@ -143,9 +143,9 @@ public class GameState {
         }
 
         /*
-         * Castling
-         * King-side: rook from h-file (7) to fromFile+1
-         * Queen-side: rook from a-file (0) to fromFile-1
+         * Castling:
+         * King-side: rook from h-file (7) to fromFile+1.
+         * Queen-side: rook from a-file (0) to fromFile-1.
          */
         if (piece.getPieceType() == ChessPiece.PieceType.KING && Math.abs(toFile - fromFile) == 2) {
             if (toFile > fromFile) {
@@ -163,13 +163,13 @@ public class GameState {
 
         context.setEnPassantTargetSquare(null);
         /*
-         * En passant
+         * En passant.
          */
         if (piece.getPieceType() == ChessPiece.PieceType.PAWN && Math.abs(fromRank - toRank) == 2)
             context.setEnPassantTargetSquare(new Point(toFile, (fromRank + toRank) / 2));
 
         /*
-         * Promotion
+         * Promotion.
          */
         boolean isPromotion = (piece.getPieceType() == ChessPiece.PieceType.PAWN
                 && (toRank == 0 || toRank == 7));
@@ -184,9 +184,9 @@ public class GameState {
     /**
      * Gets the legal moves for a piece.
      * 
-     * @param file the file of the piece
-     * @param rank the rank of the piece
-     * @return the legal moves for the piece
+     * @param file the file of the piece.
+     * @param rank the rank of the piece.
+     * @return the legal moves for the piece.
      */
     public List<Point> getLegalMovesForPiece(int file, int rank) {
         return gameRules.getLegalMovesForPiece(file, rank);
@@ -195,9 +195,9 @@ public class GameState {
     /**
      * Promotes a pawn to a different piece.
      * 
-     * @param file   the file of the pawn
-     * @param rank   the rank of the pawn
-     * @param choice the piece to promote to
+     * @param file   the file of the pawn.
+     * @param rank   the rank of the pawn.
+     * @param choice the piece to promote to.
      */
     public void promotePawn(int file, int rank, ChessPiece.PieceType choice) {
         ChessPiece pawn = getPieceAt(file, rank);
@@ -215,9 +215,9 @@ public class GameState {
     /**
      * Gets the piece at a specific square.
      * 
-     * @param file the file of the square
-     * @param rank the rank of the square
-     * @return the piece at the square
+     * @param file the file of the square.
+     * @param rank the rank of the square.
+     * @return the piece at the square.
      */
     public ChessPiece getPieceAt(int file, int rank) {
         return board.getPieceAt(file, rank);
@@ -231,9 +231,9 @@ public class GameState {
         /**
          * Accepts a square on the board.
          * 
-         * @param file  the file of the square
-         * @param rank  the rank of the square
-         * @param piece the piece at the square
+         * @param file  the file of the square.
+         * @param rank  the rank of the square.
+         * @param piece the piece at the square.
          */
         void accept(int file, int rank, ChessPiece piece);
     }
@@ -241,7 +241,7 @@ public class GameState {
     /**
      * Iterates over all squares on the board.
      * 
-     * @param consumer the consumer to call for each square
+     * @param consumer the consumer to call for each square.
      */
     public void forEachSquare(BoardSquareConsumer consumer) {
         for (int file = 0; file < 8; file++) {
@@ -255,8 +255,8 @@ public class GameState {
     /**
      * Iterates over all pieces of a specific color.
      * 
-     * @param isWhite  true for white pieces, false for black pieces
-     * @param consumer the consumer to call for each piece
+     * @param isWhite  true for white pieces, false for black pieces.
+     * @param consumer the consumer to call for each piece.
      */
     public void forEachPiece(boolean isWhite, BoardSquareConsumer consumer) {
         for (int file = 0; file < 8; file++) {
@@ -272,7 +272,7 @@ public class GameState {
     /**
      * Checks if the white king is in check.
      * 
-     * @return true if the white king is in check, false otherwise
+     * @return true if the white king is in check, false otherwise.
      */
     public boolean isWhiteKingInCheck() {
         return context.isWhiteKingInCheck();
@@ -281,7 +281,7 @@ public class GameState {
     /**
      * Checks if the black king is in check.
      * 
-     * @return true if the black king is in check, false otherwise
+     * @return true if the black king is in check, false otherwise.
      */
     public boolean isBlackKingInCheck() {
         return context.isBlackKingInCheck();
@@ -290,7 +290,7 @@ public class GameState {
     /**
      * Gets the en passant target square.
      * 
-     * @return the en passant target square
+     * @return the en passant target square.
      */
     public Point getEnPassantTargetSquare() {
         return context.getEnPassantTargetSquare();
@@ -299,7 +299,7 @@ public class GameState {
     /**
      * Checks if it is white's turn to move.
      * 
-     * @return true if it is white's turn to move, false otherwise
+     * @return true if it is white's turn to move, false otherwise.
      */
     public boolean isWhiteToMove() {
         return context.isWhiteToMove();
@@ -315,11 +315,11 @@ public class GameState {
     /**
      * Checks if a square is under attack.
      * 
-     * @param file              the file of the square
-     * @param rank              the rank of the square
+     * @param file              the file of the square.
+     * @param rank              the rank of the square.
      * @param isAttackedByWhite true if the square is attacked by white, false
-     *                          otherwise
-     * @return true if the square is under attack, false otherwise
+     *                          otherwise.
+     * @return true if the square is under attack, false otherwise.
      */
     public boolean isSquareUnderAttack(int file, int rank, boolean isAttackedByWhite) {
         return gameRules.isSquareUnderAttack(file, rank, isAttackedByWhite);
@@ -328,16 +328,16 @@ public class GameState {
     /**
      * Finds the king of a specific color.
      * 
-     * @param isWhite true if the king is white, false otherwise
-     * @return the position of the king
+     * @param isWhite true if the king is white, false otherwise.
+     * @return the position of the king.
      */
     public Point findKing(boolean isWhite) {
-        // Return cached position if available
+        // Return cached position if available.
         Point cached = isWhite ? whiteKingPosition : blackKingPosition;
         if (cached != null) {
             return cached;
         }
-        // Fallback to scanning (shouldn't happen in normal gameplay)
+        // Fallback to scanning (shouldn't happen in normal gameplay).
         return gameRules.findKing(isWhite);
     }
 
@@ -366,11 +366,11 @@ public class GameState {
     /**
      * Makes a hypothetical move without updating the game state.
      * 
-     * @param fromFile the file of the piece to move
-     * @param fromRank the rank of the piece to move
-     * @param toFile   the file of the square to move to
-     * @param toRank   the rank of the square to move to
-     * @return the captured piece
+     * @param fromFile the file of the piece to move.
+     * @param fromRank the rank of the piece to move.
+     * @param toFile   the file of the square to move to.
+     * @param toRank   the rank of the square to move to.
+     * @return the captured piece.
      */
     public ChessPiece makeHypotheticalMove(int fromFile, int fromRank, int toFile, int toRank) {
         ChessPiece movingPiece = getPieceAt(fromFile, fromRank);
@@ -395,7 +395,7 @@ public class GameState {
     /**
      * Gets the last move made.
      * 
-     * @return the last move made
+     * @return the last move made.
      */
     public Move getLastMove() {
         return moveHistory.isEmpty() ? null : moveHistory.peek();
@@ -404,12 +404,12 @@ public class GameState {
     /**
      * Undoes a hypothetical move.
      * 
-     * @param fromFile      the file of the piece that was moved
-     * @param fromRank      the rank of the piece that was moved
-     * @param toFile        the file of the square the piece was moved to
-     * @param toRank        the rank of the square the piece was moved to
-     * @param originalPiece the original piece that was moved
-     * @param capturedPiece the piece that was captured
+     * @param fromFile      the file of the piece that was moved.
+     * @param fromRank      the rank of the piece that was moved.
+     * @param toFile        the file of the square the piece was moved to.
+     * @param toRank        the rank of the square the piece was moved to.
+     * @param originalPiece the original piece that was moved.
+     * @param capturedPiece the piece that was captured.
      */
     public void undoHypotheticalMove(int fromFile, int fromRank, int toFile, int toRank,
             ChessPiece originalPiece, ChessPiece capturedPiece) {
@@ -428,7 +428,7 @@ public class GameState {
     /**
      * Gets the status of the game.
      * 
-     * @return the status of the game
+     * @return the status of the game.
      */
     public GameStatus getGameStatus() {
         return gameRules.getGameStatus();
@@ -437,7 +437,7 @@ public class GameState {
     /**
      * Checks if the current player is in check.
      * 
-     * @return true if the current player is in check, false otherwise
+     * @return true if the current player is in check, false otherwise.
      */
     public boolean isCheck() {
         return context.isWhiteToMove() ? context.isWhiteKingInCheck() : context.isBlackKingInCheck();
@@ -473,30 +473,30 @@ public class GameState {
      * Makes a move and returns undo information.
      * This is more efficient than copy() for AI move simulation.
      * 
-     * @param fromFile the file of the piece to move
-     * @param fromRank the rank of the piece to move
-     * @param toFile   the file of the square to move to
-     * @param toRank   the rank of the square to move to
-     * @return MoveUndo object containing information to reverse the move
+     * @param fromFile the file of the piece to move.
+     * @param fromRank the rank of the piece to move.
+     * @param toFile   the file of the square to move to.
+     * @param toRank   the rank of the square to move to.
+     * @return MoveUndo object containing information to reverse the move.
      */
     public MoveUndo makeMove(int fromFile, int fromRank, int toFile, int toRank) {
         ChessPiece piece = getPieceAt(fromFile, fromRank);
         ChessPiece capturedPiece = getPieceAt(toFile, toRank);
         boolean pieceHadMoved = piece.hasMoved();
 
-        // Save context state
+        // Save context state.
         Point previousEnPassantTarget = context.getEnPassantTargetSquare();
         boolean previousWhiteKingInCheck = context.isWhiteKingInCheck();
         boolean previousBlackKingInCheck = context.isBlackKingInCheck();
         boolean wasWhiteToMove = context.isWhiteToMove();
 
-        // Check for special moves
+        // Check for special moves.
         boolean isEnPassantCapture = false;
         boolean isCastling = false;
         ChessPiece castledRook = null;
         int rookFromFile = -1, rookToFile = -1;
 
-        // Handle en passant capture
+        // Handle en passant capture.
         if (piece.getPieceType() == ChessPiece.PieceType.PAWN
                 && new Point(toFile, toRank).equals(previousEnPassantTarget)) {
             isEnPassantCapture = true;
@@ -506,12 +506,12 @@ public class GameState {
             board.removePieceAt(capturedPawnFile, capturedPawnRank);
         }
 
-        // Make the move
+        // Make the move.
         board.setPieceAt(toFile, toRank, piece);
         board.removePieceAt(fromFile, fromRank);
         piece.markAsMoved();
 
-        // Update king position cache if king moved
+        // Update king position cache if king moved.
         if (piece.getPieceType() == ChessPiece.PieceType.KING) {
             if (piece.isWhite()) {
                 whiteKingPosition = new Point(toFile, toRank);
@@ -519,7 +519,7 @@ public class GameState {
                 blackKingPosition = new Point(toFile, toRank);
             }
 
-            // Handle castling
+            // Handle castling.
             if (Math.abs(toFile - fromFile) == 2) {
                 isCastling = true;
                 if (toFile > fromFile) {
@@ -550,7 +550,7 @@ public class GameState {
     /**
      * Undoes a move using the provided undo information.
      * 
-     * @param undo the MoveUndo object containing information to reverse the move
+     * @param undo the MoveUndo object containing information to reverse the move.
      */
     public void unmakeMove(MoveUndo undo) {
         ChessPiece piece = undo.movedPiece;
@@ -564,7 +564,7 @@ public class GameState {
         if (undo.wasCastling && undo.castledRook != null) {
             board.removePieceAt(undo.rookToFile, undo.fromRank);
             board.setPieceAt(undo.rookFromFile, undo.fromRank, undo.castledRook);
-            // Restore rook's moved status (it was moved during castling)
+            // Restore rook's moved status (it was moved during castling).
             undo.castledRook.setHasMoved(false);
         }
 
@@ -585,7 +585,7 @@ public class GameState {
     /**
      * Creates a deep copy of the game state.
      * 
-     * @return a new GameState with the copied state
+     * @return a new GameState with the copied state.
      */
     public GameState copy() {
         GameState copy = new GameState(board.copy(), context.copy(), moveHistory);

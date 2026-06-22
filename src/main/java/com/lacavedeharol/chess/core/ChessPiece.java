@@ -121,7 +121,7 @@ public class ChessPiece {
     /**
      * Creates a deep copy of this chess piece.
      * 
-     * @return a new ChessPiece with the same state
+     * @return a new ChessPiece with the same state.
      */
     public ChessPiece copy() {
         ChessPiece newPiece = new ChessPiece(this.isWhite, this.pieceType, this.file, this.rank);

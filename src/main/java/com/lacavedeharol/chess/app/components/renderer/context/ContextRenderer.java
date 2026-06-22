@@ -22,8 +22,8 @@ class ContextRenderer implements PlanarRenderer {
         /**
          * Creates a new CapturedItem.
          * 
-         * @param piece     the captured piece
-         * @param timestamp the timestamp of the capture
+         * @param piece     the captured piece.
+         * @param timestamp the timestamp of the capture.
          */
         CapturedItem(ChessPiece piece, double timestamp) {
             this.piece = piece;
@@ -39,8 +39,8 @@ class ContextRenderer implements PlanarRenderer {
     /**
      * Sets the message to be displayed.
      * 
-     * @param message the message to be displayed
-     * @param animate whether the message should be animated
+     * @param message the message to be displayed.
+     * @param animate whether the message should be animated.
      */
     void setMessage(String message, boolean animate) {
         this.message = message;
@@ -50,7 +50,7 @@ class ContextRenderer implements PlanarRenderer {
     /**
      * Sets the message to be displayed.
      * 
-     * @param message the message to be displayed
+     * @param message the message to be displayed.
      */
     void setMessage(String message) {
         this.message = message;
@@ -60,7 +60,7 @@ class ContextRenderer implements PlanarRenderer {
     /**
      * Sets whether the game is paused.
      * 
-     * @param paused whether the game is paused
+     * @param paused whether the game is paused.
      */
     void setPaused(boolean paused) {
         this.isPaused = paused;
@@ -69,7 +69,7 @@ class ContextRenderer implements PlanarRenderer {
     /**
      * Sets the captured pieces.
      * 
-     * @param pieces the captured pieces
+     * @param pieces the captured pieces.
      */
     void setCapturedPieces(List<ChessPiece> pieces) {
         List<CapturedItem> newItems = new ArrayList<>();
@@ -94,7 +94,7 @@ class ContextRenderer implements PlanarRenderer {
     /**
      * Sets whether the captured pieces are visible.
      * 
-     * @param visible whether the captured pieces are visible
+     * @param visible whether the captured pieces are visible.
      */
     void setCapturedVisible(boolean visible) {
         this.isCapturedVisible = visible;
@@ -103,7 +103,7 @@ class ContextRenderer implements PlanarRenderer {
     /**
      * Returns whether the captured pieces are visible.
      * 
-     * @return whether the captured pieces are visible
+     * @return whether the captured pieces are visible.
      */
     boolean isCapturedVisible() {
         return isCapturedVisible;
@@ -114,7 +114,7 @@ class ContextRenderer implements PlanarRenderer {
     /**
      * Sets whether the context is visible.
      * 
-     * @param visible whether the context is visible
+     * @param visible whether the context is visible.
      */
     void setContextVisible(boolean visible) {
         this.isContextVisible = visible;
@@ -123,7 +123,7 @@ class ContextRenderer implements PlanarRenderer {
     /**
      * Returns whether the context is visible.
      * 
-     * @return whether the context is visible
+     * @return whether the context is visible.
      */
     boolean isContextVisible() {
         return isContextVisible;
@@ -132,9 +132,9 @@ class ContextRenderer implements PlanarRenderer {
     /**
      * Renders the context.
      * 
-     * @param g2d    the Graphics2D object to render to
-     * @param width  the width of the canvas
-     * @param height the height of the canvas
+     * @param g2d    the Graphics2D object to render to.
+     * @param width  the width of the canvas.
+     * @param height the height of the canvas.
      */
     @Override
     public void render(Graphics2D g2d, int width, int height) {

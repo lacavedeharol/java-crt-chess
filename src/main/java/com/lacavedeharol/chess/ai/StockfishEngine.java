@@ -38,7 +38,7 @@ final class StockfishEngine {
      * Starts the engine: extracts the binary, launches it, and performs the UCI
      * handshake.
      *
-     * @return {@code true} if the engine started and is ready
+     * @return {@code true} if the engine started and is ready.
      */
     boolean start() {
         try {
@@ -122,7 +122,7 @@ final class StockfishEngine {
     /**
      * Sets the engine skill level (0 = weakest, 20 = full strength).
      *
-     * @param level the skill level, clamped to 0..20
+     * @param level the skill level, clamped to 0..20.
      */
     void setSkillLevel(int level) {
         int clamped = Math.max(0, Math.min(20, level));
@@ -136,10 +136,10 @@ final class StockfishEngine {
     /**
      * Asks the engine for the best move in the given position.
      *
-     * @param fen        the position in FEN
-     * @param moveTimeMs how long the engine may think, in milliseconds
+     * @param fen        the position in FEN.
+     * @param moveTimeMs how long the engine may think, in milliseconds.
      * @return the best move in UCI coordinate notation (e.g. "e2e4", "e7e8q"),
-     *         or {@code null} on error or if no move is available
+     *         or {@code null} on error or if no move is available.
      */
     String getBestMove(String fen, int moveTimeMs) {
         try {
@@ -196,7 +196,7 @@ final class StockfishEngine {
     /**
      * Reads lines until one contains the given token, or the stream ends.
      *
-     * @return {@code true} if the token was seen
+     * @return {@code true} if the token was seen.
      */
     private boolean waitFor(String token) throws IOException {
         String line;

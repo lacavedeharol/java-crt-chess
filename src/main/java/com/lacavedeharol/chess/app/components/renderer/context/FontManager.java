@@ -22,7 +22,7 @@ class FontManager {
     /**
      * Returns the singleton instance of FontManager.
      * 
-     * @return the singleton instance of FontManager
+     * @return the singleton instance of FontManager.
      */
     static synchronized FontManager getInstance() {
         return instance != null ? instance : (instance = new FontManager());
@@ -31,8 +31,8 @@ class FontManager {
     /**
      * Returns the font of the specified size from the cache.
      * 
-     * @param size the size of the font
-     * @return the font of the specified size
+     * @param size the size of the font.
+     * @return the font of the specified size.
      */
     Font getFont(int size) {
         return fontCache.computeIfAbsent(size, s -> new Font("Segoe UI Symbol", Font.PLAIN, s));

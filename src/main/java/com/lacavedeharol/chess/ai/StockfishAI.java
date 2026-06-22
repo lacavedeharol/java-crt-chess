@@ -19,8 +19,8 @@ final class StockfishAI {
     /**
      * Creates the bridge.
      *
-     * @param skillLevel the Stockfish skill level (0..20)
-     * @param moveTimeMs think time per move in milliseconds
+     * @param skillLevel the Stockfish skill level (0..20).
+     * @param moveTimeMs think time per move in milliseconds.
      */
     StockfishAI(int skillLevel, int moveTimeMs) {
         this.moveTimeMs = moveTimeMs;
@@ -32,8 +32,8 @@ final class StockfishAI {
     /**
      * Asks Stockfish for a move and applies it to the given state.
      *
-     * @param state the current game state (mutated in place on success)
-     * @return {@code true} if a legal move was applied
+     * @param state the current game state (mutated in place on success).
+     * @return {@code true} if a legal move was applied.
      */
     boolean makeMove(GameState state) {
         if (!ready)
