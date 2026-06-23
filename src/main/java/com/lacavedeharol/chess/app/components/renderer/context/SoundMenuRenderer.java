@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import com.lacavedeharol.chess.app.components.renderer.AssetManager;
+import com.lacavedeharol.chess.app.components.renderer.GraphicsUtils;
 
 /**
  * A renderer for the sound toggle.
@@ -27,7 +28,8 @@ class SoundMenuRenderer extends BaseMenuRenderer<SoundAction> {
      * Load the icons.
      */
     private void loadIcons() {
-        BufferedImage sheet = AssetManager.getInstance().getImage("icons");
+        BufferedImage sheet = AssetManager.getInstance()
+                .getImage("icons_0");
         if (sheet != null) {
             speakerSprite = sheet.getSubimage(0, 16, 16, 16);
             mutedSprite = sheet.getSubimage(0, 32, 16, 16);

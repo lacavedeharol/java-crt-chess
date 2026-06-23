@@ -9,6 +9,7 @@ import com.lacavedeharol.chess.computer.ChessAIFactory;
 import com.lacavedeharol.chess.computer.Opponent;
 import com.lacavedeharol.chess.app.components.renderer.AssetManager;
 import com.lacavedeharol.chess.app.components.renderer.GameRendererComponent;
+import com.lacavedeharol.chess.app.components.renderer.GraphicsUtils;
 import com.lacavedeharol.chess.app.game.GameController;
 import com.lacavedeharol.chess.core.state.GameState;
 
@@ -26,7 +27,8 @@ public class Window extends JFrame {
         add(new GamePanel());
         pack();
         setMinimumSize(this.getPreferredSize());
-        setIconImage(AssetManager.getInstance().getImage("icons").getSubimage(16, 0, 48, 48));
+        setIconImage(AssetManager.getInstance().getImage("icons_0")
+                .getSubimage(16, 0, 48, 48));
         setLocationRelativeTo(null);
         setVisible(true);
     }

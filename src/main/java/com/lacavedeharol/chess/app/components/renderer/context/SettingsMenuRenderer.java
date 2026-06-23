@@ -50,7 +50,8 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
      * Load the icons.
      */
     private void loadIcons() {
-        BufferedImage sheet = AssetManager.getInstance().getImage("icons");
+        BufferedImage sheet = AssetManager.getInstance()
+                .getImage("icons_0");
         if (sheet != null)
             iconSprite = sheet.getSubimage(0, 0, 16, 16);
     }

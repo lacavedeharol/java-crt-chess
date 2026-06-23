@@ -61,7 +61,8 @@ class PromotionRenderer implements PlanarRenderer {
      * Load the images for the promotion menu.
      */
     private void loadImages() {
-        BufferedImage spriteSheet = AssetManager.getInstance().getImage("chess_pieces");
+        BufferedImage spriteSheet = AssetManager.getInstance()
+                .getImage("chess_pieces_0");
         int yOffset = isWhite ? 0 : 64;
 
         images[0] = spriteSheet.getSubimage(1 * 32, yOffset, 32, 64);

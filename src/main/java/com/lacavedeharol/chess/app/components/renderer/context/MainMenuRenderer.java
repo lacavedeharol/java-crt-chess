@@ -4,7 +4,9 @@ import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.List;
 
+import com.lacavedeharol.chess.computer.ChessAIFactory;
 import com.lacavedeharol.chess.computer.Opponent;
 import com.lacavedeharol.chess.app.components.renderer.GraphicsUtils;
 
@@ -97,12 +99,12 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
      * Toggle the AI opponent.
      */
     void toggleOpponent() {
-        opponent = switch (opponent) {
-            case CRT_EASY -> Opponent.CRT_HARD;
-            case CRT_HARD -> Opponent.STOCKFISH;
-            case STOCKFISH -> Opponent.LOCAL;
-            case LOCAL -> Opponent.CRT_EASY;
-        };
+        List<Opponent> available = ChessAIFactory.availableOpponents();
+
+        int currentIndex = available.indexOf(opponent);
+        int nextIndex = (currentIndex + 1) % available.size();
+        opponent = available.get(nextIndex);
+
         initItems();
     }
 

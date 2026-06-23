@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.lacavedeharol.chess.app.components.renderer.AssetManager;
+import com.lacavedeharol.chess.app.components.renderer.GraphicsUtils;
 import com.lacavedeharol.chess.core.ChessPiece;
 
 /**
@@ -32,7 +33,8 @@ class PiecesRenderer implements ProjectionRenderer {
      * Loads the sprites for the chess pieces.
      */
     private void loadSprites() {
-        BufferedImage sheet = AssetManager.getInstance().getImage("chess_pieces");
+        BufferedImage sheet = AssetManager.getInstance()
+                .getImage("chess_pieces_0");
         if (sheet == null)
             return;
 
