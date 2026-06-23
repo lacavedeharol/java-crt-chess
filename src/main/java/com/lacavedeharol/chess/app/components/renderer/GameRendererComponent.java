@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import com.lacavedeharol.chess.ai.Opponent;
+import com.lacavedeharol.chess.computer.Opponent;
 import com.lacavedeharol.chess.app.components.renderer.context.ContextRenderingHandler;
 import com.lacavedeharol.chess.app.components.renderer.context.TimerMode;
 import com.lacavedeharol.chess.app.components.renderer.projection.Matrix4;

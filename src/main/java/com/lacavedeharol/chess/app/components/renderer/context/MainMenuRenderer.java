@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import com.lacavedeharol.chess.ai.Opponent;
+import com.lacavedeharol.chess.computer.Opponent;
 import com.lacavedeharol.chess.app.components.renderer.GraphicsUtils;
 
 /**
@@ -24,7 +24,7 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
         return isConfigureExpanded;
     }
 
-    private Opponent opponent = Opponent.EASY_AI;
+    private Opponent opponent = Opponent.CRT_EASY;
     private TimerMode timerMode = TimerMode.CLASSIC;
     private SidePreference sidePreference = SidePreference.RANDOM;
 
@@ -98,10 +98,10 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
      */
     void toggleOpponent() {
         opponent = switch (opponent) {
-            case EASY_AI -> Opponent.HARD_AI;
-            case HARD_AI -> Opponent.STOCKFISH;
+            case CRT_EASY -> Opponent.CRT_HARD;
+            case CRT_HARD -> Opponent.STOCKFISH;
             case STOCKFISH -> Opponent.LOCAL;
-            case LOCAL -> Opponent.EASY_AI;
+            case LOCAL -> Opponent.CRT_EASY;
         };
         initItems();
     }
@@ -138,7 +138,7 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
      */
     void reset() {
         isConfigureExpanded = false;
-        opponent = Opponent.EASY_AI;
+        opponent = Opponent.CRT_EASY;
         timerMode = TimerMode.CLASSIC;
         sidePreference = SidePreference.RANDOM;
         initItems();

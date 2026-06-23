@@ -1,4 +1,4 @@
-package com.lacavedeharol.chess.ai;
+package com.lacavedeharol.chess.computer;
 
 import com.lacavedeharol.chess.core.ChessPiece;
 import com.lacavedeharol.chess.core.state.GameState;
@@ -19,7 +19,7 @@ public final class UciEngineAI implements ChessAI {
      *
      * @param config   how to launch and drive the engine
      * @param strength engine-specific strength value, applied if the engine has
-     *                 a strength option (ignored otherwise).
+     *                 a strength option (ignored otherwise)
      */
     public UciEngineAI(EngineConfig config, int strength) {
         this.engine = new UciEngine(config);

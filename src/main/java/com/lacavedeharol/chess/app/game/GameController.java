@@ -7,7 +7,7 @@ import java.util.concurrent.ExecutionException;
 
 import javax.swing.SwingWorker;
 
-import com.lacavedeharol.chess.ai.ChessAI;
+import com.lacavedeharol.chess.computer.ChessAI;
 import com.lacavedeharol.chess.app.components.renderer.*;
 import com.lacavedeharol.chess.app.components.renderer.context.TimerMode;
 import com.lacavedeharol.chess.app.components.renderer.projection.Vector3;
@@ -69,7 +69,7 @@ public class GameController {
         this.gameTimer = new GameTimer(timerMode, this::updateContextMessage, this::handleTimeout);
         initialize();
 
-        if (whiteAI != null && blackAI == null)
+        if (whiteAI == null && blackAI != null)
             rendererComponent.setRotationY(Math.PI);
         else
             rendererComponent.setRotationY(0);

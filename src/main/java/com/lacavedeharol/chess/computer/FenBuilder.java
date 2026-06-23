@@ -1,4 +1,4 @@
-package com.lacavedeharol.chess.ai;
+package com.lacavedeharol.chess.computer;
 
 import java.awt.Point;
 

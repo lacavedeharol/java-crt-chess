@@ -1,4 +1,4 @@
-package com.lacavedeharol.chess.ai;
+package com.lacavedeharol.chess.computer;
 
 /**
  * Identifies which opponent the human is playing against.
@@ -13,10 +13,11 @@ package com.lacavedeharol.chess.ai;
  */
 public enum Opponent {
     /** Built-in minimax engine, shallow search (weaker). */
-    EASY_AI,
+    CRT_EASY,
     /** Built-in minimax engine, deeper search (stronger). */
-    HARD_AI,
+    CRT_HARD,
     /** Stockfish UCI engine. */
     STOCKFISH,
+    /** Local players. */
     LOCAL
 }

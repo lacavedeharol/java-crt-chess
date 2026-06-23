@@ -19,37 +19,7 @@
         <maven.compiler.target>25</maven.compiler.target>
         <java.version>25</java.version>
         <exec.mainClass>com.lacavedeharol.chess.Main</exec.mainClass>
-
-        <stockfish.baseUrl>https://github.com/official-stockfish/Stockfish/releases/download/sf_18</stockfish.baseUrl>
     </properties>
-
-    <profiles>
-        <profile>
-            <id>stockfish-windows</id>
-            <activation>
-                <os>
-                    <family>windows</family>
-                </os>
-            </activation>
-            <properties>
-                <stockfish.archive>stockfish-windows-x86-64-avx2.zip</stockfish.archive>
-                <!-- <stockfish.sha256></stockfish.sha256> -->
-            </properties>
-        </profile>
-        <profile>
-            <id>stockfish-linux</id>
-            <activation>
-                <os>
-                    <family>unix</family>
-                    <name>Linux</name>
-                </os>
-            </activation>
-            <properties>
-                <stockfish.archive>stockfish-ubuntu-x86-64-avx2.tar</stockfish.archive>
-                <!-- <stockfish.sha256></stockfish.sha256> -->
-            </properties>
-        </profile>
-    </profiles>
 
     <developers>
         <developer>
@@ -75,42 +45,7 @@
     </dependencies>
 
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-            <!-- Stockfish binary downloaded at build time (see download plugin
-                 below). Unpacked under target/ and swept into the jar at
-                 /stockfish/, where StockfishEngine reads it via the classpath. -->
-            <resource>
-                <directory>${project.build.directory}/generated-resources/sf-extracted/stockfish</directory>
-                <targetPath>stockfish</targetPath>
-            </resource>
-        </resources>
         <plugins>
-            <plugin>
-                <!-- Download + unpack the Stockfish engine binary for this
-                     platform during generate-resources. The archive name is set
-                     by the OS-activated profile (stockfish.archive). -->
-                <groupId>com.googlecode.maven-download-plugin</groupId>
-                <artifactId>download-maven-plugin</artifactId>
-                <version>1.13.0</version>
-                <executions>
-                    <execution>
-                        <id>fetch-stockfish</id>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>wget</goal>
-                        </goals>
-                        <configuration>
-                            <url>${stockfish.baseUrl}/${stockfish.archive}</url>
-                            <unpack>true</unpack>
-                            <outputDirectory>
-                                ${project.build.directory}/generated-resources/sf-extracted</outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>

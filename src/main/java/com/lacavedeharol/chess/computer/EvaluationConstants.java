@@ -1,4 +1,4 @@
-package com.lacavedeharol.chess.ai;
+package com.lacavedeharol.chess.computer;
 
 /**
  * Class containing the evaluation constants.

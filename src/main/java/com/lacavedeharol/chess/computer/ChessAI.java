@@ -1,4 +1,4 @@
-package com.lacavedeharol.chess.ai;
+package com.lacavedeharol.chess.computer;
 
 import com.lacavedeharol.chess.core.state.GameState;
 

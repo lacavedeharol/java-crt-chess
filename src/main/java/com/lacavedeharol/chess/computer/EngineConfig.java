@@ -1,6 +1,7 @@
-package com.lacavedeharol.chess.ai;
+package com.lacavedeharol.chess.computer;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Describes how to locate, launch, and drive a specific UCI engine, so that one
@@ -8,42 +9,56 @@ import java.util.List;
  * Maia, etc.) by configuration rather than by subclassing.
  *
  * <p>
- * Use {@link #stockfish()} for the bundled Stockfish setup. Add factory methods
- * here for additional engines as they are introduced.
+ * Engine binaries are expected to already be present in the per-user data
+ * directory (placed there by the installer or the user); the game does not
+ * download them. {@link EngineCache} resolves their location and presence.
  * </p>
  *
- * @param resourceDir     classpath folder holding the binaries, e.g.
- *                        {@code /stockfish/}.
+ * @param engineId        namespacing id for the data dir, e.g.
+ *                        {@code "stockfish-18"}.
  * @param windowsBinary   filename of the Windows build (with {@code .exe}).
  * @param linuxBinary     filename of the Linux build.
  * @param launchArgs      extra command-line arguments passed after the binary
  *                        (e.g. {@code --weights=...} for lc0/Maia). May be
  *                        empty.
  * @param goCommand       the UCI "go" command used to request a move
- *                        (e.g. {@code "go movetime 1000"} for Stockfish,
- *                        {@code "go nodes 1"} for Maia).
+ *                        (e.g. {@code "go movetime 1000"}; {@code "go nodes 1"}
+ *                        for Maia).
  * @param skillOptionName name of the UCI option used to limit strength, or
  *                        {@code null} if the engine has none.
  */
 record EngineConfig(
-        String resourceDir,
+        String engineId,
         String windowsBinary,
         String linuxBinary,
         List<String> launchArgs,
         String goCommand,
         String skillOptionName) {
 
+    /** The binary filename for the current OS. */
+    String binaryForThisOs() {
+        return isWindows() ? windowsBinary : linuxBinary;
+    }
+
+    /** True if this engine's binary is present in the data directory. */
+    boolean isAvailable() {
+        return EngineCache.isPresent(engineId, binaryForThisOs());
+    }
+
+    private static boolean isWindows() {
+        return System.getProperty("os.name", "").toLowerCase(Locale.ROOT).contains("win");
+    }
+
     /**
-     * Configuration for the bundled Stockfish engine: binaries under
-     * {@code /stockfish/}, fixed think time per move, and the "Skill Level"
-     * option for strength limiting.
+     * Configuration for the Stockfish engine. The binary is expected at
+     * {@code <dataDir>/java-crt-chess/engines/stockfish-18/<binary>}.
      *
      * @param moveTimeMs think time per move in milliseconds.
      * @return the Stockfish engine configuration.
      */
     static EngineConfig stockfish(int moveTimeMs) {
         return new EngineConfig(
-                "/stockfish/",
+                "stockfish-18",
                 "stockfish-windows-x86-64-avx2.exe",
                 "stockfish-ubuntu-x86-64-avx2",
                 List.of(),

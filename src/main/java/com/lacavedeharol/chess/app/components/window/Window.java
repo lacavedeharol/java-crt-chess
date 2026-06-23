@@ -5,8 +5,8 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.lacavedeharol.chess.ai.ChessAIFactory;
-import com.lacavedeharol.chess.ai.Opponent;
+import com.lacavedeharol.chess.computer.ChessAIFactory;
+import com.lacavedeharol.chess.computer.Opponent;
 import com.lacavedeharol.chess.app.components.renderer.AssetManager;
 import com.lacavedeharol.chess.app.components.renderer.GameRendererComponent;
 import com.lacavedeharol.chess.app.game.GameController;
