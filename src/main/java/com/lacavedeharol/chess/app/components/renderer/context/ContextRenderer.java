@@ -152,12 +152,12 @@ class ContextRenderer implements PlanarRenderer {
                 if (now - item.timestamp > 60.0)
                     continue;
 
-                String name = item.piece.getPieceType().toString().toLowerCase();
-                String color = item.piece.isWhite() ? "white" : "black";
-                String capturedString = "Captured: " + color + " " + name;
+                String capturedString = "Captured: " + (item.piece.isWhite() ? "white" : "black") + " "
+                        + item.piece.getPieceType().toString().toLowerCase();
                 g2d.drawString(capturedString, width - padding - g2d.getFontMetrics().stringWidth(capturedString),
-                        (height / 2) + g2d.getFontMetrics().getAscent() + (count
-                                * (g2d.getFontMetrics().getHeight() + (g2d.getFontMetrics().getHeight() / 2))));
+                        (height / 2) + ((g2d.getFontMetrics().getHeight() + (g2d.getFontMetrics().getHeight() / 2)))
+                                + (count
+                                        * (g2d.getFontMetrics().getHeight() + (g2d.getFontMetrics().getHeight() / 2))));
                 count++;
             }
         }

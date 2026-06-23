@@ -100,7 +100,8 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
         opponent = switch (opponent) {
             case EASY_AI -> Opponent.HARD_AI;
             case HARD_AI -> Opponent.STOCKFISH;
-            case STOCKFISH -> Opponent.EASY_AI;
+            case STOCKFISH -> Opponent.LOCAL;
+            case LOCAL -> Opponent.EASY_AI;
         };
         initItems();
     }

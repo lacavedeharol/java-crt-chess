@@ -28,8 +28,8 @@ public abstract class GraphicsUtils {
     public static final Color LIGHT;
 
     static {
-        DARK = Color.decode("#070918");
-        LIGHT = Color.decode("#eef066");
+        DARK = Color.decode("#222323");
+        LIGHT = Color.decode("#f0f6f0");
     }
 
     /**

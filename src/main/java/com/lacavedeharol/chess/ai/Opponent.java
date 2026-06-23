@@ -17,5 +17,6 @@ public enum Opponent {
     /** Built-in minimax engine, deeper search (stronger). */
     HARD_AI,
     /** Stockfish UCI engine. */
-    STOCKFISH
+    STOCKFISH,
+    LOCAL
 }

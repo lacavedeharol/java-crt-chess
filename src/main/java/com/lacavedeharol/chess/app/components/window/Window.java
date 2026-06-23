@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.lacavedeharol.chess.ai.ChessAIFactory;
+import com.lacavedeharol.chess.ai.Opponent;
 import com.lacavedeharol.chess.app.components.renderer.AssetManager;
 import com.lacavedeharol.chess.app.components.renderer.GameRendererComponent;
 import com.lacavedeharol.chess.app.game.GameController;
@@ -21,11 +22,11 @@ public class Window extends JFrame {
      */
     public Window() {
         new WindowInputHandler(this);
-        setTitle("Java CRT Chess");
+        setTitle("CRT Chess");
         add(new GamePanel());
         pack();
         setMinimumSize(this.getPreferredSize());
-        setIconImage(AssetManager.getInstance().getImage("icons").getSubimage(8, 0, 48, 48));
+        setIconImage(AssetManager.getInstance().getImage("icons").getSubimage(16, 0, 48, 48));
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -57,8 +58,13 @@ public class Window extends JFrame {
                     activeController.dispose();
 
                 activeController = new GameController(gameState, rendererComponent,
-                        config.playAsWhite() ? null : ChessAIFactory.create(config.difficulty(), true),
-                        config.playAsWhite() ? ChessAIFactory.create(config.difficulty(), false) : null,
+                        config.playAsWhite() ? null
+                                : (config.opponent() != Opponent.LOCAL ? ChessAIFactory.create(config.opponent(), true)
+                                        : null),
+                        config.playAsWhite()
+                                ? (config.opponent() != Opponent.LOCAL ? ChessAIFactory.create(config.opponent(), false)
+                                        : null)
+                                : null,
                         config.timerMode());
             });
 

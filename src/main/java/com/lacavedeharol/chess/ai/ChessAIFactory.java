@@ -34,12 +34,13 @@ public final class ChessAIFactory {
      * @return a ready-to-use {@link ChessAI}.
      */
     public static ChessAI create(Opponent opponent, boolean isWhite) {
-        return switch (opponent) {
+        return opponent != Opponent.LOCAL ? switch (opponent) {
             case EASY_AI -> new MinimaxAI(isWhite, EASY_DEPTH);
             case HARD_AI -> new MinimaxAI(isWhite, HARD_DEPTH);
             case STOCKFISH -> new UciEngineAI(
                     EngineConfig.stockfish(STOCKFISH_MOVETIME_MS),
                     STOCKFISH_SKILL);
-        };
+            default -> throw new IllegalArgumentException("Unknown opponent: " + opponent);
+        } : null;
     }
 }

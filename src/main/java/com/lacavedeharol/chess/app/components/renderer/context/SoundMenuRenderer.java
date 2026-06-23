@@ -29,8 +29,8 @@ class SoundMenuRenderer extends BaseMenuRenderer<SoundAction> {
     private void loadIcons() {
         BufferedImage sheet = AssetManager.getInstance().getImage("icons");
         if (sheet != null) {
-            speakerSprite = sheet.getSubimage(0, 8, 8, 8);
-            mutedSprite = sheet.getSubimage(0, 16, 8, 8);
+            speakerSprite = sheet.getSubimage(0, 16, 16, 16);
+            mutedSprite = sheet.getSubimage(0, 32, 16, 16);
         }
     }
 

@@ -52,7 +52,7 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
     private void loadIcons() {
         BufferedImage sheet = AssetManager.getInstance().getImage("icons");
         if (sheet != null)
-            iconSprite = sheet.getSubimage(0, 0, 8, 8);
+            iconSprite = sheet.getSubimage(0, 0, 16, 16);
     }
 
     /**
@@ -312,7 +312,7 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
         }
 
         int statusX = padding;
-        int statusY = height / 2 + fm.getAscent();
+        int statusY = (height / 2) + fm.getHeight();
 
         g2d.drawString(statusTitle, statusX, statusY);
 

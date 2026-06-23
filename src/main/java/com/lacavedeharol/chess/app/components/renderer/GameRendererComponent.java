@@ -20,65 +20,15 @@ import com.lacavedeharol.chess.app.components.renderer.projection.Vector3;
 import com.lacavedeharol.chess.core.ChessPiece;
 
 /**
- * GameRendererComponent class extends JPanel and handles the rendering of the
- * game.
+ * GameRendererComponent class extends JPanel and handles the game render.
  */
 public class GameRendererComponent extends JPanel {
 
-    /**
-     * The projection matrix.
-     */
-    private Matrix4 projection;
+    private Matrix4 projection, view, viewProjection, inverseViewProjection;
 
-    /**
-     * The view matrix.
-     */
-    private Matrix4 view;
+    private double rotationY, tiltX, cameraDistance, targetCameraDistance, autoRotationSpeed;
 
-    /**
-     * The view projection matrix.
-     */
-    private Matrix4 viewProjection;
-
-    /**
-     * The inverse view projection matrix.
-     */
-    private Matrix4 inverseViewProjection;
-
-    /**
-     * The rotation Y.
-     */
-    private double rotationY;
-
-    /**
-     * The tilt X.
-     */
-    private double tiltX;
-
-    /**
-     * The camera distance.
-     */
-    private double cameraDistance;
-
-    /**
-     * The target camera distance.
-     */
-    private double targetCameraDistance;
-
-    /**
-     * The auto rotation speed.
-     */
-    private double autoRotationSpeed;
-
-    /**
-     * The target rotation.
-     */
-    private Double targetRotation;
-
-    /**
-     * The target tilt X.
-     */
-    private Double targetTiltX;
+    private Double targetRotation, targetTiltX;
 
     /**
      * The context handler.
@@ -89,46 +39,12 @@ public class GameRendererComponent extends JPanel {
      * The projection handler.
      */
     private ProjectionRenderingHandler projectionHandler;
+    private Timer animationTimer, contextTimer;
 
-    /**
-     * The animation timer.
-     */
-    private Timer animationTimer;
+    private int width, height;
 
-    /**
-     * The context timer.
-     */
-    private Timer contextTimer;
-
-    /**
-     * The width.
-     */
-    private int width;
-
-    /**
-     * The height.
-     */
-    private int height;
-
-    /**
-     * The on game start callback.
-     */
     private Consumer<GameConfig> onGameStart;
-
-    /**
-     * The on exit callback.
-     */
-    private Runnable onExit;
-
-    /**
-     * The on restart callback.
-     */
-    private Runnable onRestart;
-
-    /**
-     * The on game resumed callback.
-     */
-    private Runnable onGameResumed;
+    private Runnable onExit, onRestart, onGameResumed;
 
     /**
      * The cell size.
@@ -581,10 +497,10 @@ public class GameRendererComponent extends JPanel {
      * Gets the game configuration.
      * 
      * @param playAsWhite true if the player is playing as white, false otherwise.
-     * @param difficulty  the difficulty of the AI player.
+     * @param opponent    the opponent.
      * @param timerMode   the timer mode.
      */
-    public record GameConfig(boolean playAsWhite, Opponent difficulty,
+    public record GameConfig(boolean playAsWhite, Opponent opponent,
             TimerMode timerMode) {
     }
 
