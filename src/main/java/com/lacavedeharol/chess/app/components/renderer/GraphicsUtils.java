@@ -11,21 +11,13 @@ import java.awt.RenderingHints;
  */
 public abstract class GraphicsUtils {
 
-    /**
-     * Private constructor to prevent instantiation.
-     */
     private GraphicsUtils() {
     }
 
     /**
-     * The dark color.
+     * The dark and light colors.
      */
-    public static final Color DARK;
-
-    /**
-     * The light color.
-     */
-    public static final Color LIGHT;
+    public static final Color DARK, LIGHT;
 
     static {
         DARK = Color.decode("#222323");

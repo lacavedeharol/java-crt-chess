@@ -6,24 +6,9 @@ package com.lacavedeharol.chess.app.components.renderer.projection;
 public class Vector3 {
 
     /**
-     * The x coordinate.
+     * The x, y, z, and w coordinates.
      */
-    public double x;
-
-    /**
-     * The y coordinate.
-     */
-    public double y;
-
-    /**
-     * The z coordinate.
-     */
-    public double z;
-
-    /**
-     * The w coordinate.
-     */
-    public double w = 1.0;
+    public double x, y, z, w = 1.0;
 
     /**
      * Constructor.

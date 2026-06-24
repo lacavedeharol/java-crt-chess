@@ -178,7 +178,7 @@ public class ContextRenderingHandler {
      * @param onSelected the callback to be called when a piece is selected.
      */
     public void startPromotion(boolean isWhite, Consumer<PieceType> onSelected) {
-        if (settingsRenderer.getAutoPromotion() != AutoPromotion.OFF) {
+        if (settingsRenderer.getAutoPromotion() != ChessPiece.PieceType.PAWN) {
             onSelected.accept(switch (settingsRenderer.getAutoPromotion()) {
                 case QUEEN -> PieceType.QUEEN;
                 case ROOK -> PieceType.ROOK;

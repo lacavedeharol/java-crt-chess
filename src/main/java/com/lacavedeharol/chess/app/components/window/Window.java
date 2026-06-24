@@ -9,7 +9,6 @@ import com.lacavedeharol.chess.computer.ChessAIFactory;
 import com.lacavedeharol.chess.computer.Opponent;
 import com.lacavedeharol.chess.app.components.renderer.AssetManager;
 import com.lacavedeharol.chess.app.components.renderer.GameRendererComponent;
-import com.lacavedeharol.chess.app.components.renderer.GraphicsUtils;
 import com.lacavedeharol.chess.app.game.GameController;
 import com.lacavedeharol.chess.core.state.GameState;
 

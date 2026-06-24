@@ -47,13 +47,6 @@ public class AssetManager {
     }
 
     /**
-     * Clear the image cache.
-     */
-    public void clearCache() {
-        imageCache.clear();
-    }
-
-    /**
      * Check if an image is cached.
      * 
      * @param path The path to the image.

@@ -67,9 +67,6 @@ public class GameRendererComponent extends JPanel {
         new MenuInputHandler(this);
     }
 
-    /**
-     * Initializes the renderers.
-     */
     private void initRenderers() {
         contextHandler = new ContextRenderingHandler();
         projectionHandler = new ProjectionRenderingHandler();
@@ -82,9 +79,6 @@ public class GameRendererComponent extends JPanel {
         contextTimer = new Timer(500, e -> this.repaint());
     }
 
-    /**
-     * Sets up the context callbacks.
-     */
     private void setupContextCallbacks() {
         contextHandler.setOnGameStart(config -> {
             targetCameraDistance = 10.0;
@@ -121,9 +115,6 @@ public class GameRendererComponent extends JPanel {
         contextHandler.setOnEnterMenu(this::enterMenuMode);
     }
 
-    /**
-     * Updates the camera position.
-     */
     private void updateCamera() {
         if (Math.abs(cameraDistance - targetCameraDistance) > 0.1) {
             cameraDistance += (targetCameraDistance - cameraDistance) * 0.1;
@@ -234,9 +225,6 @@ public class GameRendererComponent extends JPanel {
         this.repaint();
     }
 
-    /**
-     * Updates the view matrix.
-     */
     private void updateViewMatrix() {
         Matrix4 worldMove = Matrix4.translate(-4, 0, -4);
         Matrix4 worldMirror = Matrix4.scale(-1, 1, 1);
@@ -273,9 +261,6 @@ public class GameRendererComponent extends JPanel {
         return rotationY;
     }
 
-    /**
-     * Updates the matrices.
-     */
     private void updateMatrices() {
         updateViewMatrix();
 
@@ -465,9 +450,6 @@ public class GameRendererComponent extends JPanel {
         this.repaint();
     }
 
-    /**
-     * Updates the target rotation angle based on the menu state.
-     */
     private void updateMenuRotationTarget() {
         if (contextHandler.isMenuOpen() && contextHandler.isConfigureExpanded()) {
             switch (contextHandler.getSidePreference()) {
@@ -618,16 +600,11 @@ public class GameRendererComponent extends JPanel {
         this.repaint();
     }
 
-    /**
-     * Enters the menu mode.
-     */
     private void enterMenuMode() {
-
         targetCameraDistance = 16.0;
         autoRotationSpeed = new Random().nextBoolean() ? 0.000625 : -0.000625;
         tiltX = Math.toRadians(45);
         targetTiltX = null;
-
         targetRotation = null;
 
         updateMatrices();
@@ -654,9 +631,6 @@ public class GameRendererComponent extends JPanel {
         this.repaint();
     }
 
-    /**
-     * Toggles the view mode.
-     */
     private void toggleViewMode() {
         boolean isCurrent3D = Math.toDegrees(tiltX) < 80;
         targetTiltX = isCurrent3D ? Math.toRadians(90) : Math.toRadians(45);

@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.lacavedeharol.chess.app.components.renderer.AssetManager;
-import com.lacavedeharol.chess.app.components.renderer.GraphicsUtils;
 import com.lacavedeharol.chess.core.ChessPiece;
 
 /**

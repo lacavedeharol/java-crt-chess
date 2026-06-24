@@ -62,7 +62,7 @@ public record Position(int file, int rank) {
     /**
      * Returns the algebraic notation for this position.
      * 
-     * @return the algebraic notation (e.g., "a1", "h8").
+     * @return the algebraic notation.
      */
     @Override
     public String toString() {

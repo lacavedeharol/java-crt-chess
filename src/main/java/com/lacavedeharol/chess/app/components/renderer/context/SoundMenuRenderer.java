@@ -6,7 +6,6 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import com.lacavedeharol.chess.app.components.renderer.AssetManager;
-import com.lacavedeharol.chess.app.components.renderer.GraphicsUtils;
 
 /**
  * A renderer for the sound toggle.

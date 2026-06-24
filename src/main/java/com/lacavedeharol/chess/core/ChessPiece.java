@@ -32,10 +32,10 @@ public class ChessPiece {
     /**
      * Constructor for ChessPiece.
      * 
-     * @param isWhite   true if the piece is white, false otherwise
-     * @param pieceType the type of the piece
-     * @param file      the file of the piece
-     * @param rank      the rank of the piece
+     * @param isWhite   true if the piece is white, false otherwise.
+     * @param pieceType the type of the piece.
+     * @param file      the file of the piece.
+     * @param rank      the rank of the piece.
      */
     public ChessPiece(boolean isWhite, PieceType pieceType, int file, int rank) {
         this.isWhite = isWhite;
@@ -48,7 +48,7 @@ public class ChessPiece {
     /**
      * Returns true if the piece is white.
      * 
-     * @return true if the piece is white, false otherwise
+     * @return true if the piece is white, false otherwise.
      */
     public boolean isWhite() {
         return isWhite;
@@ -57,7 +57,7 @@ public class ChessPiece {
     /**
      * Returns the type of the piece.
      * 
-     * @return the type of the piece
+     * @return the type of the piece.
      */
     public PieceType getPieceType() {
         return pieceType;
@@ -66,7 +66,7 @@ public class ChessPiece {
     /**
      * Returns the file of the piece.
      * 
-     * @return the file of the piece
+     * @return the file of the piece.
      */
     public int getFile() {
         return file;
@@ -75,7 +75,7 @@ public class ChessPiece {
     /**
      * Returns the rank of the piece.
      * 
-     * @return the rank of the piece
+     * @return the rank of the piece.
      */
     public int getRank() {
         return rank;
@@ -84,7 +84,7 @@ public class ChessPiece {
     /**
      * Returns true if the piece has moved.
      * 
-     * @return true if the piece has moved, false otherwise
+     * @return true if the piece has moved, false otherwise.
      */
     public boolean hasMoved() {
         return hasMoved;
@@ -93,8 +93,8 @@ public class ChessPiece {
     /**
      * Sets the position of the piece.
      * 
-     * @param file the file of the piece
-     * @param rank the rank of the piece
+     * @param file the file of the piece.
+     * @param rank the rank of the piece.
      */
     public void setPosition(int file, int rank) {
         this.file = file;
@@ -112,7 +112,7 @@ public class ChessPiece {
      * Sets the moved status of the piece.
      * Used for unmake operations.
      * 
-     * @param hasMoved the moved status
+     * @param hasMoved the moved status.
      */
     public void setHasMoved(boolean hasMoved) {
         this.hasMoved = hasMoved;

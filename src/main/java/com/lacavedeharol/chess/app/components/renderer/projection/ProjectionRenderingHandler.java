@@ -7,7 +7,7 @@ import java.util.List;
 import com.lacavedeharol.chess.core.ChessPiece;
 
 /**
- * Handles the rendering of the projection.
+ * Handles the projection rendering.
  */
 public class ProjectionRenderingHandler {
 

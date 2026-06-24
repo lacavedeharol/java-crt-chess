@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.lacavedeharol.chess.app.components.renderer.AssetManager;
 import com.lacavedeharol.chess.app.components.renderer.GraphicsUtils;
+import com.lacavedeharol.chess.core.ChessPiece;
 
 /**
  * A renderer for the settings menu.
@@ -21,7 +22,7 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
     private boolean isOpen = false, is3D = true, areGuidesOn = true, areCapturedOn = true,
             isMoveConfirm = false, showSettings = true, isGameOver = false, visible = true, isVisualsOpen = false,
             isGameOpen = false;
-    private AutoPromotion autoPromotion = AutoPromotion.OFF;
+    private ChessPiece.PieceType autoPromotion = ChessPiece.PieceType.PAWN;
     private Rectangle gearBounds;
     private BufferedImage iconSprite;
 
@@ -182,7 +183,7 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
      * 
      * @param v the auto promotion mode to set.
      */
-    void setAutoPromotion(AutoPromotion v) {
+    void setAutoPromotion(ChessPiece.PieceType v) {
         autoPromotion = v;
     }
 
@@ -191,11 +192,12 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
      */
     void cycleAutoPromotion() {
         autoPromotion = switch (autoPromotion) {
-            case OFF -> AutoPromotion.QUEEN;
-            case QUEEN -> AutoPromotion.ROOK;
-            case ROOK -> AutoPromotion.BISHOP;
-            case BISHOP -> AutoPromotion.KNIGHT;
-            case KNIGHT -> AutoPromotion.OFF;
+            case PAWN -> ChessPiece.PieceType.QUEEN;
+            case QUEEN -> ChessPiece.PieceType.ROOK;
+            case ROOK -> ChessPiece.PieceType.BISHOP;
+            case BISHOP -> ChessPiece.PieceType.KNIGHT;
+            case KNIGHT -> ChessPiece.PieceType.PAWN;
+            default -> throw new IllegalArgumentException("Unexpected value: " + autoPromotion);
         };
     }
 
@@ -231,7 +233,7 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
      * 
      * @return the auto promotion mode.
      */
-    AutoPromotion getAutoPromotion() {
+    ChessPiece.PieceType getAutoPromotion() {
         return autoPromotion;
     }
 

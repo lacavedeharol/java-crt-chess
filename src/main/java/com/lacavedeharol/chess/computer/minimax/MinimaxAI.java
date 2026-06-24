@@ -31,8 +31,8 @@ public class MinimaxAI implements ChessAI {
     /**
      * Creates the easy (shallow-search) minimax opponent.
      *
-     * @param isWhite true if this AI plays the white pieces
-     * @return a ready-to-use easy minimax AI
+     * @param isWhite true if this AI plays the white pieces.
+     * @return a ready-to-use easy minimax AI.
      */
     public static MinimaxAI easy(boolean isWhite) {
         return new MinimaxAI(isWhite, EASY_DEPTH);
@@ -41,8 +41,8 @@ public class MinimaxAI implements ChessAI {
     /**
      * Creates the hard (deeper-search) minimax opponent.
      *
-     * @param isWhite true if this AI plays the white pieces
-     * @return a ready-to-use hard minimax AI
+     * @param isWhite true if this AI plays the white pieces.
+     * @return a ready-to-use hard minimax AI.
      */
     public static MinimaxAI hard(boolean isWhite) {
         return new MinimaxAI(isWhite, HARD_DEPTH);
@@ -184,7 +184,7 @@ public class MinimaxAI implements ChessAI {
                     score -= EvaluationConstants.PIECE_REPEAT_PENALTY;
             }
 
-            /* Small random tiebreak so equal positions don't produce identical games */
+            /* Small random tiebreak so equal positions don't produce identical games. */
             score += random.nextInt(6) - 3;
 
             if (score > bestScore) {
