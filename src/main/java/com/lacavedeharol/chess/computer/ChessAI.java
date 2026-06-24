@@ -1,5 +1,7 @@
 package com.lacavedeharol.chess.computer;
 
+import com.lacavedeharol.chess.computer.minimax.MinimaxAI;
+import com.lacavedeharol.chess.computer.uci.UciEngineAI;
 import com.lacavedeharol.chess.core.state.GameState;
 
 /**

@@ -3,24 +3,25 @@ package com.lacavedeharol.chess.computer;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.lacavedeharol.chess.computer.minimax.MinimaxAI;
+import com.lacavedeharol.chess.computer.uci.UciEngineAI;
+
 /**
  * Creates {@link ChessAI} instances for a given {@link Opponent}, and reports
  * which opponents are currently available to select.
  *
  * <p>
- * This is the single place that knows which concrete implementation and
- * configuration backs each opponent. The rest of the application asks for a
- * {@code ChessAI}, asks which opponents are available, and never references
- * {@link MinimaxAI}, {@link UciEngineAI}, or any engine config directly. Adding
- * an opponent is one new enum value plus one branch here.
+ * This contract-layer factory holds no implementation details: it dispatches to
+ * the implementation packages' own static factories
+ * ({@link MinimaxAI#easy}, {@link MinimaxAI#hard},
+ * {@link UciEngineAI#stockfish})
+ * and availability checks. Engine-specific constants (search depths, skill
+ * levels, think times, binary locations) live entirely within those
+ * implementation packages. Adding an opponent is one new enum value plus one
+ * dispatch branch here.
  * </p>
  */
 public final class ChessAIFactory {
-
-    private static final int EASY_DEPTH = 2, HARD_DEPTH = 5;
-
-    /** Stockfish skill level (0..20). */
-    private static final int STOCKFISH_SKILL = 20, STOCKFISH_MOVETIME_MS = 1000;
 
     private ChessAIFactory() {
     }
@@ -35,11 +36,10 @@ public final class ChessAIFactory {
      */
     public static ChessAI create(Opponent opponent, boolean isWhite) {
         return switch (opponent) {
-            case CRT_EASY -> new MinimaxAI(isWhite, EASY_DEPTH);
-            case CRT_HARD -> new MinimaxAI(isWhite, HARD_DEPTH);
-            case STOCKFISH -> new UciEngineAI(
-                    EngineConfig.stockfish(STOCKFISH_MOVETIME_MS),
-                    STOCKFISH_SKILL);
+            case CRT_EASY -> MinimaxAI.easy(isWhite);
+            case CRT_HARD -> MinimaxAI.hard(isWhite);
+            case STOCKFISH -> UciEngineAI.stockfish();
+            case BERSERK -> UciEngineAI.berserk();
             case LOCAL -> null;
         };
     }
@@ -55,7 +55,8 @@ public final class ChessAIFactory {
     public static boolean isAvailable(Opponent opponent) {
         return switch (opponent) {
             case CRT_EASY, CRT_HARD, LOCAL -> true;
-            case STOCKFISH -> EngineConfig.stockfish(STOCKFISH_MOVETIME_MS).isAvailable();
+            case STOCKFISH -> UciEngineAI.isStockfishAvailable();
+            case BERSERK -> UciEngineAI.isBerserkAvailable();
         };
     }
 

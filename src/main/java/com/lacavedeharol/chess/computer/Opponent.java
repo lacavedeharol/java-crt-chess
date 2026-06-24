@@ -18,6 +18,8 @@ public enum Opponent {
     CRT_HARD,
     /** Stockfish UCI engine. */
     STOCKFISH,
+    /** Berserk UCI engine (strong, distinct NNUE style). */
+    BERSERK,
     /** Local players. */
     LOCAL
 }

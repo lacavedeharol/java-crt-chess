@@ -1,4 +1,4 @@
-package com.lacavedeharol.chess.computer;
+package com.lacavedeharol.chess.computer.minimax;
 
 /**
  * Represents a move for the AI player.

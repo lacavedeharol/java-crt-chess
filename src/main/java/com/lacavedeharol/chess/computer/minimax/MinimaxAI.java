@@ -1,4 +1,6 @@
-package com.lacavedeharol.chess.computer;
+package com.lacavedeharol.chess.computer.minimax;
+
+import com.lacavedeharol.chess.computer.ChessAI;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -20,6 +22,31 @@ import com.lacavedeharol.chess.core.state.GameState.MoveResult;
  * </p>
  */
 public class MinimaxAI implements ChessAI {
+
+    /** Minimax search depth for the EASY opponent. */
+    private static final int EASY_DEPTH = 2;
+    /** Minimax search depth for the HARD opponent. */
+    private static final int HARD_DEPTH = 5;
+
+    /**
+     * Creates the easy (shallow-search) minimax opponent.
+     *
+     * @param isWhite true if this AI plays the white pieces
+     * @return a ready-to-use easy minimax AI
+     */
+    public static MinimaxAI easy(boolean isWhite) {
+        return new MinimaxAI(isWhite, EASY_DEPTH);
+    }
+
+    /**
+     * Creates the hard (deeper-search) minimax opponent.
+     *
+     * @param isWhite true if this AI plays the white pieces
+     * @return a ready-to-use hard minimax AI
+     */
+    public static MinimaxAI hard(boolean isWhite) {
+        return new MinimaxAI(isWhite, HARD_DEPTH);
+    }
 
     private final boolean isWhite;
     private final Random random = new Random();

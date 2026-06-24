@@ -1,4 +1,4 @@
-package com.lacavedeharol.chess.computer;
+package com.lacavedeharol.chess.computer.uci;
 
 import java.util.List;
 import java.util.Locale;
@@ -14,8 +14,7 @@ import java.util.Locale;
  * download them. {@link EngineCache} resolves their location and presence.
  * </p>
  *
- * @param engineId        namespacing id for the data dir, e.g.
- *                        {@code "stockfish-18"}.
+ * @param engineId        namespacing id for the data dir.
  * @param windowsBinary   filename of the Windows build (with {@code .exe}).
  * @param linuxBinary     filename of the Linux build.
  * @param launchArgs      extra command-line arguments passed after the binary
@@ -64,5 +63,29 @@ record EngineConfig(
                 List.of(),
                 "go movetime " + Math.max(1, moveTimeMs),
                 "Skill Level");
+    }
+
+    /**
+     * Configuration for the Berserk engine. The binary is expected at
+     * {@code <dataDir>/java-crt-chess/engines/berserk-14/<binary>}.
+     *
+     * <p>
+     * Berserk has no skill-limiting UCI option here (it plays full strength,
+     * bounded only by think time), so {@code skillOptionName} is {@code null}.
+     * The installer is responsible for placing the binary under the canonical
+     * filenames below, regardless of how the official release asset was named.
+     * </p>
+     *
+     * @param moveTimeMs think time per move in milliseconds.
+     * @return the Berserk engine configuration.
+     */
+    static EngineConfig berserk(int moveTimeMs) {
+        return new EngineConfig(
+                "berserk-14",
+                "berserk-14-avx2.exe",
+                "berserk-ubuntu-x86-64-avx2",
+                List.of(),
+                "go movetime " + Math.max(1, moveTimeMs),
+                null);
     }
 }

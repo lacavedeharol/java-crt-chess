@@ -1,4 +1,4 @@
-package com.lacavedeharol.chess.computer;
+package com.lacavedeharol.chess.computer.minimax;
 
 import com.lacavedeharol.chess.core.ChessPiece;
 import com.lacavedeharol.chess.core.state.GameState;

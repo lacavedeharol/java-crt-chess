@@ -1,4 +1,4 @@
-package com.lacavedeharol.chess.computer;
+package com.lacavedeharol.chess.computer.minimax;
 
 import java.awt.Point;
 import java.util.Comparator;

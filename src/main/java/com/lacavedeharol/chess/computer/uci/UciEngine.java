@@ -1,4 +1,4 @@
-package com.lacavedeharol.chess.computer;
+package com.lacavedeharol.chess.computer.uci;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -35,7 +35,7 @@ final class UciEngine {
      * Creates an engine wrapper for the given configuration. Call {@link #start()}
      * to launch the process.
      *
-     * @param config the engine configuration
+     * @param config the engine configuration.
      */
     UciEngine(EngineConfig config) {
         this.config = config;
@@ -51,11 +51,10 @@ final class UciEngine {
     boolean start() {
         Path binary = EngineCache.binaryPath(config.engineId(), config.binaryForThisOs());
         if (!Files.isRegularFile(binary))
-            return false; // not installed; caller should not have offered this opponent
+            return false;
 
         try {
-            // Ensure executable bit on Unix (no effect on Windows). Harmless if
-            // already set; the installer should set it, but we defend here too.
+
             binary.toFile().setExecutable(true, true);
 
             List<String> command = new ArrayList<>();
@@ -82,7 +81,7 @@ final class UciEngine {
      * Sets the engine strength via its configured skill option, if it has one
      * (no-op for engines without a strength option).
      *
-     * @param level the engine-specific strength value
+     * @param level the engine-specific strength value.
      */
     void setStrength(int level) {
         if (config.skillOptionName() == null)
@@ -98,7 +97,7 @@ final class UciEngine {
      * Asks the engine for the best move in the given position.
      *
      * @param fen the position in FEN.
-     * @return the best move in UCI coordinate notation (e.g. "e2e4", "e7e8q"),
+     * @return the best move in UCI coordinate notation,
      *         or {@code null} on error or if no move is available.
      */
     String getBestMove(String fen) {

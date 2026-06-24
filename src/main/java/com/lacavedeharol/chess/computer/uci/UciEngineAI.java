@@ -1,4 +1,6 @@
-package com.lacavedeharol.chess.computer;
+package com.lacavedeharol.chess.computer.uci;
+
+import com.lacavedeharol.chess.computer.ChessAI;
 
 import com.lacavedeharol.chess.core.ChessPiece;
 import com.lacavedeharol.chess.core.state.GameState;
@@ -11,15 +13,59 @@ import com.lacavedeharol.chess.core.state.GameState;
  */
 public final class UciEngineAI implements ChessAI {
 
+    /** Stockfish skill level (0..20). */
+    private static final int STOCKFISH_SKILL = 20, STOCKFISH_MOVETIME_MS = 1000;
+
+    /**
+     * Creates the Stockfish-backed opponent. Knows Stockfish's own config so the
+     * contract layer does not have to.
+     *
+     * @return a Stockfish UCI opponent (its process starts on construction).
+     */
+    public static UciEngineAI stockfish() {
+        return new UciEngineAI(EngineConfig.stockfish(STOCKFISH_MOVETIME_MS), STOCKFISH_SKILL);
+    }
+
+    /**
+     * Reports whether the Stockfish binary is installed and available to launch.
+     *
+     * @return true if Stockfish can be played.
+     */
+    public static boolean isStockfishAvailable() {
+        return EngineConfig.stockfish(STOCKFISH_MOVETIME_MS).isAvailable();
+    }
+
+    /** Berserk think time per move, in milliseconds. */
+    private static final int BERSERK_MOVETIME_MS = 1000;
+
+    /**
+     * Creates the Berserk-backed opponent at full strength (movetime-limited).
+     *
+     * @return a Berserk UCI opponent (its process starts on construction).
+     */
+    public static UciEngineAI berserk() {
+        // Strength value is ignored: Berserk's config has no skill option.
+        return new UciEngineAI(EngineConfig.berserk(BERSERK_MOVETIME_MS), 0);
+    }
+
+    /**
+     * Reports whether the Berserk binary is installed and available to launch.
+     *
+     * @return true if Berserk can be played.
+     */
+    public static boolean isBerserkAvailable() {
+        return EngineConfig.berserk(BERSERK_MOVETIME_MS).isAvailable();
+    }
+
     private final UciEngine engine;
     private boolean ready;
 
     /**
      * Creates the engine-backed AI and starts the underlying process.
      *
-     * @param config   how to launch and drive the engine
+     * @param config   how to launch and drive the engine.
      * @param strength engine-specific strength value, applied if the engine has
-     *                 a strength option (ignored otherwise)
+     *                 a strength option (ignored otherwise).
      */
     public UciEngineAI(EngineConfig config, int strength) {
         this.engine = new UciEngine(config);

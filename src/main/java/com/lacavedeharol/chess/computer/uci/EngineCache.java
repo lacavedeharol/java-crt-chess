@@ -1,4 +1,4 @@
-package com.lacavedeharol.chess.computer;
+package com.lacavedeharol.chess.computer.uci;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -55,9 +55,9 @@ final class EngineCache {
     /**
      * Returns true if the engine's binary exists in the data directory.
      *
-     * @param engineId       the engine id
-     * @param binaryFileName the binary filename
-     * @return true if the file is present and is a regular file
+     * @param engineId       the engine id.
+     * @param binaryFileName the binary filename.
+     * @return true if the file is present and is a regular file.
      */
     static boolean isPresent(String engineId, String binaryFileName) {
         return Files.isRegularFile(binaryPath(engineId, binaryFileName));
