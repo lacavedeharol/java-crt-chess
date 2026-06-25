@@ -341,7 +341,7 @@ public class GameState {
         return gameRules.findKing(isWhite);
     }
 
-    /**
+    /*
      * Updates the cached king positions by scanning the board.
      * Called during initialization and copying.
      */
@@ -350,7 +350,7 @@ public class GameState {
         blackKingPosition = gameRules.findKing(false);
     }
 
-    /**
+    /*
      * Updates the check status of the kings.
      */
     private void updateCheckStatus() {
@@ -506,7 +506,6 @@ public class GameState {
             board.removePieceAt(capturedPawnFile, capturedPawnRank);
         }
 
-        // Make the move.
         board.setPieceAt(toFile, toRank, piece);
         board.removePieceAt(fromFile, fromRank);
         piece.markAsMoved();

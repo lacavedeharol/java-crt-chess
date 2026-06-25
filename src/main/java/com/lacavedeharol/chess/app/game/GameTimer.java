@@ -86,9 +86,6 @@ class GameTimer {
         this.lastTickTime = System.currentTimeMillis();
     }
 
-    /**
-     * Ticks the timer.
-     */
     private void tick() {
         if (!isRunning)
             return;

@@ -30,14 +30,8 @@ public class GameRendererComponent extends JPanel {
 
     private Double targetRotation, targetTiltX;
 
-    /**
-     * The context handler.
-     */
     private ContextRenderingHandler contextHandler;
 
-    /**
-     * The projection handler.
-     */
     private ProjectionRenderingHandler projectionHandler;
     private Timer animationTimer, contextTimer;
 
@@ -46,9 +40,6 @@ public class GameRendererComponent extends JPanel {
     private Consumer<GameConfig> onGameStart;
     private Runnable onExit, onRestart, onGameResumed;
 
-    /**
-     * The cell size.
-     */
     private final int CELL_SIZE = 96;
 
     /**

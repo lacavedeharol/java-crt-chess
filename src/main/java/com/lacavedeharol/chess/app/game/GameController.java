@@ -26,29 +26,9 @@ public class GameController {
      */
     protected final GameRendererComponent rendererComponent;
 
-    /**
-     * The white AI.
-     */
-    private final ChessAI whiteAI;
-
-    /**
-     * The black AI.
-     */
-    private final ChessAI blackAI;
-
-    /**
-     * The game timer.
-     */
+    private final ChessAI whiteAI, blackAI;
     private final GameTimer gameTimer;
-
-    /**
-     * The dragged piece.
-     */
     private ChessPiece draggedPiece;
-
-    /**
-     * The legal moves.
-     */
     private List<Point> legalMoves;
 
     /**
@@ -296,9 +276,6 @@ public class GameController {
             handleNextTurn();
     }
 
-    /**
-     * Handles the next turn.
-     */
     private void handleNextTurn() {
         ChessAI currentAI = gameState.isWhiteToMove() ? whiteAI : blackAI;
         updateContextMessage();
@@ -365,9 +342,6 @@ public class GameController {
         return true;
     }
 
-    /**
-     * Plays a random move sound.
-     */
     private void playMoveSound() {
         if (SoundManager.getInstance().isMuted())
             return;

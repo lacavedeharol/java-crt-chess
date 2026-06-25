@@ -12,13 +12,13 @@ import com.lacavedeharol.chess.core.state.GameState;
 import com.lacavedeharol.chess.core.state.GameState.MoveResult;
 
 /**
- * Built-in chess engine using alpha-beta minimax with quiescence search,
- * move ordering, and a handful of positional heuristics.
+ * Implements a minimax-based AI opponent for chess.
  *
  * <p>
- * Search strength is controlled by {@code searchDepth}, supplied at
- * construction by {@link ChessAIFactory}. This class no longer knows about the
- * {@link Opponent} enum — it just plays at whatever depth it is given.
+ * This class is a contract-layer implementation that dispatches to the
+ * {@link BoardEvaluator} for board evaluation and uses the {@link GameState}
+ * API to generate legal moves and make hypothetical moves. It does not contain
+ * any UI or rendering code.
  * </p>
  */
 public class MinimaxAI implements ChessAI {

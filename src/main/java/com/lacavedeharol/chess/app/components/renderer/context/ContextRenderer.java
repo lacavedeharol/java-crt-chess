@@ -33,8 +33,7 @@ class ContextRenderer implements PlanarRenderer {
 
     private String message = "";
     private List<CapturedItem> capturedPieces = new ArrayList<>();
-    private boolean isAnimated = true;
-    private boolean isPaused = false;
+    private boolean isAnimated = true, isPaused = false;
 
     /**
      * Sets the message to be displayed.

@@ -3,7 +3,7 @@ package com.lacavedeharol.chess.app.components.renderer.context;
 /**
  * Enum representing the different actions that can be performed in the menu.
  */
-public enum MenuAction {
+enum MenuAction {
     /** No action. */
     NONE,
     /** Title action. */

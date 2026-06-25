@@ -39,9 +39,6 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
         initItems();
     }
 
-    /**
-     * Initialize the menu items.
-     */
     private void initItems() {
         items.clear();
 
@@ -177,10 +174,10 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
         FontMetrics titleFM = g2d.getFontMetrics();
         String title = "crt chess";
         int titleX = padding;
-        int titleY = padding + titleFM.getAscent();
+        int titleY = padding + titleFM.getHeight();
         g2d.drawString(title, titleX, titleY);
 
-        titleBounds = new Rectangle(titleX, titleY - titleFM.getAscent(), titleFM.stringWidth(title),
+        titleBounds = new Rectangle(titleX, titleY - titleFM.getHeight(), titleFM.stringWidth(title),
                 titleFM.getHeight());
 
         int fontSize = Math.min(width, height) / 48;

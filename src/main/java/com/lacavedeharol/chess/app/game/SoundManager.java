@@ -20,9 +20,6 @@ public class SoundManager {
     private final Map<String, Clip> clipCache = new HashMap<>();
     private boolean isMuted = false;
 
-    /**
-     * Private constructor to prevent instantiation.
-     */
     private SoundManager() {
     }
 

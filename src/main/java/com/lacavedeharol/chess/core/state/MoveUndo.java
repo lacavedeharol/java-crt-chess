@@ -9,18 +9,14 @@ import com.lacavedeharol.chess.core.ChessPiece;
  */
 class MoveUndo {
 
-    // Move coordinates.
     final int fromFile, fromRank, toFile, toRank;
 
-    // Piece state.
     final ChessPiece movedPiece, capturedPiece;
     final boolean pieceHadMoved;
 
-    // Game context state.
     final Point previousEnPassantTarget;
     final boolean previousWhiteKingInCheck, previousBlackKingInCheck, wasWhiteToMove;
 
-    // Special move flags
     final boolean wasEnPassantCapture, wasCastling;
     final ChessPiece castledRook;
     final int rookFromFile, rookToFile;

@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 /**
  * Draw an icon.
  * 
- * @param g2d        the graphics context..
+ * @param g2d        the graphics context.
  * @param x          the x coordinate of the icon.
  * @param y          the y coordinate of the icon.
  * @param targetSize the target size of the icon.
