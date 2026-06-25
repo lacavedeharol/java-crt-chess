@@ -49,10 +49,11 @@ public class GameController {
         this.gameTimer = new GameTimer(timerMode, this::updateContextMessage, this::handleTimeout);
         initialize();
 
-        if (whiteAI == null && blackAI != null)
-            rendererComponent.setRotationY(Math.PI);
-        else
+        if (whiteAI != null && blackAI == null)
             rendererComponent.setRotationY(0);
+
+        else
+            rendererComponent.setRotationY(Math.PI);
 
         updateContextMessage();
         gameTimer.start(true);

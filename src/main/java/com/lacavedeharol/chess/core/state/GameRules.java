@@ -39,7 +39,7 @@ class GameRules {
 
         List<Point> pseudoLegalMoves = MoveManager.generateLegalMoves(gameState, piece, file, rank);
         List<Point> legalMoves = new ArrayList<>();
-        Point kingPosition = findKing(gameState.isWhiteToMove());
+        Point kingPosition = gameState.findKing(gameState.isWhiteToMove());
 
         if (kingPosition == null)
             return pseudoLegalMoves;
