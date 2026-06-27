@@ -26,11 +26,11 @@ public class Matrix4 {
     /**
      * Creates a perspective projection matrix.
      * 
-     * @param fovY   the field of view in the y direction (in radians).
-     * @param aspect the aspect ratio of the viewport.
-     * @param near   the distance to the near clipping plane.
-     * @param far    the distance to the far clipping plane.
-     * @return the perspective projection matrix.
+     * @param fovY   the field of view in the y direction (in radians)
+     * @param aspect the aspect ratio of the viewport
+     * @param near   the distance to the near clipping plane
+     * @param far    the distance to the far clipping plane
+     * @return the perspective projection matrix
      */
     public static Matrix4 perspective(double fovY, double aspect, double near, double far) {
         Matrix4 mat = new Matrix4();
@@ -49,8 +49,8 @@ public class Matrix4 {
     /**
      * Multiplies the matrix by a vector.
      * 
-     * @param v the vector to multiply by.
-     * @return the result of the multiplication.
+     * @param v the vector to multiply by
+     * @return the result of the multiplication
      */
     public Vector3 multiply(Vector3 v) {
         double x = v.x * m[0][0] + v.y * m[1][0] + v.z * m[2][0] + m[3][0];
@@ -66,10 +66,10 @@ public class Matrix4 {
     /**
      * Creates a translation matrix.
      * 
-     * @param x the x translation.
-     * @param y the y translation.
-     * @param z the z translation.
-     * @return the translation matrix.
+     * @param x the x translation
+     * @param y the y translation
+     * @param z the z translation
+     * @return the translation matrix
      */
     public static Matrix4 translate(double x, double y, double z) {
         Matrix4 mat = new Matrix4();
@@ -82,8 +82,8 @@ public class Matrix4 {
     /**
      * Creates a rotation matrix around the x axis.
      * 
-     * @param angle the angle of rotation (in radians).
-     * @return the rotation matrix.
+     * @param angle the angle of rotation (in radians)
+     * @return the rotation matrix
      */
     public static Matrix4 rotateX(double angle) {
         Matrix4 mat = new Matrix4();
@@ -99,8 +99,8 @@ public class Matrix4 {
     /**
      * Creates a rotation matrix around the y axis.
      * 
-     * @param angle the angle of rotation (in radians).
-     * @return the rotation matrix.
+     * @param angle the angle of rotation (in radians)
+     * @return the rotation matrix
      */
     public static Matrix4 rotateY(double angle) {
         Matrix4 mat = new Matrix4();
@@ -115,9 +115,9 @@ public class Matrix4 {
 
     /**
      * Multiplies the matrix by another matrix.
-     * 
-     * @param other the matrix to multiply by.
-     * @return the result of the multiplication.
+     *
+     * @param other the matrix to multiply by
+     * @return the result of the multiplication
      */
     public Matrix4 multiply(Matrix4 other) {
         Matrix4 result = new Matrix4();
@@ -134,7 +134,7 @@ public class Matrix4 {
     /**
      * Inverts the matrix.
      * 
-     * @return the inverted matrix.
+     * @return the inverted matrix
      */
     public Matrix4 invert() {
         double[] m = new double[16];
@@ -283,10 +283,10 @@ public class Matrix4 {
     /**
      * Creates a scaling matrix.
      *
-     * @param x the x scale factor.
-     * @param y the y scale factor.
-     * @param z the z scale factor.
-     * @return the scaling matrix.
+     * @param x the x scale factor
+     * @param y the y scale factor
+     * @param z the z scale factor
+     * @return the scaling matrix
      */
     public static Matrix4 scale(double x, double y, double z) {
         Matrix4 mat = new Matrix4();
@@ -299,7 +299,7 @@ public class Matrix4 {
     /**
      * Returns a string representation of the matrix.
      * 
-     * @return the string representation of the matrix.
+     * @return the string representation of the matrix
      */
     @Override
     public String toString() {
@@ -316,12 +316,12 @@ public class Matrix4 {
     /**
      * Projects a 3D point to a 2D screen coordinate.
      * 
-     * @param x      the x coordinate of the point.
-     * @param y      the y coordinate of the point.
-     * @param z      the z coordinate of the point.
-     * @param width  the width of the viewport.
-     * @param height the height of the viewport.
-     * @return the projected 2D screen coordinate.
+     * @param x      the x coordinate of the point
+     * @param y      the y coordinate of the point
+     * @param z      the z coordinate of the point
+     * @param width  the width of the viewport
+     * @param height the height of the viewport
+     * @return the projected 2D screen coordinate
      */
     public Vector3 project(double x, double y, double z, int width, int height) {
         Vector3 vec = new Vector3(x, y, z);

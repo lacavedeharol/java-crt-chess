@@ -45,8 +45,8 @@ public class GameRendererComponent extends JPanel {
     /**
      * Constructor for GameRendererComponent.
      * 
-     * @param width  the width of the component.
-     * @param height the height of the component.
+     * @param width  the width of the component
+     * @param height the height of the component
      */
     public GameRendererComponent(int width, int height) {
         this.width = width;
@@ -153,8 +153,8 @@ public class GameRendererComponent extends JPanel {
     /**
      * Sets the context message.
      * 
-     * @param message the message to be set.
-     * @param animate true to animate the message, false otherwise.
+     * @param message the message to be set
+     * @param animate true to animate the message, false otherwise
      */
     public void setContextMessage(String message, boolean animate) {
         contextHandler.setContextMessage(message, animate);
@@ -169,7 +169,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Sets the context message.
      * 
-     * @param message the message to be set.
+     * @param message the message to be set
      */
     public void setContextMessage(String message) {
         setContextMessage(message, true);
@@ -178,7 +178,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Updates the captured pieces.
      * 
-     * @param pieces the list of captured pieces.
+     * @param pieces the list of captured pieces
      */
     public void updateCapturedPieces(List<ChessPiece> pieces) {
         contextHandler.setCapturedPieces(pieces);
@@ -188,7 +188,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Updates the pieces.
      * 
-     * @param pieces the 2D array of pieces.
+     * @param pieces the 2D array of pieces
      */
     public void updatePieces(ChessPiece[][] pieces) {
         projectionHandler.updatePieces(pieces);
@@ -197,9 +197,9 @@ public class GameRendererComponent extends JPanel {
 
     /**
      * Sets the dragged piece.
-     * 
-     * @param piece    the piece to be dragged.
-     * @param position the position of the piece.
+     *
+     * @param piece    the piece to be dragged
+     * @param position the position of the piece
      */
     public void setDraggedPiece(ChessPiece piece, Vector3 position) {
         projectionHandler.setDraggedPiece(piece, position);
@@ -209,7 +209,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Sets the legal moves.
      * 
-     * @param moves the list of legal moves.
+     * @param moves the list of legal moves
      */
     public void setLegalMoves(List<Point> moves) {
         projectionHandler.setLegalMoves(moves);
@@ -234,7 +234,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Sets the rotation angle around the Y-axis.
      * 
-     * @param rotationY the rotation angle in radians.
+     * @param rotationY the rotation angle in radians
      */
     public void setRotationY(double rotationY) {
         this.rotationY = rotationY;
@@ -246,7 +246,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Gets the rotation angle around the Y-axis.
      * 
-     * @return the rotation angle in radians.
+     * @return the rotation angle in radians
      */
     public double getRotationY() {
         return rotationY;
@@ -269,7 +269,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Paints the component.
      * 
-     * @param g the Graphics object.
+     * @param g the Graphics object
      */
     @Override
     protected void paintComponent(Graphics g) {
@@ -287,9 +287,9 @@ public class GameRendererComponent extends JPanel {
     /**
      * Gets the square at the given screen coordinates.
      * 
-     * @param screenX the x-coordinate of the screen.
-     * @param screenY the y-coordinate of the screen.
-     * @return the square at the given screen coordinates.
+     * @param screenX the x-coordinate of the screen
+     * @param screenY the y-coordinate of the screen
+     * @return the square at the given screen coordinates
      */
     public Point getSquareAt(int screenX, int screenY) {
         Vector3 intersection = getRayIntersectionOnBoard(screenX,
@@ -309,9 +309,9 @@ public class GameRendererComponent extends JPanel {
     /**
      * Gets the intersection point of the ray with the board.
      * 
-     * @param screenX the x-coordinate of the screen.
-     * @param screenY the y-coordinate of the screen.
-     * @return the intersection point of the ray with the board.
+     * @param screenX the x-coordinate of the screen
+     * @param screenY the y-coordinate of the screen
+     * @return the intersection point of the ray with the board
      */
     public Vector3 getRayIntersectionOnBoard(int screenX,
             int screenY) {
@@ -347,7 +347,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Gets the preferred size of the component.
      * 
-     * @return the preferred size of the component.
+     * @return the preferred size of the component
      */
     @Override
     public Dimension getPreferredSize() {
@@ -357,8 +357,8 @@ public class GameRendererComponent extends JPanel {
     /**
      * Starts the promotion process.
      * 
-     * @param isWhite    true if the piece to be promoted is white, false otherwise.
-     * @param onSelected the consumer to be called when a piece type is selected.
+     * @param isWhite    true if the piece to be promoted is white, false otherwise
+     * @param onSelected the consumer to be called when a piece type is selected
      */
     public void startPromotion(boolean isWhite, Consumer<ChessPiece.PieceType> onSelected) {
         contextHandler.startPromotion(isWhite, onSelected);
@@ -368,7 +368,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Checks if a piece is being promoted.
      * 
-     * @return true if a piece is being promoted, false otherwise.
+     * @return true if a piece is being promoted, false otherwise
      */
     public boolean isPromoting() {
         return contextHandler.isPromoting();
@@ -377,7 +377,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Handles a promotion click.
      * 
-     * @param p the point where the click occurred.
+     * @param p the point where the click occurred
      */
     public void handlePromotionClick(Point p) {
         contextHandler.handlePromotionClick(p);
@@ -387,7 +387,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Handles a promotion hover.
      * 
-     * @param p the point where the hover occurred.
+     * @param p the point where the hover occurred
      */
     public void handlePromotionHover(Point p) {
         contextHandler.handlePromotionHover(p);
@@ -397,7 +397,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Checks if the menu is open.
      * 
-     * @return true if the menu is open, false otherwise.
+     * @return true if the menu is open, false otherwise
      */
     public boolean isMenuOpen() {
         return contextHandler.isMenuOpen();
@@ -406,7 +406,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Handles a menu hover.
      * 
-     * @param p the point where the hover occurred.
+     * @param p the point where the hover occurred
      */
     public void handleMenuHover(Point p) {
         if (isPromoting()) {
@@ -423,7 +423,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Handles a menu press.
      * 
-     * @param p the point where the press occurred.
+     * @param p the point where the press occurred
      */
     public void handleMenuPress(Point p) {
         contextHandler.handleMenuPress(p);
@@ -433,7 +433,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Handles a menu release.
      * 
-     * @param p the point where the release occurred.
+     * @param p the point where the release occurred
      */
     public void handleMenuRelease(Point p) {
         contextHandler.handleMenuRelease(p);
@@ -469,9 +469,9 @@ public class GameRendererComponent extends JPanel {
     /**
      * Gets the game configuration.
      * 
-     * @param playAsWhite true if the player is playing as white, false otherwise.
-     * @param opponent    the opponent.
-     * @param timerMode   the timer mode.
+     * @param playAsWhite true if the player is playing as white, false otherwise
+     * @param opponent    the opponent
+     * @param timerMode   the timer mode
      */
     public record GameConfig(boolean playAsWhite, Opponent opponent,
             TimerMode timerMode) {
@@ -480,7 +480,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Sets the consumer to be called when the game starts.
      * 
-     * @param onGameStart the consumer to be called when the game starts.
+     * @param onGameStart the consumer to be called when the game startso
      */
     public void setOnGameStart(Consumer<GameConfig> onGameStart) {
         this.onGameStart = onGameStart;
@@ -489,7 +489,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Sets the runnable to be called when the game exits.
      * 
-     * @param onExit the runnable to be called when the game exits.
+     * @param onExit the runnable to be called when the game exits
      */
     public void setOnExit(Runnable onExit) {
         this.onExit = onExit;
@@ -498,7 +498,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Checks if the settings are open.
      * 
-     * @return true if the settings are open, false otherwise.
+     * @return true if the settings are open, false otherwise
      */
     public boolean isSettingsOpen() {
         return contextHandler.isSettingsOpen();
@@ -517,7 +517,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Handles a settings hover.
      * 
-     * @param p the point where the hover occurred.
+     * @param p the point where the hover occurred
      */
     public void handleSettingsHover(Point p) {
         contextHandler.handleSettingsHover(p);
@@ -527,7 +527,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Handles a settings press.
      * 
-     * @param p the point where the press occurred.
+     * @param p the point where the press occurred
      */
     public void handleSettingsPress(Point p) {
         contextHandler.handleSettingsPress(p);
@@ -536,8 +536,8 @@ public class GameRendererComponent extends JPanel {
 
     /**
      * Handles a settings release.
-     * 
-     * @param p the point where the release occurred.
+     *
+     * @param p the point where the release occurred
      */
     public void handleSettingsRelease(Point p) {
         contextHandler.handleSettingsRelease(p);
@@ -555,7 +555,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Checks if the game is muted.
      * 
-     * @return true if the game is muted, false otherwise.
+     * @return true if the game is muted, false otherwise
      */
     public boolean isMuted() {
         return contextHandler.isMuted();
@@ -564,7 +564,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Shows the game over menu.
      * 
-     * @param status the status of the game.
+     * @param status the status of the game
      */
     public void showGameOverMenu(String status) {
         contextHandler.showGameOverMenu(status);
@@ -574,7 +574,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Handles a sound toggle press.
      * 
-     * @param p the point where the press occurred.
+     * @param p the point where the press occurred
      */
     public void handleSoundTogglePress(Point p) {
         contextHandler.handleSoundTogglePress(p);
@@ -584,7 +584,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Handles a sound toggle release.
      * 
-     * @param p the point where the release occurred.
+     * @param p the point where the release occurred
      */
     public void handleSoundToggleRelease(Point p) {
         contextHandler.handleSoundToggleRelease(p);
@@ -605,7 +605,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Changes the tilt angle.
      * 
-     * @param delta the change in tilt angle.
+     * @param delta the change in tilt angle
      */
     public void changeTilt(double delta) {
         if (contextHandler.isMenuOpen() || contextHandler.isGameOver())
@@ -631,7 +631,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Sets the runnable to be called when the game restarts.
      * 
-     * @param onRestart the runnable to be called when the game restarts.
+     * @param onRestart the runnable to be called when the game restarts
      */
     public void setOnRestart(Runnable onRestart) {
         this.onRestart = onRestart;
@@ -640,7 +640,7 @@ public class GameRendererComponent extends JPanel {
     /**
      * Sets the runnable to be called when the game resumes.
      * 
-     * @param onGameResumed the runnable to be called when the game resumes.
+     * @param onGameResumed the runnable to be called when the game resumes
      */
     public void setOnGameResumed(Runnable onGameResumed) {
         this.onGameResumed = onGameResumed;

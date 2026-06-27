@@ -13,7 +13,7 @@ import com.lacavedeharol.chess.core.ChessPiece;
 /**
  * Renders the chess pieces on the board.
  * 
- * @param <ProjectionRenderer> the type of renderer.
+ * @param <ProjectionRenderer> the type of renderer
  */
 class PiecesRenderer implements ProjectionRenderer {
 
@@ -52,7 +52,7 @@ class PiecesRenderer implements ProjectionRenderer {
     /**
      * Sets the pieces to render.
      * 
-     * @param pieces The pieces to render.
+     * @param pieces The pieces to render
      */
     void setPieces(ChessPiece[][] pieces) {
         this.pieces = pieces;
@@ -65,7 +65,7 @@ class PiecesRenderer implements ProjectionRenderer {
     /**
      * Sets the rotation of the pieces.
      * 
-     * @param rotationY The rotation around the Y-axis.
+     * @param rotationY The rotation around the Y-axis
      */
     void setRotation(double rotationY) {
         this.rotationY = rotationY;
@@ -74,8 +74,8 @@ class PiecesRenderer implements ProjectionRenderer {
     /**
      * Sets the piece that is being dragged.
      * 
-     * @param piece    The piece to set as dragged.
-     * @param position The position of the dragged piece.
+     * @param piece    The piece to set as dragged
+     * @param position The position of the dragged piece
      */
     void setDraggedPiece(ChessPiece piece, Vector3 position) {
         this.draggedPiece = piece;
@@ -85,10 +85,10 @@ class PiecesRenderer implements ProjectionRenderer {
     /**
      * Renders the chess pieces on the board.
      * 
-     * @param g2d            The graphics context to draw on.
-     * @param viewProjection The view-projection matrix.
-     * @param width          The width of the board.
-     * @param height         The height of the board.
+     * @param g2d            The graphics context to draw on
+     * @param viewProjection The view-projection matrix
+     * @param width          The width of the board
+     * @param height         The height of the board
      */
     @Override
     public void render(Graphics2D g2d, Matrix4 viewProjection, int width, int height) {
@@ -142,12 +142,12 @@ class PiecesRenderer implements ProjectionRenderer {
     /**
      * Draws a piece on the board.
      * 
-     * @param g2d            The graphics context to draw on.
-     * @param viewProjection The view-projection matrix.
-     * @param w              The width of the board.
-     * @param h              The height of the board.
-     * @param piece          The piece to draw.
-     * @param customPos      The custom position of the piece.
+     * @param g2d            The graphics context to draw on
+     * @param viewProjection The view-projection matrix
+     * @param w              The width of the board
+     * @param h              The height of the board
+     * @param piece          The piece to draw
+     * @param customPos      The custom position of the piece
      */
     private void drawPiece(Graphics2D g2d, Matrix4 viewProjection, int w, int h, ChessPiece piece, Vector3 customPos) {
         if (piece.getPieceType() == null)

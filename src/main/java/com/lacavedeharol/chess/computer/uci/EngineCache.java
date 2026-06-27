@@ -45,8 +45,8 @@ final class EngineCache {
      * not it currently exists).
      *
      * @param engineId       namespacing id, e.g. {@code "stockfish-18"}
-     * @param binaryFileName the binary's filename for this platform.
-     * @return the absolute path the binary should live at.
+     * @param binaryFileName the binary's filename for this platform
+     * @return the absolute path the binary should live at
      */
     static Path binaryPath(String engineId, String binaryFileName) {
         return dataDir().resolve(APP_DIR).resolve(ENGINES_SUBDIR).resolve(engineId).resolve(binaryFileName);
@@ -55,9 +55,9 @@ final class EngineCache {
     /**
      * Returns true if the engine's binary exists in the data directory.
      *
-     * @param engineId       the engine id.
-     * @param binaryFileName the binary filename.
-     * @return true if the file is present and is a regular file.
+     * @param engineId       the engine id
+     * @param binaryFileName the binary filename
+     * @return true if the file is present and is a regular file
      */
     static boolean isPresent(String engineId, String binaryFileName) {
         return Files.isRegularFile(binaryPath(engineId, binaryFileName));

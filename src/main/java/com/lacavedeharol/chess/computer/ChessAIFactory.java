@@ -30,9 +30,9 @@ public final class ChessAIFactory {
      * Builds the AI for the given opponent, or {@code null} for {@link
      * Opponent#LOCAL} (human vs human, no AI on that side).
      *
-     * @param opponent which opponent to create.
-     * @param isWhite  true if this AI plays the white pieces.
-     * @return a ready-to-use {@link ChessAI}, or {@code null} for LOCAL.
+     * @param opponent which opponent to create
+     * @param isWhite  true if this AI plays the white pieces
+     * @return a ready-to-use {@link ChessAI}, or {@code null} for LOCAL
      */
     public static ChessAI create(Opponent opponent, boolean isWhite) {
         return switch (opponent) {
@@ -49,8 +49,8 @@ public final class ChessAIFactory {
      * opponents (minimax and local human-vs-human) are always available; engine
      * opponents require their binary to be installed in the data directory.
      *
-     * @param opponent the opponent to check.
-     * @return true if the opponent is available to select.
+     * @param opponent the opponent to check
+     * @return true if the opponent is available to select
      */
     public static boolean isAvailable(Opponent opponent) {
         return switch (opponent) {
@@ -66,7 +66,7 @@ public final class ChessAIFactory {
      * binary is not installed are omitted.
      *
      * @return a non-empty list of available opponents (always includes the
-     *         built-in opponents).
+     *         built-in opponents)
      */
     public static List<Opponent> availableOpponents() {
         List<Opponent> available = new ArrayList<>();

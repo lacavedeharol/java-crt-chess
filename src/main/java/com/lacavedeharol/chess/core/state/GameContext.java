@@ -34,7 +34,7 @@ class GameContext {
     /**
      * Gets the current turn.
      * 
-     * @return true if it is white's turn, false otherwise.
+     * @return true if it is white's turn, false otherwise
      */
     boolean isWhiteToMove() {
         return isWhiteToMove;
@@ -43,7 +43,7 @@ class GameContext {
     /**
      * Sets the current turn.
      * 
-     * @param whiteToMove true if it is white's turn, false otherwise.
+     * @param whiteToMove true if it is white's turn, false otherwise
      */
     void setWhiteToMove(boolean whiteToMove) {
         isWhiteToMove = whiteToMove;
@@ -59,7 +59,7 @@ class GameContext {
     /**
      * Checks if the white king is in check.
      * 
-     * @return true if the white king is in check, false otherwise.
+     * @return true if the white king is in check, false otherwise
      */
     boolean isWhiteKingInCheck() {
         return isWhiteKingInCheck;
@@ -68,7 +68,7 @@ class GameContext {
     /**
      * Sets the white king's check status.
      * 
-     * @param whiteKingInCheck true if the white king is in check, false otherwise.
+     * @param whiteKingInCheck true if the white king is in check, false otherwise
      */
     void setWhiteKingInCheck(boolean whiteKingInCheck) {
         isWhiteKingInCheck = whiteKingInCheck;
@@ -77,7 +77,7 @@ class GameContext {
     /**
      * Checks if the black king is in check.
      * 
-     * @return true if the black king is in check, false otherwise.
+     * @return true if the black king is in check, false otherwise
      */
     boolean isBlackKingInCheck() {
         return isBlackKingInCheck;
@@ -86,7 +86,7 @@ class GameContext {
     /**
      * Sets the black king's check status.
      * 
-     * @param blackKingInCheck true if the black king is in check, false otherwise.
+     * @param blackKingInCheck true if the black king is in check, false otherwise
      */
     void setBlackKingInCheck(boolean blackKingInCheck) {
         isBlackKingInCheck = blackKingInCheck;
@@ -95,7 +95,7 @@ class GameContext {
     /**
      * Gets the en passant target square.
      * 
-     * @return the en passant target square.
+     * @return the en passant target square
      */
     Point getEnPassantTargetSquare() {
         return enPassantTargetSquare;
@@ -104,7 +104,7 @@ class GameContext {
     /**
      * Sets the en passant target square.
      * 
-     * @param enPassantTargetSquare the en passant target square.
+     * @param enPassantTargetSquare the en passant target square
      */
     void setEnPassantTargetSquare(Point enPassantTargetSquare) {
         this.enPassantTargetSquare = enPassantTargetSquare;
@@ -113,7 +113,7 @@ class GameContext {
     /**
      * Creates a copy of the game context.
      * 
-     * @return a copy of the game context.
+     * @return a copy of the game context
      */
     GameContext copy() {
         GameContext newContext = new GameContext();

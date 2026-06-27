@@ -13,12 +13,12 @@ final class MoveUtils {
     /**
      * Checks if the path between two squares is clear for a straight move.
      * 
-     * @param fromFile  the starting file.
-     * @param fromRank  the starting rank.
-     * @param toFile    the destination file.
-     * @param toRank    the destination rank.
-     * @param gameState the game state.
-     * @return true if the path is clear, false otherwise.
+     * @param fromFile  the starting file
+     * @param fromRank  the starting rank
+     * @param toFile    the destination file
+     * @param toRank    the destination rank
+     * @param gameState the game state
+     * @return true if the path is clear, false otherwise
      */
     protected static boolean isPathClearStraight(int fromFile, int fromRank,
             int toFile, int toRank,
@@ -43,12 +43,12 @@ final class MoveUtils {
     /**
      * Checks if the path between two squares is clear for a diagonal move.
      * 
-     * @param fromFile  the starting file.
-     * @param fromRank  the starting rank.
-     * @param toFile    the destination file.
-     * @param toRank    the destination rank.
-     * @param gameState the game state.
-     * @return true if the path is clear, false otherwise.
+     * @param fromFile  the starting file
+     * @param fromRank  the starting rank
+     * @param toFile    the destination file
+     * @param toRank    the destination rank
+     * @param gameState the game state
+     * @return true if the path is clear, false otherwise
      */
     protected static boolean isPathClearDiagonal(int fromFile, int fromRank,
             int toFile, int toRank,

@@ -18,8 +18,8 @@ class MoveSorter implements Comparator<AIMove> {
     /**
      * Constructor.
      * 
-     * @param gameState the game state.
-     * @param evaluator the board evaluator.
+     * @param gameState the game state
+     * @param evaluator the board evaluator
      */
     MoveSorter(GameState gameState, BoardEvaluator evaluator) {
         this.gameState = gameState;
@@ -29,9 +29,9 @@ class MoveSorter implements Comparator<AIMove> {
     /**
      * Compares two moves based on their score.
      * 
-     * @param m1 the first move.
-     * @param m2 the second move.
-     * @return the comparison result.
+     * @param m1 the first move
+     * @param m2 the second move
+     * @return the comparison result
      */
     @Override
     public int compare(AIMove m1, AIMove m2) {
@@ -45,8 +45,8 @@ class MoveSorter implements Comparator<AIMove> {
      * delivers check to the opponent king. Checking moves are ordered first so
      * alpha-beta pruning can cut branches earlier.
      * 
-     * @param m the move to score.
-     * @return the score of the move.
+     * @param m the move to score
+     * @return the score of the move
      */
     private int scoreMove(AIMove m) {
         int score = 0;

@@ -12,13 +12,13 @@ class QueenMoveValidation implements MoveValidationStrategy {
     /**
      * Validates a queen move.
      * 
-     * @param piece     the queen to move.
-     * @param fromFile  the file of the queen.
-     * @param fromRank  the rank of the queen.
-     * @param toFile    the file of the square to move to.
-     * @param toRank    the rank of the square to move to.
-     * @param gameState the game state.
-     * @return true if the move is valid, false otherwise.
+     * @param piece     the queen to move
+     * @param fromFile  the file of the queen
+     * @param fromRank  the rank of the queen
+     * @param toFile    the file of the square to move to
+     * @param toRank    the rank of the square to move to
+     * @param gameState the game state
+     * @return true if the move is valid, false otherwise
      */
     @Override
     public boolean isValidMove(ChessPiece piece, int fromFile, int fromRank,

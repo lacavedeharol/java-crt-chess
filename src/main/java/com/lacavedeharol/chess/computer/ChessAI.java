@@ -26,8 +26,8 @@ public interface ChessAI {
     /**
      * Chooses and applies a move for the side to move.
      *
-     * @param gameState the current game state, mutated in place on success.
-     * @return {@code true} if a legal move was applied, {@code false} otherwise.
+     * @param gameState the current game state, mutated in place on success
+     * @return {@code true} if a legal move was applied, {@code false} otherwise
      */
     boolean makeMove(GameState gameState);
 

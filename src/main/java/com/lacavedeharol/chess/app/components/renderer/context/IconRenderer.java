@@ -7,12 +7,12 @@ import java.awt.image.BufferedImage;
 /**
  * Draw an icon.
  * 
- * @param g2d        the graphics context.
- * @param x          the x coordinate of the icon.
- * @param y          the y coordinate of the icon.
- * @param targetSize the target size of the icon.
- * @param icon       the icon to draw.
- * @param isPressed  true if the icon is pressed, false otherwise.
+ * @param g2d        the graphics context
+ * @param x          the x coordinate of the icon
+ * @param y          the y coordinate of the icon
+ * @param targetSize the target size of the icon
+ * @param icon       the icon to draw
+ * @param isPressed  true if the icon is pressed, false otherwise
  */
 class IconRenderer {
     static void drawIcon(Graphics2D g2d, int x, int y, int targetSize, BufferedImage icon,
@@ -42,10 +42,10 @@ class IconRenderer {
     /**
      * Get the bounds of the icon.
      * 
-     * @param x       the x coordinate of the icon.
-     * @param y       the y coordinate of the icon.
-     * @param boxSize the size of the icon.
-     * @return the bounds of the icon.
+     * @param x       the x coordinate of the icon
+     * @param y       the y coordinate of the icon
+     * @param boxSize the size of the icon
+     * @return the bounds of the icon
      */
     static Rectangle getBounds(int x, int y, int boxSize) {
         return new Rectangle(x, y, boxSize, boxSize);

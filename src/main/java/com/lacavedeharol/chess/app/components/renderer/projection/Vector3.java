@@ -13,9 +13,9 @@ public class Vector3 {
     /**
      * Constructor.
      * 
-     * @param x the x coordinate.
-     * @param y the y coordinate.
-     * @param z the z coordinate.
+     * @param x the x coordinate
+     * @param y the y coordinate
+     * @param z the z coordinate
      */
     public Vector3(double x, double y, double z) {
         this.x = x;
@@ -26,10 +26,10 @@ public class Vector3 {
     /**
      * Constructor.
      * 
-     * @param x the x coordinate.
-     * @param y the y coordinate.
-     * @param z the z coordinate.
-     * @param w the w coordinate.
+     * @param x the x coordinate
+     * @param y the y coordinate
+     * @param z the z coordinate
+     * @param w the w coordinate
      */
     public Vector3(double x, double y, double z, double w) {
         this.x = x;

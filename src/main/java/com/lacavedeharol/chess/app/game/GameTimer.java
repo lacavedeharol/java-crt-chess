@@ -19,9 +19,9 @@ class GameTimer {
     /**
      * Constructor for GameTimer.
      * 
-     * @param mode         the timer mode.
-     * @param onTimeUpdate the Runnable to be called when the time updates.
-     * @param onTimeout    the Runnable to be called when the timer times out.
+     * @param mode         the timer mode
+     * @param onTimeUpdate the Runnable to be called when the time updates
+     * @param onTimeout    the Runnable to be called when the timer times out
      */
     GameTimer(TimerMode mode, Runnable onTimeUpdate, Runnable onTimeout) {
         this.mode = mode;
@@ -45,7 +45,7 @@ class GameTimer {
     /**
      * Starts the timer.
      * 
-     * @param isWhiteToMove true if it's white's turn, false otherwise.
+     * @param isWhiteToMove true if it's white's turn, false otherwise
      */
     void start(boolean isWhiteToMove) {
         this.isWhiteToMove = isWhiteToMove;
@@ -119,8 +119,8 @@ class GameTimer {
     /**
      * Gets the formatted time.
      * 
-     * @param forWhite true if it's white's turn, false otherwise.
-     * @return the formatted time.
+     * @param forWhite true if it's white's turn, false otherwise
+     * @return the formatted time
      */
     String getFormattedTime(boolean forWhite) {
         long millis = forWhite ? whiteTimeMillis : blackTimeMillis;
@@ -133,7 +133,7 @@ class GameTimer {
     /**
      * Gets the current turn.
      * 
-     * @return true if it's white's turn, false otherwise.
+     * @return true if it's white's turn, false otherwise
      */
     boolean isWhiteTurn() {
         return isWhiteToMove;

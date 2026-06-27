@@ -31,8 +31,8 @@ public class MinimaxAI implements ChessAI {
     /**
      * Creates the easy (shallow-search) minimax opponent.
      *
-     * @param isWhite true if this AI plays the white pieces.
-     * @return a ready-to-use easy minimax AI.
+     * @param isWhite true if this AI plays the white pieces
+     * @return a ready-to-use easy minimax AI
      */
     public static MinimaxAI easy(boolean isWhite) {
         return new MinimaxAI(isWhite, EASY_DEPTH);
@@ -41,8 +41,8 @@ public class MinimaxAI implements ChessAI {
     /**
      * Creates the hard (deeper-search) minimax opponent.
      *
-     * @param isWhite true if this AI plays the white pieces.
-     * @return a ready-to-use hard minimax AI.
+     * @param isWhite true if this AI plays the white pieces
+     * @return a ready-to-use hard minimax AI
      */
     public static MinimaxAI hard(boolean isWhite) {
         return new MinimaxAI(isWhite, HARD_DEPTH);
@@ -53,7 +53,7 @@ public class MinimaxAI implements ChessAI {
     private final int searchDepth;
     private final BoardEvaluator evaluator;
 
-    /**
+    /*
      * Tracks the destination of the last move the AI made, so we can penalise
      * immediately moving the same piece again (repetition discouragement).
      * -1 means no previous move recorded.
@@ -64,8 +64,8 @@ public class MinimaxAI implements ChessAI {
     /**
      * Constructor.
      *
-     * @param isWhite     true if the AI player is white, false otherwise.
-     * @param searchDepth the minimax search depth (higher = stronger/slower).
+     * @param isWhite     true if the AI player is white, false otherwise
+     * @param searchDepth the minimax search depth (higher = stronger/slower)
      */
     public MinimaxAI(boolean isWhite, int searchDepth) {
         this.isWhite = isWhite;
@@ -76,8 +76,8 @@ public class MinimaxAI implements ChessAI {
     /**
      * Makes a move for the AI player.
      *
-     * @param gameState the game state.
-     * @return true if the move was successful, false otherwise.
+     * @param gameState the game state
+     * @return true if the move was successful, false otherwise
      */
     @Override
     public boolean makeMove(GameState gameState) {
@@ -121,10 +121,10 @@ public class MinimaxAI implements ChessAI {
     /**
      * Finds the best move for the AI player.
      *
-     * @param gameState     The current state of the game (a copy used for search).
-     * @param moves         The list of all legal moves.
-     * @param realGameState The real game state (used for threat detection helpers).
-     * @return The best move for the AI player.
+     * @param gameState     The current state of the game (a copy used for search)
+     * @param moves         The list of all legal moves
+     * @param realGameState The real game state (used for threat detection helpers)
+     * @return The best move for the AI player
      */
     private AIMove findBestMove(GameState gameState, List<AIMove> moves, GameState realGameState) {
         AIMove bestMove = null;
@@ -199,13 +199,13 @@ public class MinimaxAI implements ChessAI {
     /**
      * Performs minimax search to find the best move.
      *
-     * @param gameState    the current game state.
-     * @param depth        the current depth.
-     * @param alpha        the alpha value.
-     * @param beta         the beta value.
+     * @param gameState    the current game state
+     * @param depth        the current depth
+     * @param alpha        the alpha value
+     * @param beta         the beta value
      * @param isMaximizing true if the current player is maximizing, false
-     *                     otherwise.
-     * @return the best evaluation score.
+     *                     otherwise
+     * @return the best evaluation score
      */
     private int minimax(GameState gameState, int depth, int alpha, int beta, boolean isMaximizing) {
         if (depth == 0)
@@ -278,12 +278,12 @@ public class MinimaxAI implements ChessAI {
     /**
      * Performs quiescence search to find the best move.
      *
-     * @param gameState    the current game state.
-     * @param alpha        the alpha value.
-     * @param beta         the beta value.
+     * @param gameState    the current game state
+     * @param alpha        the alpha value
+     * @param beta         the beta value
      * @param isMaximizing true if the current player is maximizing, false
-     *                     otherwise.
-     * @return the best move.
+     *                     otherwise
+     * @return the best move
      */
     private int quiescenceSearch(GameState gameState, int alpha, int beta, boolean isMaximizing) {
         int standPat = evaluator.evaluateBoard(gameState);
@@ -352,8 +352,8 @@ public class MinimaxAI implements ChessAI {
     /**
      * Gets all legal moves for the AI player.
      *
-     * @param gameState the game state.
-     * @return a list of all legal moves.
+     * @param gameState the game state
+     * @return a list of all legal moves
      */
     private List<AIMove> getAllLegalMoves(GameState gameState) {
         List<AIMove> moves = new ArrayList<>();
@@ -375,8 +375,8 @@ public class MinimaxAI implements ChessAI {
     /**
      * Gets all capture moves for the AI player.
      *
-     * @param gameState the game state.
-     * @return a list of all capture moves.
+     * @param gameState the game state
+     * @return a list of all capture moves
      */
     private List<AIMove> getCaptureMoves(GameState gameState) {
         List<AIMove> captures = new ArrayList<>();
@@ -394,8 +394,8 @@ public class MinimaxAI implements ChessAI {
      * Returns true if the position is considered an endgame.
      * Uses the same heuristic as BoardEvaluator: fewer than 2 queens on the board.
      *
-     * @param gameState the game state.
-     * @return true if endgame.
+     * @param gameState the game state
+     * @return true if endgame
      */
     private boolean isEndgame(GameState gameState) {
         int queens = 0;
@@ -411,7 +411,7 @@ public class MinimaxAI implements ChessAI {
     /**
      * Checks if the AI player is white.
      *
-     * @return true if the AI player is white, false otherwise.
+     * @return true if the AI player is white, false otherwise
      */
     boolean isWhite() {
         return this.isWhite;

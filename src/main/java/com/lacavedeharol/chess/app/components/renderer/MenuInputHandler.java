@@ -14,7 +14,7 @@ class MenuInputHandler extends MouseAdapter {
     /**
      * Constructor.
      * 
-     * @param gameRenderer the game renderer.
+     * @param gameRenderer the game renderer
      */
     MenuInputHandler(GameRendererComponent gameRenderer) {
         this.gameRenderer = gameRenderer;
@@ -25,7 +25,7 @@ class MenuInputHandler extends MouseAdapter {
     /**
      * Handles mouse move events.
      * 
-     * @param e the mouse event.
+     * @param e the mouse event
      */
     @Override
     public void mouseMoved(MouseEvent e) {
@@ -47,7 +47,7 @@ class MenuInputHandler extends MouseAdapter {
     /**
      * Handles mouse press events.
      * 
-     * @param e the mouse event.
+     * @param e the mouse event
      */
     @Override
     public void mousePressed(MouseEvent e) {
@@ -72,7 +72,7 @@ class MenuInputHandler extends MouseAdapter {
     /**
      * Handles mouse release events.
      * 
-     * @param e the mouse event.
+     * @param e the mouse event
      */
     @Override
     public void mouseReleased(MouseEvent e) {

@@ -22,13 +22,13 @@ public final class MoveManager {
         /**
          * Validates a move.
          * 
-         * @param piece     the piece to move.
-         * @param fromFile  the file of the piece.
-         * @param fromRank  the rank of the piece.
-         * @param toFile    the file to move to.
-         * @param toRank    the rank to move to.
-         * @param gameState the game state.
-         * @return true if the move is valid, false otherwise.
+         * @param piece     the piece to move
+         * @param fromFile  the file of the piece
+         * @param fromRank  the rank of the piece
+         * @param toFile    the file to move to
+         * @param toRank    the rank to move to
+         * @param gameState the game state
+         * @return true if the move is valid, false otherwise
          */
         boolean isValidMove(ChessPiece piece, int fromFile, int fromRank, int toFile, int toRank, GameState gameState);
     }
@@ -51,11 +51,11 @@ public final class MoveManager {
     /**
      * Generates a list of legal moves for a given piece.
      * 
-     * @param gameState The current game state.
-     * @param piece     The piece to generate moves for.
-     * @param fromFile  The file of the piece.
-     * @param fromRank  The rank of the piece.
-     * @return A list of legal moves for the piece.
+     * @param gameState The current game state
+     * @param piece     The piece to generate moves for
+     * @param fromFile  The file of the piece
+     * @param fromRank  The rank of the piece
+     * @return A list of legal moves for the piece
      */
     public static List<Point> generateLegalMoves(GameState gameState, ChessPiece piece, int fromFile, int fromRank) {
         MoveValidationStrategy validator = VALIDATORS.get(piece.getPieceType());
@@ -73,8 +73,8 @@ public final class MoveManager {
     /**
      * Gets the move validation strategy for a given piece type.
      * 
-     * @param pieceType The type of the piece.
-     * @return The move validation strategy for the given piece type.
+     * @param pieceType The type of the piece
+     * @return The move validation strategy for the given piece type
      */
     public static MoveValidationStrategy getValidator(PieceType pieceType) {
         return VALIDATORS.get(pieceType);

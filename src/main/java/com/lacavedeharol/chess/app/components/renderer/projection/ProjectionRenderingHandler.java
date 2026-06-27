@@ -30,10 +30,10 @@ public class ProjectionRenderingHandler {
     /**
      * Renders the projection.
      * 
-     * @param g2d            the graphics object.
-     * @param viewProjection the view projection matrix.
-     * @param width          the width of the window.
-     * @param height         the height of the window.
+     * @param g2d            the graphics object
+     * @param viewProjection the view projection matrix
+     * @param width          the width of the window
+     * @param height         the height of the window
      */
     public void render(Graphics2D g2d, Matrix4 viewProjection, int width, int height) {
         for (ProjectionRenderer renderer : renderers)
@@ -43,7 +43,7 @@ public class ProjectionRenderingHandler {
     /**
      * Updates the pieces.
      * 
-     * @param pieces the pieces.
+     * @param pieces the pieces
      */
     public void updatePieces(ChessPiece[][] pieces) {
         piecesRenderer.setPieces(pieces);
@@ -52,8 +52,8 @@ public class ProjectionRenderingHandler {
     /**
      * Sets the dragged piece.
      * 
-     * @param piece    the piece.
-     * @param position the position.
+     * @param piece    the piece
+     * @param position the position
      */
     public void setDraggedPiece(ChessPiece piece, Vector3 position) {
         piecesRenderer.setDraggedPiece(piece, position);
@@ -62,7 +62,7 @@ public class ProjectionRenderingHandler {
     /**
      * Sets the legal moves.
      * 
-     * @param moves the moves.
+     * @param moves the moves
      */
     public void setLegalMoves(List<Point> moves) {
         moveRenderer.setLegalMoves(moves);
@@ -71,7 +71,7 @@ public class ProjectionRenderingHandler {
     /**
      * Sets the rotation.
      * 
-     * @param rotationY the rotation.
+     * @param rotationY the rotation
      */
     public void setRotation(double rotationY) {
         piecesRenderer.setRotation(rotationY);
@@ -80,7 +80,7 @@ public class ProjectionRenderingHandler {
     /**
      * Sets the guides visibility.
      * 
-     * @param visible the visibility.
+     * @param visible the visibility
      */
     public void setGuidesVisible(boolean visible) {
         moveRenderer.setVisible(visible);
@@ -89,7 +89,7 @@ public class ProjectionRenderingHandler {
     /**
      * Checks if the guides are visible.
      * 
-     * @return true if the guides are visible, false otherwise.
+     * @return true if the guides are visible, false otherwise
      */
     public boolean areGuidesVisible() {
         return moveRenderer.isVisible();

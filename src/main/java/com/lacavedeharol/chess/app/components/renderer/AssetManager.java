@@ -23,7 +23,7 @@ public class AssetManager {
     /**
      * Get the singleton instance of the AssetManager.
      * 
-     * @return The singleton instance of the AssetManager.
+     * @return The singleton instance of the AssetManager
      */
     public static synchronized AssetManager getInstance() {
         return instance != null ? instance : (instance = new AssetManager());
@@ -32,8 +32,8 @@ public class AssetManager {
     /**
      * Get an image from the cache or load it from the file system.
      * 
-     * @param relativePath The relative path to the image.
-     * @return The image.
+     * @param relativePath The relative path to the image
+     * @return The image
      */
     public BufferedImage getImage(String relativePath) {
         return imageCache.computeIfAbsent(relativePath, path -> {
@@ -49,8 +49,8 @@ public class AssetManager {
     /**
      * Check if an image is cached.
      * 
-     * @param path The path to the image.
-     * @return True if the image is cached, false otherwise.
+     * @param path The path to the image
+     * @return True if the image is cached, false otherwise
      */
     public boolean isCached(String path) {
         return imageCache.containsKey(path);

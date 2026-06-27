@@ -19,7 +19,7 @@ class GameRules {
     /**
      * Constructor for GameRules.
      * 
-     * @param gameState the game state.
+     * @param gameState the game state
      */
     GameRules(GameState gameState) {
         this.gameState = gameState;
@@ -28,9 +28,9 @@ class GameRules {
     /**
      * Gets the legal moves for a piece.
      * 
-     * @param file the file of the piece.
-     * @param rank the rank of the piece.
-     * @return the legal moves for the piece.
+     * @param file the file of the piece
+     * @param rank the rank of the piece
+     * @return the legal moves for the piece
      */
     List<Point> getLegalMovesForPiece(int file, int rank) {
         ChessPiece piece = gameState.getPieceAt(file, rank);
@@ -59,11 +59,11 @@ class GameRules {
     /**
      * Checks if a square is under attack.
      * 
-     * @param file              the file of the square.
-     * @param rank              the rank of the square.
+     * @param file              the file of the square
+     * @param rank              the rank of the square
      * @param isAttackedByWhite true if the square is attacked by white, false
-     *                          otherwise.
-     * @return true if the square is under attack, false otherwise.
+     *                          otherwise
+     * @return true if the square is under attack, false otherwise
      */
     boolean isSquareUnderAttack(int file, int rank, boolean isAttackedByWhite) {
         for (int f = 0; f < 8; f++) {
@@ -83,8 +83,8 @@ class GameRules {
     /**
      * Finds the king of a specific color.
      * 
-     * @param isWhite true if the king is white, false otherwise.
-     * @return the position of the king.
+     * @param isWhite true if the king is white, false otherwise
+     * @return the position of the king
      */
     Point findKing(boolean isWhite) {
         for (int r = 0; r < 8; r++) {
@@ -100,7 +100,7 @@ class GameRules {
     /**
      * Gets the status of the game.
      * 
-     * @return the status of the game.
+     * @return the status of the game
      */
     GameStatus getGameStatus() {
         if (hasLegalMoves(gameState.isWhiteToMove()))
@@ -117,8 +117,8 @@ class GameRules {
     /**
      * Checks if a player has any legal moves.
      * 
-     * @param isWhite true if checking for white, false otherwise.
-     * @return true if the player has legal moves, false otherwise.
+     * @param isWhite true if checking for white, false otherwise
+     * @return true if the player has legal moves, false otherwise
      */
     boolean hasLegalMoves(boolean isWhite) {
         for (int file = 0; file < 8; file++) {
@@ -135,7 +135,7 @@ class GameRules {
     /**
      * Checks if there is insufficient material for a checkmate.
      * 
-     * @return true if there is insufficient material, false otherwise.
+     * @return true if there is insufficient material, false otherwise
      */
     boolean isInsufficientMaterial() {
         List<ChessPiece> whitePieces = new ArrayList<>();
@@ -174,8 +174,8 @@ class GameRules {
     /**
      * Checks if there is insufficient material for a checkmate.
      * 
-     * @param pieces the list of pieces.
-     * @return true if there is insufficient material, false otherwise.
+     * @param pieces the list of pieces
+     * @return true if there is insufficient material, false otherwise
      */
     private boolean isKingVsKingAndMinor(List<ChessPiece> pieces) {
         for (ChessPiece p : pieces)
@@ -189,8 +189,8 @@ class GameRules {
     /**
      * Gets the bishop from a list of pieces.
      * 
-     * @param pieces the list of pieces.
-     * @return the bishop.
+     * @param pieces the list of pieces
+     * @return the bishop
      */
     private ChessPiece getBishop(List<ChessPiece> pieces) {
         return pieces.stream().filter(p -> p.getPieceType() == ChessPiece.PieceType.BISHOP).findFirst().orElse(null);

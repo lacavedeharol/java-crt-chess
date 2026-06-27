@@ -35,7 +35,7 @@ final class UciEngine {
      * Creates an engine wrapper for the given configuration. Call {@link #start()}
      * to launch the process.
      *
-     * @param config the engine configuration.
+     * @param config the engine configuration
      */
     UciEngine(EngineConfig config) {
         this.config = config;
@@ -46,7 +46,7 @@ final class UciEngine {
      * launch args) and performs the UCI handshake.
      *
      * @return {@code true} if the engine started and is ready; {@code false} if
-     *         the binary is missing or the handshake failed.
+     *         the binary is missing or the handshake failed
      */
     boolean start() {
         Path binary = EngineCache.binaryPath(config.engineId(), config.binaryForThisOs());
@@ -81,7 +81,7 @@ final class UciEngine {
      * Sets the engine strength via its configured skill option, if it has one
      * (no-op for engines without a strength option).
      *
-     * @param level the engine-specific strength value.
+     * @param level the engine-specific strength value
      */
     void setStrength(int level) {
         if (config.skillOptionName() == null)
@@ -96,9 +96,9 @@ final class UciEngine {
     /**
      * Asks the engine for the best move in the given position.
      *
-     * @param fen the position in FEN.
+     * @param fen the position in FEN
      * @return the best move in UCI coordinate notation,
-     *         or {@code null} on error or if no move is available.
+     *         or {@code null} on error or if no move is available
      */
     String getBestMove(String fen) {
         try {
@@ -148,7 +148,7 @@ final class UciEngine {
     /**
      * Reads lines until one contains the given token, or the stream ends.
      *
-     * @return {@code true} if the token was seen.
+     * @return {@code true} if the token was seen
      */
     private boolean waitFor(String token) throws IOException {
         String line;

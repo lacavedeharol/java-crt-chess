@@ -38,7 +38,7 @@ class SoundMenuRenderer extends BaseMenuRenderer<SoundAction> {
     /**
      * Set the muted state of the renderer.
      * 
-     * @param muted true to mute the renderer, false to unmute it.
+     * @param muted true to mute the renderer, false to unmute it
      */
     void setMuted(boolean muted) {
         this.isMuted = muted;
@@ -47,7 +47,7 @@ class SoundMenuRenderer extends BaseMenuRenderer<SoundAction> {
     /**
      * Get the muted state of the renderer.
      * 
-     * @return true if the renderer is muted, false otherwise.
+     * @return true if the renderer is muted, false otherwise
      */
     boolean isMuted() {
         return isMuted;
@@ -56,7 +56,7 @@ class SoundMenuRenderer extends BaseMenuRenderer<SoundAction> {
     /**
      * Set the renderer visibility.
      * 
-     * @param visible true to make the renderer visible, false to hide it.
+     * @param visible true to make the renderer visible, false to hide it
      */
     void setVisible(boolean visible) {
         this.visible = visible;
@@ -65,9 +65,9 @@ class SoundMenuRenderer extends BaseMenuRenderer<SoundAction> {
     /**
      * Render the sound toggle.
      * 
-     * @param g2d    the graphics context to draw on.
-     * @param width  the width of the renderer.
-     * @param height the height of the renderer.
+     * @param g2d    the graphics context to draw on
+     * @param width  the width of the renderer
+     * @param height the height of the renderer
      */
     @Override
     public void render(Graphics2D g2d, int width, int height) {
@@ -90,8 +90,8 @@ class SoundMenuRenderer extends BaseMenuRenderer<SoundAction> {
     /**
      * Get the action at the given point.
      * 
-     * @param p the point to check.
-     * @return the action at the given point.
+     * @param p the point to check
+     * @return the action at the given point
      */
     SoundAction getActionAt(Point p) {
         if (visible && bounds != null && bounds.contains(p))

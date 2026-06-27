@@ -34,11 +34,11 @@ public class GameController {
     /**
      * Constructor.
      * 
-     * @param gameState         the game state.
-     * @param rendererComponent the renderer component.
-     * @param whiteAI           the white AI.
-     * @param blackAI           the black AI.
-     * @param timerMode         the timer mode.
+     * @param gameState         the game state
+     * @param rendererComponent the renderer component
+     * @param whiteAI           the white AI
+     * @param blackAI           the black AI
+     * @param timerMode         the timer mode
      */
     public GameController(GameState gameState, GameRendererComponent rendererComponent, ChessAI whiteAI,
             ChessAI blackAI, TimerMode timerMode) {
@@ -85,7 +85,7 @@ public class GameController {
     /**
      * Checks if it's the AI's turn.
      * 
-     * @return true if it's the AI's turn, false otherwise.
+     * @return true if it's the AI's turn, false otherwise
      */
     private boolean isAITurn() {
         return (gameState.isWhiteToMove() && whiteAI != null) || (!gameState.isWhiteToMove() && blackAI != null);
@@ -94,7 +94,7 @@ public class GameController {
     /**
      * Handles the drag event.
      * 
-     * @param square the square.
+     * @param square the square
      */
     void onDrag(Point square) {
         if (draggedPiece == null)
@@ -174,7 +174,7 @@ public class GameController {
     /**
      * Handles the square pressed event.
      * 
-     * @param square the square.
+     * @param square the square
      */
     void onSquarePressed(Point square) {
         if (isAITurn())
@@ -204,7 +204,7 @@ public class GameController {
     /**
      * Handles the square released event.
      * 
-     * @param target the target.
+     * @param target the target
      */
     void onSquareReleased(Point target) {
         if (draggedPiece == null)
@@ -262,7 +262,7 @@ public class GameController {
     /**
      * Finalizes the move.
      * 
-     * @param isPromotion true if the move is a promotion, false otherwise.
+     * @param isPromotion true if the move is a promotion, false otherwise
      */
     private void finalizeMove(boolean isPromotion) {
         if (gameState.isCheck())
@@ -319,7 +319,7 @@ public class GameController {
     /**
      * Checks the game status.
      * 
-     * @return true if the game is in progress, false otherwise.
+     * @return true if the game is in progress, false otherwise
      */
     private boolean checkGameStatus() {
         GameState.GameStatus status = gameState.getGameStatus();

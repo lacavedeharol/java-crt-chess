@@ -12,13 +12,13 @@ class KingMoveValidation implements MoveValidationStrategy {
     /**
      * Validates a king move.
      * 
-     * @param king      the king to move.
-     * @param fromFile  the file of the king.
-     * @param fromRank  the rank of the king.
-     * @param toFile    the file of the square to move to.
-     * @param toRank    the rank of the square to move to.
-     * @param gameState the game state.
-     * @return true if the move is valid, false otherwise.
+     * @param king      the king to move
+     * @param fromFile  the file of the king
+     * @param fromRank  the rank of the king
+     * @param toFile    the file of the square to move to
+     * @param toRank    the rank of the square to move to
+     * @param gameState the game state
+     * @return true if the move is valid, false otherwise
      */
     @Override
     public boolean isValidMove(ChessPiece king, int fromFile, int fromRank,

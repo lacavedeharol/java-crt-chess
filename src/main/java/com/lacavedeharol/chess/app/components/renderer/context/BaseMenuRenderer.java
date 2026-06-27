@@ -12,7 +12,7 @@ import com.lacavedeharol.chess.app.components.renderer.GraphicsUtils;
 /**
  * Abstract base class for menu renderers.
  * 
- * @param <E> The type of menu actions.
+ * @param <E> The type of menu actions
  * 
  */
 abstract class BaseMenuRenderer<E extends Enum<E>> implements PlanarRenderer {
@@ -20,7 +20,7 @@ abstract class BaseMenuRenderer<E extends Enum<E>> implements PlanarRenderer {
     /**
      * Represents a menu item.
      * 
-     * @param <E> The type of menu actions.
+     * @param <E> The type of menu actions
      */
     protected static class MenuItem<E> {
         String text;
@@ -51,7 +51,7 @@ abstract class BaseMenuRenderer<E extends Enum<E>> implements PlanarRenderer {
     /**
      * Set the action that is currently being pressed.
      * 
-     * @param action The action to set as pressed.
+     * @param action The action to set as pressed
      */
     void setPressedAction(E action) {
         this.pressedAction = action;
@@ -60,7 +60,7 @@ abstract class BaseMenuRenderer<E extends Enum<E>> implements PlanarRenderer {
     /**
      * Get the action that is currently being pressed.
      * 
-     * @return The action that is currently being pressed.
+     * @return The action that is currently being pressed
      */
     E getPressedAction() {
         return pressedAction;
@@ -69,7 +69,7 @@ abstract class BaseMenuRenderer<E extends Enum<E>> implements PlanarRenderer {
     /**
      * Check if the menu should blink.
      * 
-     * @return True if the menu should blink, false otherwise.
+     * @return True if the menu should blink, false otherwise
      */
     protected boolean shouldBlink() {
         return GraphicsUtils.isBlink(0.25);
@@ -78,13 +78,13 @@ abstract class BaseMenuRenderer<E extends Enum<E>> implements PlanarRenderer {
     /**
      * Draw a menu item.
      * 
-     * @param g2d        The graphics context to draw on.
-     * @param item       The menu item to draw.
-     * @param x          The x-coordinate of the menu item.
-     * @param y          The y-coordinate of the menu item.
-     * @param fm         The font metrics.
+     * @param g2d        The graphics context to draw on
+     * @param item       The menu item to draw
+     * @param x          The x-coordinate of the menu item
+     * @param y          The y-coordinate of the menu item
+     * @param fm         The font metrics
      * @param alignRight True if the menu item should be right-aligned, false
-     *                   otherwise.
+     *                   otherwise
      */
     protected void drawItem(Graphics2D g2d, MenuItem<E> item, int x, int y, FontMetrics fm, boolean alignRight) {
         g2d.setColor(GraphicsUtils.LIGHT);
@@ -137,7 +137,7 @@ abstract class BaseMenuRenderer<E extends Enum<E>> implements PlanarRenderer {
     /**
      * Set the action that is currently being hovered.
      * 
-     * @param action The action to set as hovered.
+     * @param action The action to set as hovered
      */
     void setHoveredAction(E action) {
         this.hoveredAction = action;
@@ -146,7 +146,7 @@ abstract class BaseMenuRenderer<E extends Enum<E>> implements PlanarRenderer {
     /**
      * Get the action that is currently being hovered.
      * 
-     * @return The action that is currently being hovered.
+     * @return The action that is currently being hovered
      */
     E getHoveredAction() {
         return hoveredAction;

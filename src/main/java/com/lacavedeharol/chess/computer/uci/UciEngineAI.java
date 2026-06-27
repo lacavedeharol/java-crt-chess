@@ -20,7 +20,7 @@ public final class UciEngineAI implements ChessAI {
      * Creates the Stockfish-backed opponent. Knows Stockfish's own config so the
      * contract layer does not have to.
      *
-     * @return a Stockfish UCI opponent (its process starts on construction).
+     * @return a Stockfish UCI opponent (its process starts on construction)
      */
     public static UciEngineAI stockfish() {
         return new UciEngineAI(EngineConfig.stockfish(STOCKFISH_MOVETIME_MS), STOCKFISH_SKILL);
@@ -29,7 +29,7 @@ public final class UciEngineAI implements ChessAI {
     /**
      * Reports whether the Stockfish binary is installed and available to launch.
      *
-     * @return true if Stockfish can be played.
+     * @return true if Stockfish can be played
      */
     public static boolean isStockfishAvailable() {
         return EngineConfig.stockfish(STOCKFISH_MOVETIME_MS).isAvailable();
@@ -41,7 +41,7 @@ public final class UciEngineAI implements ChessAI {
     /**
      * Creates the Berserk-backed opponent at full strength (movetime-limited).
      *
-     * @return a Berserk UCI opponent (its process starts on construction).
+     * @return a Berserk UCI opponent (its process starts on construction)
      */
     public static UciEngineAI berserk() {
         // Strength value is ignored: Berserk's config has no skill option.
@@ -51,7 +51,7 @@ public final class UciEngineAI implements ChessAI {
     /**
      * Reports whether the Berserk binary is installed and available to launch.
      *
-     * @return true if Berserk can be played.
+     * @return true if Berserk can be played
      */
     public static boolean isBerserkAvailable() {
         return EngineConfig.berserk(BERSERK_MOVETIME_MS).isAvailable();
@@ -63,9 +63,9 @@ public final class UciEngineAI implements ChessAI {
     /**
      * Creates the engine-backed AI and starts the underlying process.
      *
-     * @param config   how to launch and drive the engine.
+     * @param config   how to launch and drive the engine
      * @param strength engine-specific strength value, applied if the engine has
-     *                 a strength option (ignored otherwise).
+     *                 a strength option (ignored otherwise)
      */
     public UciEngineAI(EngineConfig config, int strength) {
         this.engine = new UciEngine(config);
@@ -77,8 +77,8 @@ public final class UciEngineAI implements ChessAI {
     /**
      * Asks the engine for a move and applies it to the given state.
      *
-     * @param state the current game state (mutated in place on success).
-     * @return {@code true} if a legal move was applied.
+     * @param state the current game state (mutated in place on success)
+     * @return {@code true} if a legal move was applied
      */
     @Override
     public boolean makeMove(GameState state) {

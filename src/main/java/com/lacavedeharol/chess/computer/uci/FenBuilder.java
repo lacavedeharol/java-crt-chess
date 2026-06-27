@@ -23,8 +23,8 @@ final class FenBuilder {
     /**
      * Builds a FEN string for the given game state.
      *
-     * @param state the game state.
-     * @return the FEN string.
+     * @param state the game state
+     * @return the FEN string
      */
     static String build(GameState state) {
         StringBuilder fen = new StringBuilder(80);

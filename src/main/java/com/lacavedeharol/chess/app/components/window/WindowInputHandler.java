@@ -13,7 +13,7 @@ class WindowInputHandler {
     /**
      * Constructor.
      * 
-     * @param frame the frame.
+     * @param frame the frame
      */
     WindowInputHandler(JFrame frame) {
         frame.addWindowListener(new WindowAdapter() {

@@ -11,11 +11,12 @@ import java.util.List;
 import com.lacavedeharol.chess.app.components.renderer.AssetManager;
 import com.lacavedeharol.chess.app.components.renderer.GraphicsUtils;
 import com.lacavedeharol.chess.core.ChessPiece;
+import com.lacavedeharol.chess.core.ChessPiece.PieceType;
 
 /**
  * A renderer for the settings menu.
  * 
- * @param <SettingsAction> the type of action to perform.
+ * @param <SettingsAction> the type of action to perform
  */
 class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
 
@@ -41,7 +42,7 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
     /**
      * Set the status title.
      * 
-     * @param title the status title to set.
+     * @param title the status title to set
      */
     void setStatusTitle(String title) {
         this.statusTitle = title;
@@ -85,7 +86,7 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
     /**
      * Set the menu open state.
      * 
-     * @param open true to open the menu, false to close it.
+     * @param open true to open the menu, false to close it
      */
     void setOpen(boolean open) {
         this.isOpen = open;
@@ -114,7 +115,7 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
     /**
      * Show the game over screen.
      * 
-     * @param status the status message to display.
+     * @param status the status message to display
      */
     void showGameOver(String status) {
         this.statusTitle = status;
@@ -127,7 +128,7 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
     /**
      * Check if the game is over.
      * 
-     * @return true if the game is over, false otherwise.
+     * @return true if the game is over, false otherwise
      */
     boolean isGameOver() {
         return isGameOver;
@@ -136,7 +137,7 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
     /**
      * Check if the menu is open.
      * 
-     * @return true if the menu is open, false otherwise.
+     * @return true if the menu is open, false otherwise
      */
     boolean isOpen() {
         return isOpen;
@@ -145,7 +146,7 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
     /**
      * Set the menu visibility.
      * 
-     * @param visible true to make the menu visible, false to hide it.
+     * @param visible true to make the menu visible, false to hide it
      */
     void setVisible(boolean visible) {
         this.visible = visible;
@@ -154,7 +155,7 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
     /**
      * Set the 3D mode.
      * 
-     * @param v true to enable 3D mode, false to disable it.
+     * @param v true to enable 3D mode, false to disable it
      */
     void set3D(boolean v) {
         is3D = v;
@@ -163,7 +164,7 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
     /**
      * Set the guides visibility.
      * 
-     * @param v true to show guides, false to hide them.
+     * @param v true to show guides, false to hide them
      */
     void setGuidesOn(boolean v) {
         areGuidesOn = v;
@@ -172,7 +173,7 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
     /**
      * Set the captured pieces visibility.
      * 
-     * @param v true to show captured pieces, false to hide them.
+     * @param v true to show captured pieces, false to hide them
      */
     void setCapturedOn(boolean v) {
         areCapturedOn = v;
@@ -181,7 +182,7 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
     /**
      * Set the auto promotion mode.
      * 
-     * @param v the auto promotion mode to set.
+     * @param v the auto promotion mode to set
      */
     void setAutoPromotion(ChessPiece.PieceType v) {
         autoPromotion = v;
@@ -204,7 +205,7 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
     /**
      * Set the move confirmation mode.
      * 
-     * @param v true to enable move confirmation, false to disable it.
+     * @param v true to enable move confirmation, false to disable it
      */
     void setMoveConfirm(boolean v) {
         isMoveConfirm = v;
@@ -213,7 +214,7 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
     /**
      * Check if guides are on.
      * 
-     * @return true if guides are on, false otherwise.
+     * @return true if guides are on, false otherwise
      */
     boolean areGuidesOn() {
         return areGuidesOn;
@@ -222,7 +223,7 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
     /**
      * Check if captured pieces are on.
      * 
-     * @return true if captured pieces are on, false otherwise.
+     * @return true if captured pieces are on, false otherwise
      */
     boolean areCapturedOn() {
         return areCapturedOn;
@@ -231,7 +232,7 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
     /**
      * Get the auto promotion mode.
      * 
-     * @return the auto promotion mode.
+     * @return the auto promotion mode
      */
     ChessPiece.PieceType getAutoPromotion() {
         return autoPromotion;
@@ -240,7 +241,7 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
     /**
      * Check if move confirmation is enabled.
      * 
-     * @return true if move confirmation is enabled, false otherwise.
+     * @return true if move confirmation is enabled, false otherwise
      */
     boolean isMoveConfirm() {
         return isMoveConfirm;
@@ -269,9 +270,9 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
     /**
      * Render the menu.
      * 
-     * @param g2d    the graphics context.
-     * @param width  the width of the screen.
-     * @param height the height of the screen.
+     * @param g2d    the graphics context
+     * @param width  the width of the screen
+     * @param height the height of the screen
      */
     @Override
     public void render(Graphics2D g2d, int width, int height) {
@@ -332,7 +333,7 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
     /**
      * Update the item text.
      * 
-     * @param item the item to update.
+     * @param item the item to update
      */
     private void updateItemText(MenuItem<SettingsAction> item) {
         switch (item.action) {
@@ -340,7 +341,8 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
             case TOGGLE_GUIDES -> item.text = areGuidesOn ? "display guides: on" : "display guides: off";
             case TOGGLE_CAPTURED ->
                 item.text = areCapturedOn ? "display captured pieces: on" : "display captured pieces: off";
-            case TOGGLE_AUTO_QUEEN -> item.text = "auto promotion: " + autoPromotion.name().toLowerCase();
+            case TOGGLE_AUTO_QUEEN -> item.text = "auto promotion: "
+                    + (autoPromotion == PieceType.PAWN ? "off" : autoPromotion.name().toLowerCase());
             case TOGGLE_MOVE_CONFIRM -> item.text = isMoveConfirm ? "move confirmation: on (yet to be implemented)"
                     : "move confirmation: off";
             default -> {
@@ -352,8 +354,8 @@ class SettingsMenuRenderer extends BaseMenuRenderer<SettingsAction> {
     /**
      * Get the action at the given point.
      * 
-     * @param p the point to check.
-     * @return the action at the given point.
+     * @param p the point to check
+     * @return the action at the given point
      */
     SettingsAction getActionAt(Point p) {
         if (!isGameOver && !isOpen && gearBounds != null && gearBounds.contains(p))

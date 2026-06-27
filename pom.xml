@@ -6,7 +6,7 @@
 
     <groupId>com.lacavedeharol</groupId>
     <artifactId>java-crt-chess</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <name>java-crt-chess</name>

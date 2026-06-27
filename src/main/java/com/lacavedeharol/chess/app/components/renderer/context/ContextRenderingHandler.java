@@ -48,9 +48,9 @@ public class ContextRenderingHandler {
     /**
      * Renders the context.
      * 
-     * @param g2d    the graphics object to render to.
-     * @param width  the width of the window.
-     * @param height the height of the window.
+     * @param g2d    the graphics object to render to
+     * @param width  the width of the window
+     * @param height the height of the window
      */
     public void render(Graphics2D g2d, int width, int height) {
         for (PlanarRenderer renderer : renderers)
@@ -60,7 +60,7 @@ public class ContextRenderingHandler {
     /**
      * Sets the callback to be called when a game is started.
      * 
-     * @param onGameStart the callback to be called when a game is started.
+     * @param onGameStart the callback to be called when a game is started
      */
     public void setOnGameStart(Consumer<GameConfig> onGameStart) {
         this.onGameStart = onGameStart;
@@ -69,7 +69,7 @@ public class ContextRenderingHandler {
     /**
      * Sets the callback to be called when the game is exited.
      * 
-     * @param onExit the callback to be called when the game is exited.
+     * @param onExit the callback to be called when the game is exited
      */
     public void setOnExit(Runnable onExit) {
         this.onExit = onExit;
@@ -78,7 +78,7 @@ public class ContextRenderingHandler {
     /**
      * Sets the callback to be called when the game is restarted.
      * 
-     * @param onRestart the callback to be called when the game is restarted.
+     * @param onRestart the callback to be called when the game is restarted
      */
     public void setOnRestart(Runnable onRestart) {
         this.onRestart = onRestart;
@@ -87,7 +87,7 @@ public class ContextRenderingHandler {
     /**
      * Sets the callback to be called when the menu is entered.
      * 
-     * @param onEnterMenu the callback to be called when the menu is entered.
+     * @param onEnterMenu the callback to be called when the menu is entered
      */
     public void setOnEnterMenu(Runnable onEnterMenu) {
         this.onEnterMenu = onEnterMenu;
@@ -97,7 +97,7 @@ public class ContextRenderingHandler {
      * Sets the callback to be called when the view mode is toggled.
      * 
      * @param onToggleViewMode the callback to be called when the view mode is
-     *                         toggled.
+     *                         toggled
      */
     public void setOnToggleViewMode(Runnable onToggleViewMode) {
         this.onToggleViewMode = onToggleViewMode;
@@ -106,7 +106,7 @@ public class ContextRenderingHandler {
     /**
      * Sets the callback to be called when the guides are toggled.
      * 
-     * @param onToggleGuides the callback to be called when the guides are toggled.
+     * @param onToggleGuides the callback to be called when the guides are toggled
      */
     public void setOnToggleGuides(Runnable onToggleGuides) {
         this.onToggleGuides = onToggleGuides;
@@ -116,7 +116,7 @@ public class ContextRenderingHandler {
      * Sets the callback to be called when the captured pieces are toggled.
      * 
      * @param onToggleCaptured the callback to be called when the captured pieces
-     *                         are toggled.
+     *                         are toggled
      */
     public void setOnToggleCaptured(Runnable onToggleCaptured) {
         this.onToggleCaptured = onToggleCaptured;
@@ -125,8 +125,8 @@ public class ContextRenderingHandler {
     /**
      * Sets the context message.
      * 
-     * @param message the message to set.
-     * @param animate whether to animate the message.
+     * @param message the message to set
+     * @param animate whether to animate the message
      */
     public void setContextMessage(String message, boolean animate) {
         if (settingsRenderer.isGameOver())
@@ -137,7 +137,7 @@ public class ContextRenderingHandler {
     /**
      * Sets the context message.
      * 
-     * @param message the message to set.
+     * @param message the message to set
      */
     public void setContextMessage(String message) {
         setContextMessage(message, true);
@@ -146,7 +146,7 @@ public class ContextRenderingHandler {
     /**
      * Sets the captured pieces.
      * 
-     * @param pieces the pieces to set.
+     * @param pieces the pieces to set
      */
     public void setCapturedPieces(List<ChessPiece> pieces) {
         contextRenderer.setCapturedPieces(pieces);
@@ -155,7 +155,7 @@ public class ContextRenderingHandler {
     /**
      * Sets the visibility of the captured pieces.
      * 
-     * @param visible whether the captured pieces are visible.
+     * @param visible whether the captured pieces are visible
      */
     public void setCapturedVisible(boolean visible) {
         contextRenderer.setCapturedVisible(visible);
@@ -165,7 +165,7 @@ public class ContextRenderingHandler {
     /**
      * Returns whether the captured pieces are visible.
      * 
-     * @return whether the captured pieces are visible.
+     * @return whether the captured pieces are visible
      */
     public boolean isCapturedVisible() {
         return contextRenderer.isCapturedVisible();
@@ -174,8 +174,8 @@ public class ContextRenderingHandler {
     /**
      * Starts the promotion process.
      * 
-     * @param isWhite    whether the pieces to promote are white.
-     * @param onSelected the callback to be called when a piece is selected.
+     * @param isWhite    whether the pieces to promote are white
+     * @param onSelected the callback to be called when a piece is selected
      */
     public void startPromotion(boolean isWhite, Consumer<PieceType> onSelected) {
         if (settingsRenderer.getAutoPromotion() != ChessPiece.PieceType.PAWN) {
@@ -197,7 +197,7 @@ public class ContextRenderingHandler {
     /**
      * Returns whether a promotion is active.
      * 
-     * @return whether a promotion is active.
+     * @return whether a promotion is active
      */
     public boolean isPromoting() {
         return promotionRenderer.isActive();
@@ -206,7 +206,7 @@ public class ContextRenderingHandler {
     /**
      * Handles a promotion click.
      * 
-     * @param p the point where the click occurred.
+     * @param p the point where the click occurred
      */
     public void handlePromotionClick(Point p) {
         if (!isPromoting())
@@ -225,7 +225,7 @@ public class ContextRenderingHandler {
     /**
      * Handles a promotion hover.
      * 
-     * @param p the point where the hover occurred.
+     * @param p the point where the hover occurred
      */
     public void handlePromotionHover(Point p) {
         if (!isPromoting())
@@ -239,7 +239,7 @@ public class ContextRenderingHandler {
     /**
      * Returns whether the menu is open.
      * 
-     * @return whether the menu is open.
+     * @return whether the menu is open
      */
     public boolean isMenuOpen() {
         return isMenuOpen;
@@ -269,7 +269,7 @@ public class ContextRenderingHandler {
     /**
      * Handles a menu hover.
      * 
-     * @param p the point where the hover occurred.
+     * @param p the point where the hover occurred
      */
     public void handleMenuHover(Point p) {
         if (isPromoting()) {
@@ -290,7 +290,7 @@ public class ContextRenderingHandler {
     /**
      * Returns the side preference.
      * 
-     * @return the side preference.
+     * @return the side preference
      */
     public SidePreference getSidePreference() {
         return menuRenderer.getSidePreference();
@@ -299,7 +299,7 @@ public class ContextRenderingHandler {
     /**
      * Returns whether the configure menu is expanded.
      * 
-     * @return whether the configure menu is expanded.
+     * @return whether the configure menu is expanded
      */
     public boolean isConfigureExpanded() {
         return menuRenderer.isConfigureExpanded();
@@ -308,7 +308,7 @@ public class ContextRenderingHandler {
     /**
      * Handles a menu press.
      * 
-     * @param p the point where the press occurred.
+     * @param p the point where the press occurred
      */
     public void handleMenuPress(Point p) {
         if (isPromoting() || !isMenuOpen)
@@ -319,7 +319,7 @@ public class ContextRenderingHandler {
     /**
      * Handles a menu release.
      * 
-     * @param p the point where the release occurred.
+     * @param p the point where the release occurred
      */
     public void handleMenuRelease(Point p) {
         if (isPromoting()) {
@@ -382,7 +382,7 @@ public class ContextRenderingHandler {
     /**
      * Returns whether the settings are open.
      * 
-     * @return whether the settings are open.
+     * @return whether the settings are open
      */
     public boolean isSettingsOpen() {
         return settingsRenderer.isOpen();
@@ -403,7 +403,7 @@ public class ContextRenderingHandler {
     /**
      * Sets whether the settings are in 3D mode.
      * 
-     * @param is3D whether the settings are in 3D mode.
+     * @param is3D whether the settings are in 3D mode
      */
     public void setSettings3D(boolean is3D) {
         settingsRenderer.set3D(is3D);
@@ -412,7 +412,7 @@ public class ContextRenderingHandler {
     /**
      * Handles a settings hover.
      * 
-     * @param p the point where the hover occurred.
+     * @param p the point where the hover occurred
      */
     public void handleSettingsHover(Point p) {
         if (isMenuOpen)
@@ -427,7 +427,7 @@ public class ContextRenderingHandler {
     /**
      * Handles a settings press.
      * 
-     * @param p the point where the press occurred.
+     * @param p the point where the press occurred
      */
     public void handleSettingsPress(Point p) {
         if (isMenuOpen)
@@ -438,7 +438,7 @@ public class ContextRenderingHandler {
     /**
      * Handles a settings release.
      * 
-     * @param p the point where the release occurred.
+     * @param p the point where the release occurred
      */
     public void handleSettingsRelease(Point p) {
         if (isMenuOpen)
@@ -510,7 +510,7 @@ public class ContextRenderingHandler {
     /**
      * Returns whether guides are on.
      * 
-     * @return whether guides are on.
+     * @return whether guides are on
      */
     public boolean areGuidesOn() {
         return settingsRenderer.areGuidesOn();
@@ -528,7 +528,7 @@ public class ContextRenderingHandler {
     /**
      * Returns whether sound is muted.
      * 
-     * @return whether sound is muted.
+     * @return whether sound is muted
      */
     public boolean isMuted() {
         return soundRenderer.isMuted();
@@ -550,7 +550,7 @@ public class ContextRenderingHandler {
     /**
      * Handles a sound toggle press.
      * 
-     * @param p the point where the press occurred.
+     * @param p the point where the press occurred
      */
     public void handleSoundTogglePress(Point p) {
         soundRenderer.setPressedAction(soundRenderer.getActionAt(p));
@@ -559,7 +559,7 @@ public class ContextRenderingHandler {
     /**
      * Handles a sound toggle release.
      * 
-     * @param p the point where the release occurred.
+     * @param p the point where the release occurred
      */
     public void handleSoundToggleRelease(Point p) {
         SoundAction pressed = soundRenderer.getPressedAction();
@@ -578,7 +578,7 @@ public class ContextRenderingHandler {
     /**
      * Returns whether the game is over.
      * 
-     * @return whether the game is over.
+     * @return whether the game is over
      */
     public boolean isGameOver() {
         return settingsRenderer.isGameOver();
@@ -594,8 +594,8 @@ public class ContextRenderingHandler {
     /**
      * Returns the menu action at the given point.
      * 
-     * @param p the point where the click occurred.
-     * @return the menu action at the given point.
+     * @param p the point where the click occurred
+     * @return the menu action at the given point
      */
     MenuAction getMenuActionAt(Point p) {
         return menuRenderer.getActionAt(p);

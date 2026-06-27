@@ -20,7 +20,7 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
     /**
      * Check if the configure menu is expanded.
      * 
-     * @return true if the configure menu is expanded, false otherwise.
+     * @return true if the configure menu is expanded, false otherwise
      */
     boolean isConfigureExpanded() {
         return isConfigureExpanded;
@@ -108,7 +108,7 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
     /**
      * Get the side preference.
      * 
-     * @return the side preference.
+     * @return the side preference
      */
     SidePreference getSidePreference() {
         return sidePreference;
@@ -117,7 +117,7 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
     /**
      * Get the AI opponent.
      * 
-     * @return the AI opponent.
+     * @return the AI opponent
      */
     Opponent getOpponent() {
         return opponent;
@@ -126,7 +126,7 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
     /**
      * Get the timer mode.
      * 
-     * @return the timer mode.
+     * @return the timer mode
      */
     TimerMode getTimerMode() {
         return timerMode;
@@ -146,7 +146,7 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
     /**
      * Set the visibility of the main menu.
      * 
-     * @param visible true to make the main menu visible, false otherwise.
+     * @param visible true to make the main menu visible, false otherwise
      */
     void setVisible(boolean visible) {
         this.visible = visible;
@@ -155,9 +155,9 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
     /**
      * Render the main menu.
      * 
-     * @param g2d    the graphics context.
-     * @param width  the width of the screen.
-     * @param height the height of the screen.
+     * @param g2d    the graphics context
+     * @param width  the width of the screen
+     * @param height the height of the screen
      */
     @Override
     public void render(Graphics2D g2d, int width, int height) {
@@ -199,8 +199,8 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
     /**
      * Get the action at the given point.
      * 
-     * @param p the point to check.
-     * @return the action at the given point.
+     * @param p the point to check
+     * @return the action at the given point
      */
     MenuAction getActionAt(Point p) {
         if (titleBounds != null && titleBounds.contains(p))
@@ -216,8 +216,8 @@ class MainMenuRenderer extends BaseMenuRenderer<MenuAction> {
     /**
      * Handle a click event.
      * 
-     * @param p the point where the click occurred.
-     * @return the action that was performed.
+     * @param p the point where the click occurred
+     * @return the action that was performed
      */
     MenuAction handleClick(Point p) {
         if (titleBounds != null && titleBounds.contains(p)) {

@@ -14,17 +14,17 @@ import java.util.Locale;
  * download them. {@link EngineCache} resolves their location and presence.
  * </p>
  *
- * @param engineId        namespacing id for the data dir.
- * @param windowsBinary   filename of the Windows build (with {@code .exe}).
- * @param linuxBinary     filename of the Linux build.
+ * @param engineId        namespacing id for the data dir
+ * @param windowsBinary   filename of the Windows build (with {@code .exe})
+ * @param linuxBinary     filename of the Linux build
  * @param launchArgs      extra command-line arguments passed after the binary
  *                        (e.g. {@code --weights=...} for lc0/Maia). May be
- *                        empty.
+ *                        empty
  * @param goCommand       the UCI "go" command used to request a move
  *                        (e.g. {@code "go movetime 1000"}; {@code "go nodes 1"}
- *                        for Maia).
+ *                        for Maia)
  * @param skillOptionName name of the UCI option used to limit strength, or
- *                        {@code null} if the engine has none.
+ *                        {@code null} if the engine has none
  */
 record EngineConfig(
         String engineId,
@@ -52,8 +52,8 @@ record EngineConfig(
      * Configuration for the Stockfish engine. The binary is expected at
      * {@code <dataDir>/java-crt-chess/engines/stockfish-18/<binary>}.
      *
-     * @param moveTimeMs think time per move in milliseconds.
-     * @return the Stockfish engine configuration.
+     * @param moveTimeMs think time per move in milliseconds
+     * @return the Stockfish engine configuration
      */
     static EngineConfig stockfish(int moveTimeMs) {
         return new EngineConfig(
@@ -76,8 +76,8 @@ record EngineConfig(
      * filenames below, regardless of how the official release asset was named.
      * </p>
      *
-     * @param moveTimeMs think time per move in milliseconds.
-     * @return the Berserk engine configuration.
+     * @param moveTimeMs think time per move in milliseconds
+     * @return the Berserk engine configuration
      */
     static EngineConfig berserk(int moveTimeMs) {
         return new EngineConfig(
