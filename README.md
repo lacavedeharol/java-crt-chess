@@ -7,15 +7,15 @@ Java chess application built in the spirit of early computer chess, featuring a 
 Get the latest Windows installer from the [Releases page](https://github.com/lacavedeharol/java-crt-chess/releases/latest) and run it:
 
 ```bash
-java-crt-chess-1.0.1-windows-setup.exe
+java-crt-chess-1.1.0-windows-setup.exe
 ```
 
-The installer is **self-contained** — it bundles a Java runtime, so **you do not need Java installed** to play. It installs per-user (no administrator prompt) and optionally includes third-party chess engines (see [Opponents](#opponents)).
+The installer is **self-contained**, it bundles a Java runtime, so **you do not need Java installed** to play. It installs per-user (no administrator prompt) and optionally includes third-party chess engines (see [Opponents](#opponents)).
 
 During setup you can choose:
 
-- **Main application** — the game and its bundled runtime (always installed).
-- **Third-party chess engines** — Stockfish 18 and Berserk 14 (optional).
+- **Main application** - the game and its bundled runtime (always installed).
+- **Third-party chess engines** - Stockfish 18 and Berserk 14 (optional).
 
 A desktop shortcut is offered during installation.
 
@@ -76,7 +76,7 @@ mvn exec:java -Dexec.mainClass="com.lacavedeharol.chess.Main"
 Or run the generated JAR from the `target` directory:
 
 ```bash
-java -jar target/java-crt-chess-1.0.1.jar
+java -jar target/java-crt-chess-1.1.0.jar
 ```
 
 > **Note:** Building from source does not include the bundled UCI engines. To use the Stockfish or Berserk opponents in a source build, place their executables in an `engines/` folder next to the JAR (or use the released installer).
