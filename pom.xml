@@ -6,11 +6,11 @@
 
     <groupId>com.lacavedeharol</groupId>
     <artifactId>java-crt-chess</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>java-crt-chess</name>
-    <description>Java chess engine built in the spirit of early computer chess.</description>
+    <description>Java chess application built in the spirit of early computer chess.</description>
     <url>https://github.com/lacavedeharol/java-crt-chess</url>
 
     <properties>
