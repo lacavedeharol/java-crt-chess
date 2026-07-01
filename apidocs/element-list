@@ -1,0 +1,12 @@
+com.lacavedeharol.chess
+com.lacavedeharol.chess.app.components.renderer
+com.lacavedeharol.chess.app.components.renderer.context
+com.lacavedeharol.chess.app.components.renderer.projection
+com.lacavedeharol.chess.app.components.window
+com.lacavedeharol.chess.app.game
+com.lacavedeharol.chess.computer
+com.lacavedeharol.chess.computer.minimax
+com.lacavedeharol.chess.computer.uci
+com.lacavedeharol.chess.core
+com.lacavedeharol.chess.core.moves
+com.lacavedeharol.chess.core.state

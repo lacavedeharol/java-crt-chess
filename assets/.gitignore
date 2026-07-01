@@ -1,0 +1,9 @@
+*
+
+!.gitignore
+
+!Sixtyfour/
+!Sixtyfour/**
+
+!gameplay_screenshot_4.png
+!icons_1.ico

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/icons_1.ico" type="image/x-icon">
+  <title>CRT Chess</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body id="top">
+
+  <nav>
+    <a class="nav-logo" href="#top">crt chess</a>
+    <ul class="nav-links">
+      <li><a href="apidocs/index.html" target="_blank" rel="noopener">apidocs</a>
+      </li>
+      <li><a href="https://github.com/lacavedeharol/java-crt-chess" target="_blank" rel="noopener">github</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero scanlines">
+    <div class="hero-bg">
+      <img src="assets/gameplay_screenshot_4.png" alt="" aria-hidden="true" />
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">v1.1.0 &nbsp;·&nbsp; windows &nbsp;·&nbsp; java 25</p>
+      <h1 class="hero-title">crt chess</h1>
+      <p class="hero-sub">
+        A chess desktop application built in the spirit of early computer chess.
+        3D perspective board. Retro terminal interface. UCI engine support.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#download">
+          ↓ &nbsp;download installer
+        </a>
+        <a class="btn btn-ghost" href="https://github.com/lacavedeharol/java-crt-chess/releases/latest" target="_blank"
+          rel="noopener">
+          release notes
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="features" id="features">
+    <p class="section-label">features</p>
+    <div class="feature-list">
+      <div class="feature">
+        <span class="feature-title"><span class="feature-prefix">&gt;</span> 3d perspective board</span>
+        <p class="feature-desc">Play on a rendered 3D board with a classic isometric perspective. Toggle to 2D any time
+          from the settings menu.</p>
+      </div>
+      <div class="feature">
+        <span class="feature-title"><span class="feature-prefix">&gt;</span> terminal interface</span>
+        <p class="feature-desc">Menus and settings rendered as a retro terminal overlay.</p>
+      </div>
+      <div class="feature">
+        <span class="feature-title"><span class="feature-prefix">&gt;</span> uci engine support</span>
+        <p class="feature-desc">Plug in Stockfish 18 or Berserk 14 as opponents. Engines are an optional install
+          component.</p>
+      </div>
+      <div class="feature">
+        <span class="feature-title"><span class="feature-prefix">&gt;</span> time controls</span>
+        <p class="feature-desc">Blitz, Rapid, and Classic presets. Timer shown in the terminal readout at the bottom of
+          the screen.</p>
+      </div>
+      <div class="feature">
+        <span class="feature-title"><span class="feature-prefix">&gt;</span> move assistance</span>
+        <p class="feature-desc">Legal move highlights and last-move guides. Toggle display guides on or off from the
+          graphics menu.</p>
+      </div>
+      <div class="feature">
+        <span class="feature-title"><span class="feature-prefix">&gt;</span> no install required</span>
+        <p class="feature-desc">Bundled Java 25 runtime. No JDK, no PATH changes, no administrator prompt. Installs
+          per-user.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="opponents" id="opponents">
+    <p class="section-label">opponents</p>
+    <table class="opponent-table">
+      <thead>
+        <tr>
+          <th>opponent</th>
+          <th>type</th>
+          <th>notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>crt easy</td>
+          <td><span class="tag">built-in</span></td>
+          <td>Built-in minimax engine, gentler play. Always available.</td>
+        </tr>
+        <tr>
+          <td>crt hard</td>
+          <td><span class="tag">built-in</span></td>
+          <td>Built-in engine at full search depth. Always available.</td>
+        </tr>
+        <tr>
+          <td>stockfish</td>
+          <td><span class="tag">uci engine</span></td>
+          <td>Stockfish 18. Requires the optional engines component at install time.</td>
+        </tr>
+        <tr>
+          <td>berserk</td>
+          <td><span class="tag">uci engine</span></td>
+          <td>Berserk 14. Requires the optional engines component at install time.</td>
+        </tr>
+        <tr>
+          <td>local</td>
+          <td><span class="tag">two players</span></td>
+          <td>Hotseat (two humans), no AI. Always available.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="download" id="download">
+    <div class="version-tag">v1.1.0 · windows x64</div>
+    <h2>download</h2>
+    <p>Self-contained installer. No Java required. Per-user install, no admin prompt.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary"
+        href="https://github.com/lacavedeharol/java-crt-chess/releases/latest/download/java-crt-chess-1.1.0-windows-setup.exe">
+        ↓ &nbsp;java-crt-chess-1.1.0-windows-setup.exe
+      </a>
+      <a class="btn btn-ghost" href="https://github.com/lacavedeharol/java-crt-chess" target="_blank" rel="noopener">
+        view source
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 lacavedeharol · MIT License</span>
+    <span>
+      <a href="apidocs/index.html" target="_blank" rel="noopener">apidocs</a>
+      &nbsp;·&nbsp;
+      <a href="https://github.com/lacavedeharol/java-crt-chess" target="_blank" rel="noopener">github</a>
+      &nbsp;·&nbsp;
+      <a href="https://github.com/lacavedeharol/java-crt-chess/releases" target="_blank" rel="noopener">releases</a>
+    </span>
+  </footer>
+
+</body>
+
+</html>
